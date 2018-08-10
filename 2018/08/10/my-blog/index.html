@@ -1,0 +1,264 @@
+
+
+
+
+
+
+<!doctype html>
+<html lang="">
+
+<script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+<script type="text/javascript" 
+src="//cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.min.js">
+</script>
+<link href=  "/plugins/code-theme/tomorrow.css" type="text/css" rel="stylesheet" />
+<link rel="stylesheet" href="/plugins/github-markdown.css">
+
+<head>
+  <meta charset="UTF-8" name="viewport" content="width=device-width,initial-scale=1">
+  
+    
+    
+      <link rel="stylesheet" href="/css/legend.css">
+    
+  
+</head>
+
+<body id="body-x">
+<div id="layout-content">
+  <div id="menu-outer-x">
+  <div id="menu-inner">
+    
+    
+    <div id="site-title">
+      一直在路上
+    </div>
+    
+
+     
+    <div>
+    
+      
+      <a href="/">首页</a>
+      
+    
+      
+      <a href="/archives">归档</a>
+      
+    
+    </div>
+  </div>
+</div> 
+  <div id="content-outer">
+    <div id="content-inner">
+      
+      
+  <article class="markdown-body">
+    <h2 id="post-title">如何开发一个登录注册组件
+       
+        <div id="post-time" datetime="2018-08-10T09:12:13.000Z">
+          2018-08-10
+        </div>
+      
+    </h2>
+    <h3 id="如何开发一个登录注册组件"><a href="#如何开发一个登录注册组件" class="headerlink" title="如何开发一个登录注册组件"></a>如何开发一个登录注册组件</h3><h6 id="要开发某个功能我们就要去思考这个功能怎样实现最快捷最方便，下面以项目中的登录注册组件为例说明"><a href="#要开发某个功能我们就要去思考这个功能怎样实现最快捷最方便，下面以项目中的登录注册组件为例说明" class="headerlink" title="要开发某个功能我们就要去思考这个功能怎样实现最快捷最方便，下面以项目中的登录注册组件为例说明"></a>要开发某个功能我们就要去思考这个功能怎样实现最快捷最方便，下面以项目中的登录注册组件为例说明</h6><hr>
+<h5 id="一个功能要尽可能的去拆分比如这个登录注册组件就可以拆分成三个部分"><a href="#一个功能要尽可能的去拆分比如这个登录注册组件就可以拆分成三个部分" class="headerlink" title="一个功能要尽可能的去拆分比如这个登录注册组件就可以拆分成三个部分"></a>一个功能要尽可能的去拆分比如这个登录注册组件就可以拆分成三个部分</h5><h6 id="一：登录"><a href="#一：登录" class="headerlink" title="一：登录"></a>一：登录</h6><h6 id="二-：注册"><a href="#二-：注册" class="headerlink" title="二 ：注册"></a>二 ：注册</h6><h6 id="三：其他（example-找回密码）"><a href="#三：其他（example-找回密码）" class="headerlink" title="三：其他（example:找回密码）"></a>三：其他（example:找回密码）</h6><h6 id="组件好写-这里就不在去写了-（组件就是可以重复利用的片段）"><a href="#组件好写-这里就不在去写了-（组件就是可以重复利用的片段）" class="headerlink" title="组件好写 这里就不在去写了 （组件就是可以重复利用的片段）"></a>组件好写 这里就不在去写了 （组件就是可以重复利用的片段）</h6><h6 id="这里我先梳理思路"><a href="#这里我先梳理思路" class="headerlink" title="这里我先梳理思路"></a>这里我先梳理思路</h6><h6 id="我们要写一个全局方法-可以控制哪个组件显示-类似于这样this-setLogShow-n"><a href="#我们要写一个全局方法-可以控制哪个组件显示-类似于这样this-setLogShow-n" class="headerlink" title="我们要写一个全局方法 可以控制哪个组件显示 类似于这样this.setLogShow(n)"></a>我们要写一个全局方法 可以控制哪个组件显示 类似于这样this.setLogShow(n)</h6><h6 id="里面可以是Blooean-或者Number-比如登陆组件要显示-可以传入Number-1-注册组件为2-等"><a href="#里面可以是Blooean-或者Number-比如登陆组件要显示-可以传入Number-1-注册组件为2-等" class="headerlink" title="里面可以是Blooean 或者Number 比如登陆组件要显示 可以传入Number 1 ,注册组件为2 等"></a>里面可以是Blooean 或者Number 比如登陆组件要显示 可以传入Number 1 ,注册组件为2 等</h6><h6 id="下面我们来完善自己的仓库-log-js"><a href="#下面我们来完善自己的仓库-log-js" class="headerlink" title="下面我们来完善自己的仓库(log.js)"></a>下面我们来完善自己的仓库(log.js)</h6><h6 id="为了能让你学到更多东西我采用手动写代码方式"><a href="#为了能让你学到更多东西我采用手动写代码方式" class="headerlink" title="为了能让你学到更多东西我采用手动写代码方式"></a>为了能让你学到更多东西我采用手动写代码方式</h6><h4 id="首先要明白下面四点"><a href="#首先要明白下面四点" class="headerlink" title="首先要明白下面四点"></a>首先要明白下面四点</h4><h4 id="第一：vue是数据驱动-数据改变会会更新视图-我们需要有一个初始状态值-state"><a href="#第一：vue是数据驱动-数据改变会会更新视图-我们需要有一个初始状态值-state" class="headerlink" title="第一：vue是数据驱动 数据改变会会更新视图  我们需要有一个初始状态值 state;"></a>第一：vue是数据驱动 数据改变会会更新视图  我们需要有一个初始状态值 state;</h4><h4 id="第二：-vue中的数据是加了钩子的-不管是get-或者set-都会触发钩子-getter是在显示数据之前进行的在编辑"><a href="#第二：-vue中的数据是加了钩子的-不管是get-或者set-都会触发钩子-getter是在显示数据之前进行的在编辑" class="headerlink" title="第二： vue中的数据是加了钩子的 不管是get 或者set 都会触发钩子 getter是在显示数据之前进行的在编辑;"></a>第二： vue中的数据是加了钩子的 不管是get 或者set 都会触发钩子 getter是在显示数据之前进行的在编辑;</h4><h4 id="第三：数据状态的改变只能通过Mutations-同步修改状态"><a href="#第三：数据状态的改变只能通过Mutations-同步修改状态" class="headerlink" title="第三：数据状态的改变只能通过Mutations 同步修改状态;"></a>第三：数据状态的改变只能通过Mutations 同步修改状态;</h4><h4 id="第四：Actions-异步修改状态-且只能提交到Mutations"><a href="#第四：Actions-异步修改状态-且只能提交到Mutations" class="headerlink" title="第四：Actions  异步修改状态 且只能提交到Mutations;"></a>第四：Actions  异步修改状态 且只能提交到Mutations;</h4><h6 id="理解了上面四点我们开始构建我们的logIn仓库"><a href="#理解了上面四点我们开始构建我们的logIn仓库" class="headerlink" title="理解了上面四点我们开始构建我们的logIn仓库"></a>理解了上面四点我们开始构建我们的logIn仓库</h6><h5 id="一下代码均按照所在公司要求编写"><a href="#一下代码均按照所在公司要求编写" class="headerlink" title="一下代码均按照所在公司要求编写"></a>一下代码均按照所在公司要求编写</h5><h6 id="首先我们需要定义项目存在的事件"><a href="#首先我们需要定义项目存在的事件" class="headerlink" title="首先我们需要定义项目存在的事件"></a>首先我们需要定义项目存在的事件</h6><h5 id="mutation-type-js"><a href="#mutation-type-js" class="headerlink" title="mutation-type.js"></a>mutation-type.js</h5><h5 id="设置登录状态"><a href="#设置登录状态" class="headerlink" title="设置登录状态"></a>设置登录状态</h5><p>##### </p>
+<pre><code>export const SET_LOGREG_SHOW = &#39;SET_LOGREG_SHOW&#39;
+</code></pre><h6 id="接着在编写一个状态仓库-logreg-js"><a href="#接着在编写一个状态仓库-logreg-js" class="headerlink" title="接着在编写一个状态仓库(logreg.js)"></a>接着在编写一个状态仓库(logreg.js)</h6><pre><code>import * as types from &#39;../mutations-types&#39;(不理解import as的自行看es6模块章节)
+const state ={
+show: false //1:登录 2：注册 3：找回密码
+}
+const getters = {
+getLogregShow: state=&gt; state.show
+}
+const mutations = {
+[types.SET_ISLOGREGSHOW] (state,show){
+state.show = show
+}
+}
+const actions = {
+setLogregShow({commit},show）{
+commit(types.SET_ISLOGREGSHOW，show)
+}
+}
+export default {
+state,
+getters,
+mutations,
+actions
+}
+</code></pre><h6 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h6><blockquote>
+<p> 关于上面代码一些命名(比如getters下面的getLogregShow,以及actions下面的setLogregShow,),这个命名完全看个人爱好,我觉得这样写能更好的让人理解get是获取XXX,set是设置XXX.</p>
+</blockquote>
+<h6 id="接下来不用我说大家应该也知道要在store中导入这个仓库-并且在根组件注册仓库才能全局使用"><a href="#接下来不用我说大家应该也知道要在store中导入这个仓库-并且在根组件注册仓库才能全局使用" class="headerlink" title="接下来不用我说大家应该也知道要在store中导入这个仓库 ,并且在根组件注册仓库才能全局使用"></a>接下来不用我说大家应该也知道要在store中导入这个仓库 ,并且在根组件注册仓库才能全局使用</h6><pre><code> import Vue from &#39;vue&#39;
+import Vuex from &#39;vuex&#39;
+import logreg from &#39;./modules/logreg.js&#39;
+Vue.use(Vuex)
+export default new Vuex.Store({
+modules:{
+logreg
+}
+})
+</code></pre><h6 id="然后你的三个组件都写好了-那么接下来就要控制渲染哪个组件了"><a href="#然后你的三个组件都写好了-那么接下来就要控制渲染哪个组件了" class="headerlink" title="然后你的三个组件都写好了 那么接下来就要控制渲染哪个组件了"></a>然后你的三个组件都写好了 那么接下来就要控制渲染哪个组件了</h6><h6 id="比如你的三个组件分别为signUp-vue-signIn-vue-retrieve-vue"><a href="#比如你的三个组件分别为signUp-vue-signIn-vue-retrieve-vue" class="headerlink" title="比如你的三个组件分别为signUp.vue signIn.vue retrieve.vue"></a>比如你的三个组件分别为signUp.vue signIn.vue retrieve.vue</h6><h6 id="既然是渲染那么我们知道可以用v-if-自行看v-if与v-show的区别"><a href="#既然是渲染那么我们知道可以用v-if-自行看v-if与v-show的区别" class="headerlink" title="既然是渲染那么我们知道可以用v-if 自行看v-if与v-show的区别"></a>既然是渲染那么我们知道可以用v-if 自行看v-if与v-show的区别</h6><h6 id="我们可以做一个新的组件就叫做signComp-vue-是这三个组件的父组件"><a href="#我们可以做一个新的组件就叫做signComp-vue-是这三个组件的父组件" class="headerlink" title="我们可以做一个新的组件就叫做signComp.vue 是这三个组件的父组件"></a>我们可以做一个新的组件就叫做signComp.vue 是这三个组件的父组件</h6><pre><code>&lt;template&gt;
+&lt;div&gt;
+&lt;sign-in v-if=&quot;show===1&quot;&gt;&lt;/sign-in&gt;
+&lt;sign-up  v-else-if=&quot;show===2&quot;&gt;&lt;/sign-up&gt;
+&lt;retrieve v-else-if=&quot;show===3&quot;&gt;&lt;/retrieve&gt;
+&lt;/div&gt;
+&lt;/template&gt;
+&lt;script&gt;
+import signIn from 
+import signUp from 
+import retrieve from 
+components:{
+signIn,signUp,retrieve
+}
+&lt;/script&gt;
+</code></pre><h6 id="这样你在其他调用的时候只需要两部-映射方法-调用方法"><a href="#这样你在其他调用的时候只需要两部-映射方法-调用方法" class="headerlink" title="这样你在其他调用的时候只需要两部  映射方法 调用方法"></a>这样你在其他调用的时候只需要两部  映射方法 调用方法</h6><h6 id="第一："><a href="#第一：" class="headerlink" title="第一："></a>第一：</h6><pre><code>mapActions({
+showLogreg:&#39;setLogregShow&#39;
+})
+</code></pre><p>比如点击了登录<br>那么 可以用</p>
+<pre><code>this.showLogreg(1)
+</code></pre><p>就会弹出你的登录组件</p>
+<h4 id="注意-1"><a href="#注意-1" class="headerlink" title="注意"></a>注意</h4><blockquote>
+<p>新组建里面的show 也是通过getters映射到当前组件的</p>
+</blockquote>
+<pre><code> computed: {
+    ...mapGetters({
+      show: &#39;getLogregShow&#39;
+    })
+},
+</code></pre><h3 id="为什么会弹出呢-很简单-流程如下"><a href="#为什么会弹出呢-很简单-流程如下" class="headerlink" title="为什么会弹出呢  很简单 流程如下"></a>为什么会弹出呢  很简单 流程如下</h3><h6 id="调用showLogreg-1-》找到对应仓库的方法，找到setLogregShow-gt-由于调用的时候传入了1-那么就相当于提交到mutations一个新的状态值-mutations收到这个提交会做一件事情-会把state下面对应的数据改变-（把show变为1）"><a href="#调用showLogreg-1-》找到对应仓库的方法，找到setLogregShow-gt-由于调用的时候传入了1-那么就相当于提交到mutations一个新的状态值-mutations收到这个提交会做一件事情-会把state下面对应的数据改变-（把show变为1）" class="headerlink" title="调用showLogreg(1)=========》找到对应仓库的方法，找到setLogregShow() ====&gt;由于调用的时候传入了1 那么就相当于提交到mutations一个新的状态值, mutations收到这个提交会做一件事情 会把state下面对应的数据改变 （把show变为1）"></a>调用showLogreg(1)=========》找到对应仓库的方法，找到setLogregShow() ====&gt;由于调用的时候传入了1 那么就相当于提交到mutations一个新的状态值, mutations收到这个提交会做一件事情 会把state下面对应的数据改变 （把show变为1）</h6><h6 id="当show为1的时候-这个组件就会被渲染"><a href="#当show为1的时候-这个组件就会被渲染" class="headerlink" title="当show为1的时候  这个组件就会被渲染"></a>当show为1的时候 <sign-in v-if="show===1"></sign-in> 这个组件就会被渲染</h6><h6 id="那么用户就看到了登录组件"><a href="#那么用户就看到了登录组件" class="headerlink" title="那么用户就看到了登录组件"></a>那么用户就看到了登录组件</h6>
+  </article>
+
+  
+    
+    
+      <div id="page-prev-next">
+        
+        
+          <div></div> 
+        
+
+        
+        
+          <a id="page-next-a" href="/2018/08/10/hello-world/"> Hello World → </a>
+        
+      </div>
+    
+    
+    
+    
+      
+      <div id="play-button"  style="background-color: #07aefc; border: solid 2px #07aefc;">
+  <img id="play-img" src="/images/playback_play.png"></img>
+</div>
+<audio id="bgaudio" loop="loop" preload="none"> 
+  <source src=http://cdn.calm.com/scenes/scene-Qqkzy9k7Eo.m4a?v=1418162240715 type="audio/mpeg">
+</audio>
+
+<script>
+$(document).ready(function(){
+  //播放按钮点击
+  var audio = $("#bgaudio")[0];
+  var img = $("#play-img")[0];
+  $("#play-button").click(function(){ 
+    if (audio.paused || audio.ended) {
+      audio.play();
+      img.src = "/images/playback_pause.png";
+    } else {
+      audio.pause();
+      img.src = "/images/playback_play.png";
+    }
+  });
+});
+</script>
+    
+
+    
+    
+
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div id="reward_comment">文章对我有帮助，打赏作者</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/images/wechatpay.png" alt="端端 WeChat Pay"/>
+          <p>微信</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/images/alipay.png" alt="端端 Alipay"/>
+          <p>支付宝</p>
+        </div> 
+      
+    </div>
+  </div>
+
+
+  
+
+    </div>
+  </div>
+</div>
+
+
+  <!-- 来必力City版安装代码 -->
+<div id="lv-container" data-id="city" data-uid="MTAyMC8yOTI2MS81ODI5">
+	<script type="text/javascript">
+   (function(d, s) {
+       var j, e = d.getElementsByTagName(s)[0];
+
+       if (typeof LivereTower === 'function') { return; }
+
+       j = d.createElement(s);
+       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+       j.async = true;
+
+       e.parentNode.insertBefore(j, e);
+   })(document, 'script');
+	</script>
+<noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
+</div>
+<!-- City版安装代码已完成 -->
+
+
+<div id="bottom-outer">
+  
+  <div id="bottom-inner">
+    端端 
+    ©2018 |Powered by  
+    <a href="http://hexo.io" target="_blank">Hexo</a> with theme 
+    <a href="https://github.com/iHongRen/legend" target="_blank">legend</a>
+  </div>
+    
+    
+    
+      <a href="/atom.xml">
+      
+      <img src=/images/rss.png height="18" width="18">
+      
+</div> 
+
+
+  
+  
+    <script src="/js/legend.js"></script>
+  
+
+
+</body>
+</html>
+
+
+<script>
+$(window).on('load', function(){
+   $('pre').addClass('prettyprint').attr('style', 'overflow:auto;');
+   prettyPrint();
+ });
+</script>
+

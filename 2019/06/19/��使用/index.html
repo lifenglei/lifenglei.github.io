@@ -96,20 +96,17 @@
 
 
 
-  <meta name="description" content="$attrs与$listenrs使用 2.4.0 新增  类型：{ [key: string]: string } 只读 详细:   ####包含了父作用域中不作为 prop 被识别 (且获取) 的特性绑定 (class 和 style 除外)。当一个组件没有声明任何 prop 时，这里会包含所有父作用域的绑定 (class 和 style 除外)，并且可以通过 v-bind=”$attrs” 传">
+  <meta name="description" content="$attrs与$listenrs使用 2.4.0 新增  类型：{ [key: string]: string } 只读 详细:   包含了父作用域中不作为 prop 被识别 (且获取) 的特性绑定 (class 和 style 除外)。当一个组件没有声明任何 prop 时，这里会包含所有父作用域的绑定 (class 和 style 除外)，并且可以通过 v-bind=”$attrs” 传入内部组">
 <meta property="og:type" content="article">
 <meta property="og:title" content="$attr使用">
 <meta property="og:url" content="https://github.com/lifenglei/2019/06/19/��使用/index.html">
 <meta property="og:site_name" content="前端开发沉淀">
-<meta property="og:description" content="$attrs与$listenrs使用 2.4.0 新增  类型：{ [key: string]: string } 只读 详细:   ####包含了父作用域中不作为 prop 被识别 (且获取) 的特性绑定 (class 和 style 除外)。当一个组件没有声明任何 prop 时，这里会包含所有父作用域的绑定 (class 和 style 除外)，并且可以通过 v-bind=”$attrs” 传">
+<meta property="og:description" content="$attrs与$listenrs使用 2.4.0 新增  类型：{ [key: string]: string } 只读 详细:   包含了父作用域中不作为 prop 被识别 (且获取) 的特性绑定 (class 和 style 除外)。当一个组件没有声明任何 prop 时，这里会包含所有父作用域的绑定 (class 和 style 除外)，并且可以通过 v-bind=”$attrs” 传入内部组">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="http://1.z9ls.com/t6/701/1555570189x2890191817.png">
-<meta property="og:image" content="http://1.z9ls.com/t6/701/1555570594x2918527158.png">
-<meta property="og:updated_time" content="2019-06-19T07:20:56.289Z">
+<meta property="og:updated_time" content="2019-06-19T08:35:19.148Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="$attr使用">
-<meta name="twitter:description" content="$attrs与$listenrs使用 2.4.0 新增  类型：{ [key: string]: string } 只读 详细:   ####包含了父作用域中不作为 prop 被识别 (且获取) 的特性绑定 (class 和 style 除外)。当一个组件没有声明任何 prop 时，这里会包含所有父作用域的绑定 (class 和 style 除外)，并且可以通过 v-bind=”$attrs” 传">
-<meta name="twitter:image" content="http://1.z9ls.com/t6/701/1555570189x2890191817.png">
+<meta name="twitter:description" content="$attrs与$listenrs使用 2.4.0 新增  类型：{ [key: string]: string } 只读 详细:   包含了父作用域中不作为 prop 被识别 (且获取) 的特性绑定 (class 和 style 除外)。当一个组件没有声明任何 prop 时，这里会包含所有父作用域的绑定 (class 和 style 除外)，并且可以通过 v-bind=”$attrs” 传入内部组">
 
 
 
@@ -335,7 +332,7 @@
                 
               
 
-              <time title="Created: 2019-06-19 15:20:23 / Modified: 15:20:56" itemprop="dateCreated datePublished" datetime="2019-06-19T15:20:23+08:00">2019-06-19</time>
+              <time title="Created: 2019-06-19 15:20:23 / Modified: 16:35:19" itemprop="dateCreated datePublished" datetime="2019-06-19T15:20:23+08:00">2019-06-19</time>
             
 
             
@@ -382,8 +379,7 @@
 <li>详细:</li>
 </ul>
 </blockquote>
-<p>####<br>包含了父作用域中不作为 prop 被识别 (且获取) 的特性绑定 (<font color="orange">class 和 style 除外)</font>。当一个组件没有声明任何 prop 时，这里会包含所有父作用域的绑定 (class 和 style 除外)，并且可以通过<font color="orange"> v-bind=”$attrs”</font> 传入内部组件——在创建高级别的组件时非常有用。</p>
-<h5 id="官方说法似乎有点模糊-其实可以这么去理解"><a href="#官方说法似乎有点模糊-其实可以这么去理解" class="headerlink" title="官方说法似乎有点模糊 其实可以这么去理解"></a>官方说法似乎有点模糊 其实可以这么去理解</h5><pre><code>因为在项目中深层次组件交互的话可能就需要 Vuex 助力了，但是如果只是一个简单的深层次数据传递，
+<h4 id="包含了父作用域中不作为-prop-被识别-且获取-的特性绑定-class-和-style-除外-。当一个组件没有声明任何-prop-时，这里会包含所有父作用域的绑定-class-和-style-除外-，并且可以通过-v-bind-”-attrs”-传入内部组件——在创建高级别的组件时非常有用。"><a href="#包含了父作用域中不作为-prop-被识别-且获取-的特性绑定-class-和-style-除外-。当一个组件没有声明任何-prop-时，这里会包含所有父作用域的绑定-class-和-style-除外-，并且可以通过-v-bind-”-attrs”-传入内部组件——在创建高级别的组件时非常有用。" class="headerlink" title="包含了父作用域中不作为 prop 被识别 (且获取) 的特性绑定 (class 和 style 除外)。当一个组件没有声明任何 prop 时，这里会包含所有父作用域的绑定 (class 和 style 除外)，并且可以通过 v-bind=”$attrs” 传入内部组件——在创建高级别的组件时非常有用。"></a>包含了父作用域中不作为 prop 被识别 (且获取) 的特性绑定 (<font color="orange">class 和 style 除外)</font>。当一个组件没有声明任何 prop 时，这里会包含所有父作用域的绑定 (class 和 style 除外)，并且可以通过<font color="orange"> v-bind=”$attrs”</font> 传入内部组件——在创建高级别的组件时非常有用。</h4><h5 id="官方说法似乎有点模糊-其实可以这么去理解"><a href="#官方说法似乎有点模糊-其实可以这么去理解" class="headerlink" title="官方说法似乎有点模糊 其实可以这么去理解"></a>官方说法似乎有点模糊 其实可以这么去理解</h5><pre><code>因为在项目中深层次组件交互的话可能就需要 Vuex 助力了，但是如果只是一个简单的深层次数据传递，
 
 或者进行某种交互时需要向上通知顶层或父层组件数据改变时，大材小用Vuex可能未免有点多余！
 </code></pre><h4 id="attr-与-interitAttrs-之间的关系"><a href="#attr-与-interitAttrs-之间的关系" class="headerlink" title="$attr 与 interitAttrs 之间的关系"></a><font color="red">$attr 与 interitAttrs 之间的关系</font></h4><h4 id="interitAttrs："><a href="#interitAttrs：" class="headerlink" title="interitAttrs："></a>interitAttrs：</h4><blockquote>
@@ -394,8 +390,7 @@
 <li>详细:</li>
 </ul>
 </blockquote>
-<p>####<br>默认情况下父作用域的不被认作 props 的特性绑定 (attribute bindings) 将会“回退”且作为普通的 HTML 特性应用在子组件的根元素上。当撰写包裹一个目标元素或另一个组件的组件时，这可能不会总是符合预期行为。通过设置 inheritAttrs 到 false，这些默认行为将会被去掉。而通过 (同样是 2.4 新增的) 实例属性 $attrs 可以让这些特性生效，且可以通过 v-bind 显性的绑定到非根元素上。</p>
-<h2 id="warn：这个选项不影响-class-和-style-绑定。"><a href="#warn：这个选项不影响-class-和-style-绑定。" class="headerlink" title="warn：这个选项不影响 class 和 style 绑定。"></a><font color="red">warn：这个选项不影响 class 和 style 绑定。</font></h2><h4 id="下面通过简单demo解释下"><a href="#下面通过简单demo解释下" class="headerlink" title="下面通过简单demo解释下"></a>下面通过简单demo解释下</h4><p>父组件</p>
+<h4 id="默认情况下父作用域的不被认作-props-的特性绑定-attribute-bindings-将会“回退”且作为普通的-HTML-特性应用在子组件的根元素上。当撰写包裹一个目标元素或另一个组件的组件时，这可能不会总是符合预期行为。通过设置-inheritAttrs-到-false，这些默认行为将会被去掉。而通过-同样是-2-4-新增的-实例属性-attrs-可以让这些特性生效，且可以通过-v-bind-显性的绑定到非根元素上。"><a href="#默认情况下父作用域的不被认作-props-的特性绑定-attribute-bindings-将会“回退”且作为普通的-HTML-特性应用在子组件的根元素上。当撰写包裹一个目标元素或另一个组件的组件时，这可能不会总是符合预期行为。通过设置-inheritAttrs-到-false，这些默认行为将会被去掉。而通过-同样是-2-4-新增的-实例属性-attrs-可以让这些特性生效，且可以通过-v-bind-显性的绑定到非根元素上。" class="headerlink" title="默认情况下父作用域的不被认作 props 的特性绑定 (attribute bindings) 将会“回退”且作为普通的 HTML 特性应用在子组件的根元素上。当撰写包裹一个目标元素或另一个组件的组件时，这可能不会总是符合预期行为。通过设置 inheritAttrs 到 false，这些默认行为将会被去掉。而通过 (同样是 2.4 新增的) 实例属性 $attrs 可以让这些特性生效，且可以通过 v-bind 显性的绑定到非根元素上。"></a>默认情况下父作用域的不被认作 props 的特性绑定 (attribute bindings) 将会“回退”且作为普通的 HTML 特性应用在子组件的根元素上。当撰写包裹一个目标元素或另一个组件的组件时，这可能不会总是符合预期行为。通过设置 inheritAttrs 到 false，这些默认行为将会被去掉。而通过 (同样是 2.4 新增的) 实例属性 $attrs 可以让这些特性生效，且可以通过 v-bind 显性的绑定到非根元素上。</h4><h2 id="warn：这个选项不影响-class-和-style-绑定。"><a href="#warn：这个选项不影响-class-和-style-绑定。" class="headerlink" title="warn：这个选项不影响 class 和 style 绑定。"></a><font color="red">warn：这个选项不影响 class 和 style 绑定。</font></h2><h4 id="下面通过简单demo解释下"><a href="#下面通过简单demo解释下" class="headerlink" title="下面通过简单demo解释下"></a>下面通过简单demo解释下</h4><p>父组件</p>
 <pre><code class="js">&lt;template&gt;
   &lt;div class=&quot;hello&quot;&gt;
      &lt;demo :count=&quot;count&quot; :num=&quot;num&quot;&gt;&lt;/demo&gt;
@@ -431,8 +426,7 @@ export default {
 }
 &lt;/script&gt;
 </code></pre>
-<p>#####<br>父组件在子组件中进行传递 count 和num 两个数据，在子组件中，应该有相对应的 props 定义的接收点，如果在 props 中定义了，你会发现无论是 count 和 num 都成了子组件的接收来的数据了，可以用来进行数据展示和行为操作。<br>虽然在父组件中在子组件模版上通过 props 定义了两个数据，但是子组件中的 props 只接收了一个，只接收了 count，并没有接收 num，没有进行接收的此时就会成为<font color="red">子组件根无素的属性节点。</font></p>
-<p><img src="http://1.z9ls.com/t6/701/1555570189x2890191817.png" alt="blockchain" title="$attrs"></p>
+<h5 id="父组件在子组件中进行传递-count-和num-两个数据，在子组件中，应该有相对应的-props-定义的接收点，如果在-props-中定义了，你会发现无论是-count-和-num-都成了子组件的接收来的数据了，可以用来进行数据展示和行为操作。"><a href="#父组件在子组件中进行传递-count-和num-两个数据，在子组件中，应该有相对应的-props-定义的接收点，如果在-props-中定义了，你会发现无论是-count-和-num-都成了子组件的接收来的数据了，可以用来进行数据展示和行为操作。" class="headerlink" title="父组件在子组件中进行传递 count 和num 两个数据，在子组件中，应该有相对应的 props 定义的接收点，如果在 props 中定义了，你会发现无论是 count 和 num 都成了子组件的接收来的数据了，可以用来进行数据展示和行为操作。"></a>父组件在子组件中进行传递 count 和num 两个数据，在子组件中，应该有相对应的 props 定义的接收点，如果在 props 中定义了，你会发现无论是 count 和 num 都成了子组件的接收来的数据了，可以用来进行数据展示和行为操作。</h5><p>虽然在父组件中在子组件模版上通过 props 定义了两个数据，但是子组件中的 props 只接收了一个，只接收了 count，并没有接收 num，没有进行接收的此时就会成为<font color="red">子组件根无素的属性节点。</font></p>
 <h5 id="interitAttrs-false-发生了什么-？"><a href="#interitAttrs-false-发生了什么-？" class="headerlink" title="interitAttrs = false 发生了什么 ？"></a>interitAttrs = false 发生了什么 ？</h5><p>子组件</p>
 <pre><code class="js">&lt;template&gt;
    &lt;div&gt;
@@ -447,7 +441,6 @@ export default {
 }
 &lt;/script&gt;
 </code></pre>
-<p><img src="http://1.z9ls.com/t6/701/1555570594x2918527158.png" alt="blockchain" title="$attrs"></p>
 <h4 id="对子组件进行一个改动，我们加上-inheritAttrs-false，从字面上的翻译的意思，取消继承的属性，然而-props-里仍然没有接收-num，发现就算-props-里没有接收-num，在子组件的根元素上并没有绑定任何属性。"><a href="#对子组件进行一个改动，我们加上-inheritAttrs-false，从字面上的翻译的意思，取消继承的属性，然而-props-里仍然没有接收-num，发现就算-props-里没有接收-num，在子组件的根元素上并没有绑定任何属性。" class="headerlink" title="对子组件进行一个改动，我们加上 inheritAttrs: false，从字面上的翻译的意思，取消继承的属性，然而 props 里仍然没有接收 num，发现就算 props 里没有接收 num，在子组件的根元素上并没有绑定任何属性。"></a>对子组件进行一个改动，我们加上 inheritAttrs: false，从字面上的翻译的意思，取消继承的属性，然而 props 里仍然没有接收 num，发现就算 props 里没有接收 num，在子组件的根元素上并没有绑定任何属性。</h4><blockquote>
 <p>$attrs</p>
 </blockquote>
@@ -489,7 +482,7 @@ export default {
   }
 &lt;/script&gt;
 </code></pre>
-<p>####<br>孙子组件在 props 接收子组件中通过 <font color="red">$attrs</font> 包裹传来的数据，同样是通过父组件传来的数据，只是在子组件用了<font color="red">$attrs</font>进行了统一接收，再往下传递，最后通过孙子组件进行接收。<br>以此类推孙子组件仍然不想接收，再传入下级组件，我们仍然需要对孙子组件实力选项进行设置选项 inheritAttrs: false，否则仍然会成为孙子组件根元素的属性节点。</p>
+<h4 id="孙子组件在-props-接收子组件中通过-attrs-包裹传来的数据，同样是通过父组件传来的数据，只是在子组件用了-attrs进行了统一接收，再往下传递，最后通过孙子组件进行接收。"><a href="#孙子组件在-props-接收子组件中通过-attrs-包裹传来的数据，同样是通过父组件传来的数据，只是在子组件用了-attrs进行了统一接收，再往下传递，最后通过孙子组件进行接收。" class="headerlink" title="孙子组件在 props 接收子组件中通过 $attrs 包裹传来的数据，同样是通过父组件传来的数据，只是在子组件用了$attrs进行了统一接收，再往下传递，最后通过孙子组件进行接收。"></a>孙子组件在 props 接收子组件中通过 <font color="red">$attrs</font> 包裹传来的数据，同样是通过父组件传来的数据，只是在子组件用了<font color="red">$attrs</font>进行了统一接收，再往下传递，最后通过孙子组件进行接收。</h4><p>以此类推孙子组件仍然不想接收，再传入下级组件，我们仍然需要对孙子组件实力选项进行设置选项 inheritAttrs: false，否则仍然会成为孙子组件根元素的属性节点。</p>
 <h2 id="从而利用-attrs-来接收-props-为接收的数据再次向下传递是一件很方便的事件，深层次接收数据我们理解了，那从深层次向层请求改变数据如何实现。意思就是让顶层数据和最底层数据进行一个双向绑定。"><a href="#从而利用-attrs-来接收-props-为接收的数据再次向下传递是一件很方便的事件，深层次接收数据我们理解了，那从深层次向层请求改变数据如何实现。意思就是让顶层数据和最底层数据进行一个双向绑定。" class="headerlink" title="从而利用 $attrs 来接收 props 为接收的数据再次向下传递是一件很方便的事件，深层次接收数据我们理解了，那从深层次向层请求改变数据如何实现。意思就是让顶层数据和最底层数据进行一个双向绑定。"></a>从而利用 <font color="red">$attrs</font> 来接收 props 为接收的数据再次向下传递是一件很方便的事件，深层次接收数据我们理解了，那从深层次向层请求改变数据如何实现。意思就是让顶层数据和最底层数据进行一个双向绑定。</h2><h4 id="listeners"><a href="#listeners" class="headerlink" title="$listeners"></a>$listeners</h4><blockquote>
 <p>2.4.0 新增</p>
 <ul>
@@ -572,10 +565,7 @@ export default {
 }
 &lt;/script&gt;
 ```
-
-![blockchain](http://1.z9ls.com/t6/701/1555572193x2918527158.png &quot;$listeners&quot;)
-###    
-</code></pre><p>依然能拿到从子组中传递过来的$listeners所有的监听事件，此时并不是通过$emit去触发，而是像调用函数一样，$emit只是针对于父子组件的双向通信，<font color="red">$listeners包了一个对象，分别是 changeData 和 another，通过$listeners.changeData(‘change’)等于直接触发了事件</font>，执行监听后的回调函数，就是通过函数的传递，调用了父组件的函数。<br>通过 $attrs 和 $listeners 可以很愉快地解决深层次组件的通信问题，更加合理的组织你的代码。</p>
+</code></pre><h3 id="依然能拿到从子组中传递过来的-listeners所有的监听事件，此时并不是通过-emit去触发，而是像调用函数一样，-emit只是针对于父子组件的双向通信，-listeners包了一个对象，分别是-changeData-和-another，通过-listeners-changeData-‘change’-等于直接触发了事件，执行监听后的回调函数，就是通过函数的传递，调用了父组件的函数。"><a href="#依然能拿到从子组中传递过来的-listeners所有的监听事件，此时并不是通过-emit去触发，而是像调用函数一样，-emit只是针对于父子组件的双向通信，-listeners包了一个对象，分别是-changeData-和-another，通过-listeners-changeData-‘change’-等于直接触发了事件，执行监听后的回调函数，就是通过函数的传递，调用了父组件的函数。" class="headerlink" title="依然能拿到从子组中传递过来的$listeners所有的监听事件，此时并不是通过$emit去触发，而是像调用函数一样，$emit只是针对于父子组件的双向通信，$listeners包了一个对象，分别是 changeData 和 another，通过$listeners.changeData(‘change’)等于直接触发了事件，执行监听后的回调函数，就是通过函数的传递，调用了父组件的函数。"></a>依然能拿到从子组中传递过来的$listeners所有的监听事件，此时并不是通过$emit去触发，而是像调用函数一样，$emit只是针对于父子组件的双向通信，<font color="red">$listeners包了一个对象，分别是 changeData 和 another，通过$listeners.changeData(‘change’)等于直接触发了事件</font>，执行监听后的回调函数，就是通过函数的传递，调用了父组件的函数。</h3><p>通过 $attrs 和 $listeners 可以很愉快地解决深层次组件的通信问题，更加合理的组织你的代码。</p>
 <h3 id="END-—下次分享-parent-children使用"><a href="#END-—下次分享-parent-children使用" class="headerlink" title="END —下次分享$parent $children使用"></a>END —下次分享$parent $children使用</h3>
       
     </div>
@@ -757,7 +747,7 @@ export default {
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#attrs与-listenrs使用"><span class="nav-number">1.</span> <span class="nav-text">$attrs与$listenrs使用</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#官方说法似乎有点模糊-其实可以这么去理解"><span class="nav-number">1.0.1.</span> <span class="nav-text">官方说法似乎有点模糊 其实可以这么去理解</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#attr-与-interitAttrs-之间的关系"><span class="nav-number">1.1.</span> <span class="nav-text">$attr 与 interitAttrs 之间的关系</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#interitAttrs："><span class="nav-number">1.2.</span> <span class="nav-text">interitAttrs：</span></a></li></ol><li class="nav-item nav-level-2"><a class="nav-link" href="#warn：这个选项不影响-class-和-style-绑定。"><span class="nav-number"></span> <span class="nav-text">warn：这个选项不影响 class 和 style 绑定。</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#下面通过简单demo解释下"><span class="nav-number">0.1.</span> <span class="nav-text">下面通过简单demo解释下</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#interitAttrs-false-发生了什么-？"><span class="nav-number">0.1.1.</span> <span class="nav-text">interitAttrs = false 发生了什么 ？</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#对子组件进行一个改动，我们加上-inheritAttrs-false，从字面上的翻译的意思，取消继承的属性，然而-props-里仍然没有接收-num，发现就算-props-里没有接收-num，在子组件的根元素上并没有绑定任何属性。"><span class="nav-number">0.2.</span> <span class="nav-text">对子组件进行一个改动，我们加上 inheritAttrs: false，从字面上的翻译的意思，取消继承的属性，然而 props 里仍然没有接收 num，发现就算 props 里没有接收 num，在子组件的根元素上并没有绑定任何属性。</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#warn"><span class="nav-number">1.</span> <span class="nav-text">warn</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#从而利用-attrs-来接收-props-为接收的数据再次向下传递是一件很方便的事件，深层次接收数据我们理解了，那从深层次向层请求改变数据如何实现。意思就是让顶层数据和最底层数据进行一个双向绑定。"><span class="nav-number"></span> <span class="nav-text">从而利用 $attrs 来接收 props 为接收的数据再次向下传递是一件很方便的事件，深层次接收数据我们理解了，那从深层次向层请求改变数据如何实现。意思就是让顶层数据和最底层数据进行一个双向绑定。</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#listeners"><span class="nav-number">0.1.</span> <span class="nav-text">$listeners</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#END-—下次分享-parent-children使用"><span class="nav-number">1.</span> <span class="nav-text">END —下次分享$parent $children使用</span></a></li></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#attrs与-listenrs使用"><span class="nav-number">1.</span> <span class="nav-text">$attrs与$listenrs使用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#包含了父作用域中不作为-prop-被识别-且获取-的特性绑定-class-和-style-除外-。当一个组件没有声明任何-prop-时，这里会包含所有父作用域的绑定-class-和-style-除外-，并且可以通过-v-bind-”-attrs”-传入内部组件——在创建高级别的组件时非常有用。"><span class="nav-number">1.1.</span> <span class="nav-text">包含了父作用域中不作为 prop 被识别 (且获取) 的特性绑定 (class 和 style 除外)。当一个组件没有声明任何 prop 时，这里会包含所有父作用域的绑定 (class 和 style 除外)，并且可以通过 v-bind=”$attrs” 传入内部组件——在创建高级别的组件时非常有用。</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#官方说法似乎有点模糊-其实可以这么去理解"><span class="nav-number">1.1.1.</span> <span class="nav-text">官方说法似乎有点模糊 其实可以这么去理解</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#attr-与-interitAttrs-之间的关系"><span class="nav-number">1.2.</span> <span class="nav-text">$attr 与 interitAttrs 之间的关系</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#interitAttrs："><span class="nav-number">1.3.</span> <span class="nav-text">interitAttrs：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#默认情况下父作用域的不被认作-props-的特性绑定-attribute-bindings-将会“回退”且作为普通的-HTML-特性应用在子组件的根元素上。当撰写包裹一个目标元素或另一个组件的组件时，这可能不会总是符合预期行为。通过设置-inheritAttrs-到-false，这些默认行为将会被去掉。而通过-同样是-2-4-新增的-实例属性-attrs-可以让这些特性生效，且可以通过-v-bind-显性的绑定到非根元素上。"><span class="nav-number">1.4.</span> <span class="nav-text">默认情况下父作用域的不被认作 props 的特性绑定 (attribute bindings) 将会“回退”且作为普通的 HTML 特性应用在子组件的根元素上。当撰写包裹一个目标元素或另一个组件的组件时，这可能不会总是符合预期行为。通过设置 inheritAttrs 到 false，这些默认行为将会被去掉。而通过 (同样是 2.4 新增的) 实例属性 $attrs 可以让这些特性生效，且可以通过 v-bind 显性的绑定到非根元素上。</span></a></li></ol></li></ol><li class="nav-item nav-level-2"><a class="nav-link" href="#warn：这个选项不影响-class-和-style-绑定。"><span class="nav-number"></span> <span class="nav-text">warn：这个选项不影响 class 和 style 绑定。</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#下面通过简单demo解释下"><span class="nav-number">0.1.</span> <span class="nav-text">下面通过简单demo解释下</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#父组件在子组件中进行传递-count-和num-两个数据，在子组件中，应该有相对应的-props-定义的接收点，如果在-props-中定义了，你会发现无论是-count-和-num-都成了子组件的接收来的数据了，可以用来进行数据展示和行为操作。"><span class="nav-number">0.1.1.</span> <span class="nav-text">父组件在子组件中进行传递 count 和num 两个数据，在子组件中，应该有相对应的 props 定义的接收点，如果在 props 中定义了，你会发现无论是 count 和 num 都成了子组件的接收来的数据了，可以用来进行数据展示和行为操作。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#interitAttrs-false-发生了什么-？"><span class="nav-number">0.1.2.</span> <span class="nav-text">interitAttrs = false 发生了什么 ？</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#对子组件进行一个改动，我们加上-inheritAttrs-false，从字面上的翻译的意思，取消继承的属性，然而-props-里仍然没有接收-num，发现就算-props-里没有接收-num，在子组件的根元素上并没有绑定任何属性。"><span class="nav-number">0.2.</span> <span class="nav-text">对子组件进行一个改动，我们加上 inheritAttrs: false，从字面上的翻译的意思，取消继承的属性，然而 props 里仍然没有接收 num，发现就算 props 里没有接收 num，在子组件的根元素上并没有绑定任何属性。</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#warn"><span class="nav-number">1.</span> <span class="nav-text">warn</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#孙子组件在-props-接收子组件中通过-attrs-包裹传来的数据，同样是通过父组件传来的数据，只是在子组件用了-attrs进行了统一接收，再往下传递，最后通过孙子组件进行接收。"><span class="nav-number">1.1.</span> <span class="nav-text">孙子组件在 props 接收子组件中通过 $attrs 包裹传来的数据，同样是通过父组件传来的数据，只是在子组件用了$attrs进行了统一接收，再往下传递，最后通过孙子组件进行接收。</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#从而利用-attrs-来接收-props-为接收的数据再次向下传递是一件很方便的事件，深层次接收数据我们理解了，那从深层次向层请求改变数据如何实现。意思就是让顶层数据和最底层数据进行一个双向绑定。"><span class="nav-number"></span> <span class="nav-text">从而利用 $attrs 来接收 props 为接收的数据再次向下传递是一件很方便的事件，深层次接收数据我们理解了，那从深层次向层请求改变数据如何实现。意思就是让顶层数据和最底层数据进行一个双向绑定。</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#listeners"><span class="nav-number">0.1.</span> <span class="nav-text">$listeners</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#依然能拿到从子组中传递过来的-listeners所有的监听事件，此时并不是通过-emit去触发，而是像调用函数一样，-emit只是针对于父子组件的双向通信，-listeners包了一个对象，分别是-changeData-和-another，通过-listeners-changeData-‘change’-等于直接触发了事件，执行监听后的回调函数，就是通过函数的传递，调用了父组件的函数。"><span class="nav-number">1.</span> <span class="nav-text">依然能拿到从子组中传递过来的$listeners所有的监听事件，此时并不是通过$emit去触发，而是像调用函数一样，$emit只是针对于父子组件的双向通信，$listeners包了一个对象，分别是 changeData 和 another，通过$listeners.changeData(‘change’)等于直接触发了事件，执行监听后的回调函数，就是通过函数的传递，调用了父组件的函数。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#END-—下次分享-parent-children使用"><span class="nav-number">2.</span> <span class="nav-text">END —下次分享$parent $children使用</span></a></li></div>
             
 
           </div>

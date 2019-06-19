@@ -103,7 +103,7 @@
 <meta property="og:site_name" content="前端开发沉淀">
 <meta property="og:description" content="Sync的使用 在一些情况下，我们可能会需要对一个 prop 进行『双向绑定』。事实上，这正是 Vue 1.x 中的 .sync 修饰符所提供的功能。当一个子组件改变了一个 prop 的值时，这个变化也会同步到父组件中所绑定的值。这很方便，但也会导致问题，因为它破坏了『单向数据流』的假设。由于子组件改变 prop 的代码和普通的状态改动代码毫无区别，当光看子组件的代码时，你完全不知道它何时悄悄地改">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-06-19T07:21:57.688Z">
+<meta property="og:updated_time" content="2019-06-19T08:44:14.577Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="sync使用">
 <meta name="twitter:description" content="Sync的使用 在一些情况下，我们可能会需要对一个 prop 进行『双向绑定』。事实上，这正是 Vue 1.x 中的 .sync 修饰符所提供的功能。当一个子组件改变了一个 prop 的值时，这个变化也会同步到父组件中所绑定的值。这很方便，但也会导致问题，因为它破坏了『单向数据流』的假设。由于子组件改变 prop 的代码和普通的状态改动代码毫无区别，当光看子组件的代码时，你完全不知道它何时悄悄地改">
@@ -332,7 +332,7 @@
                 
               
 
-              <time title="Created: 2019-06-19 15:21:41 / Modified: 15:21:57" itemprop="dateCreated datePublished" datetime="2019-06-19T15:21:41+08:00">2019-06-19</time>
+              <time title="Created: 2019-06-19 15:21:41 / Modified: 16:44:14" itemprop="dateCreated datePublished" datetime="2019-06-19T15:21:41+08:00">2019-06-19</time>
             
 
             
@@ -379,37 +379,52 @@
 </blockquote>
 <pre><code>&lt;demo :foo.sync=&quot;something&quot;&gt;&lt;/demo&gt;
 </code></pre><h6 id="语法糖的扩展"><a href="#语法糖的扩展" class="headerlink" title="语法糖的扩展"></a>语法糖的扩展</h6><pre><code>&lt;demo :foo=&quot;something&quot; @update:foo=&quot;val =&gt; something = val&quot;&gt;&lt;/demo&gt;
-</code></pre><p>######</p>
-<ul>
+</code></pre><h6 id="解析"><a href="#解析" class="headerlink" title="解析"></a>解析</h6><ul>
 <li>foo 则是 demo 子组件需要从父组件 props 接收的数据</li>
-<li>通过事件显示监听 update:foo (foo则是 props 显示监听的数据)，通过箭头函数执行回调，把参数传给 something，则就形成了一种双向绑定的循环链条<h6 id="当子组件需要更新-foo-的值时，它需要显式地触发一个更新事件："><a href="#当子组件需要更新-foo-的值时，它需要显式地触发一个更新事件：" class="headerlink" title="当子组件需要更新 foo 的值时，它需要显式地触发一个更新事件："></a>当子组件需要更新 foo 的值时，它需要显式地触发一个更新事件：</h6>this.$emit(‘update:foo’, newValue)<br>同时父组件<font color="red">@update:foo</font>也是依赖于子组件的显示触发，这样就可以很轻松的捕捉到了数据的正确的流动。<br>第一个参数则是 <font color="red">update 显示更新的事件</font>，跟在后面的：foo则是需要<font color="red">改变对应的props值</font>。<br>第二个参数传入的是你希望父组件<font color="red">foo数据里将要变化的值</font>，以用于父组件接收update时更新数据。<h5 id="子组件"><a href="#子组件" class="headerlink" title="子组件"></a>子组件</h5><pre><code class="js">&lt;template&gt;
+<li><p>通过事件显示监听 update:foo (foo则是 props 显示监听的数据)，通过箭头函数执行回调，把参数传给 something，则就形成了一种双向绑定的循环链条</p>
+<h6 id="当子组件需要更新-foo-的值时，它需要显式地触发一个更新事件："><a href="#当子组件需要更新-foo-的值时，它需要显式地触发一个更新事件：" class="headerlink" title="当子组件需要更新 foo 的值时，它需要显式地触发一个更新事件："></a>当子组件需要更新 foo 的值时，它需要显式地触发一个更新事件：</h6><p>this.$emit(‘update:foo’, newValue)<br>同时父组件<font color="red">@update:foo</font>也是依赖于子组件的显示触发，这样就可以很轻松的捕捉到了数据的正确的流动。<br>第一个参数则是 <font color="red">update 显示更新的事件</font>，跟在后面的：foo则是需要<font color="red">改变对应的props值</font>。<br>第二个参数传入的是你希望父组件<font color="red">foo数据里将要变化的值</font>，以用于父组件接收update时更新数据。</p>
+<h5 id="子组件"><a href="#子组件" class="headerlink" title="子组件"></a>子组件</h5><pre><code class="js">&lt;template&gt;
 &lt;div v-show=&quot;show&quot;&gt;
-  &lt;p&gt;这是一个Model框&lt;/p&gt;
-  &lt;button @click=&quot;closeModel&quot;&gt;关闭model&lt;/button&gt;
+    &lt;p&gt;这是一个Model框&lt;/p&gt;
+    &lt;button @click=&quot;closeModel&quot;&gt;关闭model&lt;/button&gt;
 &lt;/div&gt;
 &lt;/template&gt;
 &lt;script&gt;
 export default {
-props: [&#39;show&#39;],
-methods: {
-closeModel () {
-  this.$emit(&#39;update:show&#39;,false)
-}
-}
+    props: [&#39;show&#39;],
+    methods: {
+        closeModel () {
+        this.$emit(&#39;update:show&#39;,false)
+        }
+    }
 }
 &lt;/script&gt;
 </code></pre>
-<h5 id="父组件"><a href="#父组件" class="headerlink" title="父组件"></a>父组件</h5><code>`</code>js<template><br><div class="hello"><br><button @click="show=true">打开model</button><br><demo :show.sync="show"></demo><br></div><br></template>
+<h5 id="父组件"><a href="#父组件" class="headerlink" title="父组件"></a>父组件</h5><pre><code class="js">&lt;template&gt;
+&lt;div class=&quot;hello&quot;&gt;
+    &lt;button @click=&quot;show=true&quot;&gt;打开model&lt;/button&gt;
+    &lt;demo :show.sync=&quot;show&quot; &gt;&lt;/demo&gt;
+&lt;/div&gt;
+&lt;/template&gt;
 
-</li>
+&lt;script&gt;
+import Demo from &#39;./Demo.vue&#39;
+export default {
+    name: &#39;hello&#39;,
+    components: {
+        Demo
+    },
+    data () {
+        return {
+            show: false
+        }
+    }
+}
+&lt;/script&gt;
+</code></pre>
+<h6 id="上面的-case-同样也解决了-model-显示交互操作，从代码的语意上看上去让开发者一目了然，同样也做了-v-model-做不了的事，基于-props-的原子化，对传入的-props-进行多个数据双向绑定-sync-也能轻松做到。"><a href="#上面的-case-同样也解决了-model-显示交互操作，从代码的语意上看上去让开发者一目了然，同样也做了-v-model-做不了的事，基于-props-的原子化，对传入的-props-进行多个数据双向绑定-sync-也能轻松做到。" class="headerlink" title="上面的 case 同样也解决了 model 显示交互操作，从代码的语意上看上去让开发者一目了然，同样也做了 v-model 做不了的事，基于 props 的原子化，对传入的 props 进行多个数据双向绑定.sync 也能轻松做到。"></a>上面的 case 同样也解决了 model 显示交互操作，从代码的语意上看上去让开发者一目了然，同样也做了 v-model 做不了的事，基于 props 的原子化，对传入的 props 进行多个数据双向绑定.sync 也能轻松做到。</h6><h5 id="父组件-1"><a href="#父组件-1" class="headerlink" title="父组件"></a>父组件</h5></li>
 </ul>
-<p><script><br>  import Demo from ‘./Demo.vue’<br>  export default {<br>    name: ‘hello’,<br>    components: {<br>      Demo<br>    },<br>    data () {<br>      return {<br>        show: false<br>      }<br>    }<br>  }<br></script></p>
-<pre><code>######  
-上面的 case 同样也解决了 model 显示交互操作，从代码的语意上看上去让开发者一目了然，同样也做了 v-model 做不了的事，基于 props 的原子化，对传入的 props 进行多个数据双向绑定.sync 也能轻松做到。
-
-#####   父组件
-```js
-&lt;template&gt;
+<pre><code class="js">&lt;template&gt;
   &lt;div class=&quot;hello&quot;&gt;
     &lt;button @click=&quot;show=true&quot;&gt;打开model&lt;/button&gt;
     &lt;demo :show.sync=&quot;show&quot; :msg.sync=&quot;msg&quot;&gt;&lt;/demo&gt;
@@ -431,7 +446,8 @@ closeModel () {
     }
   }
 &lt;/script&gt;
-</code></pre><h5 id="子组件-1"><a href="#子组件-1" class="headerlink" title="子组件"></a>子组件</h5><pre><code class="js">&lt;template&gt;
+</code></pre>
+<h5 id="子组件-1"><a href="#子组件-1" class="headerlink" title="子组件"></a>子组件</h5><pre><code class="js">&lt;template&gt;
    &lt;div v-show=&quot;show&quot;&gt;
       &lt;p&gt;{{msg}}&lt;/p&gt;
       &lt;button @click=&quot;closeModel&quot;&gt;关闭model&lt;/button&gt;
@@ -633,7 +649,7 @@ export default {
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#Sync的使用"><span class="nav-number">1.</span> <span class="nav-text">Sync的使用</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#语法糖的扩展"><span class="nav-number">1.1.</span> <span class="nav-text">语法糖的扩展</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#当子组件需要更新-foo-的值时，它需要显式地触发一个更新事件："><span class="nav-number">1.2.</span> <span class="nav-text">当子组件需要更新 foo 的值时，它需要显式地触发一个更新事件：</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#子组件"><span class="nav-number">2.</span> <span class="nav-text">子组件</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#父组件"><span class="nav-number">3.</span> <span class="nav-text">父组件</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#子组件-1"><span class="nav-number">4.</span> <span class="nav-text">子组件</span></a></li></ol><li class="nav-item nav-level-3"><a class="nav-link" href="#warn"><span class="nav-number"></span> <span class="nav-text">warn</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#END—-下一次分享-attrs-listeners使用"><span class="nav-number"></span> <span class="nav-text">END—  下一次分享$attrs $listeners使用</span></a></li></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#Sync的使用"><span class="nav-number">1.</span> <span class="nav-text">Sync的使用</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#语法糖的扩展"><span class="nav-number">1.1.</span> <span class="nav-text">语法糖的扩展</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#解析"><span class="nav-number">1.2.</span> <span class="nav-text">解析</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#当子组件需要更新-foo-的值时，它需要显式地触发一个更新事件："><span class="nav-number">1.3.</span> <span class="nav-text">当子组件需要更新 foo 的值时，它需要显式地触发一个更新事件：</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#子组件"><span class="nav-number">2.</span> <span class="nav-text">子组件</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#父组件"><span class="nav-number">3.</span> <span class="nav-text">父组件</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#上面的-case-同样也解决了-model-显示交互操作，从代码的语意上看上去让开发者一目了然，同样也做了-v-model-做不了的事，基于-props-的原子化，对传入的-props-进行多个数据双向绑定-sync-也能轻松做到。"><span class="nav-number">3.1.</span> <span class="nav-text">上面的 case 同样也解决了 model 显示交互操作，从代码的语意上看上去让开发者一目了然，同样也做了 v-model 做不了的事，基于 props 的原子化，对传入的 props 进行多个数据双向绑定.sync 也能轻松做到。</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#父组件-1"><span class="nav-number">4.</span> <span class="nav-text">父组件</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#子组件-1"><span class="nav-number">5.</span> <span class="nav-text">子组件</span></a></li></ol><li class="nav-item nav-level-3"><a class="nav-link" href="#warn"><span class="nav-number"></span> <span class="nav-text">warn</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#END—-下一次分享-attrs-listeners使用"><span class="nav-number"></span> <span class="nav-text">END—  下一次分享$attrs $listeners使用</span></a></li></div>
             
 
           </div>

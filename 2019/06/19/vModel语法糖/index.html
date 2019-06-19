@@ -96,17 +96,17 @@
 
 
 
-  <meta name="description" content="v-model语法糖 什么是v-model语法糖 如何去理解这个语法糖  ####    v-model 其实也是一个语法糖，想要理解语法糖，你首先要知道Input元素上本身有个oninput事件，这是HTML5新增加的，类似onchange，每当输入框内容发生变化的时候，就会触发这个事件，然后把 Input 输入框中    value 值再次传递给 newValue。    此时 value 运">
+  <meta name="description" content="v-model语法糖 什么是v-model语法糖 如何去理解这个语法糖  v-model 其实也是一个语法糖，想要理解语法糖，你首先要知道Input元素上本身有个  oninput事件，这是HTML5新增加的，类似onchange，每当输入框内容发生变化的时候，就会触发这个事件，然后把 Input 输入框中value 值再次传递给 newValue。此时 value 运用在一个 Input 元素上">
 <meta property="og:type" content="article">
 <meta property="og:title" content="vModel语法糖">
 <meta property="og:url" content="https://github.com/lifenglei/2019/06/19/vModel语法糖/index.html">
 <meta property="og:site_name" content="前端开发沉淀">
-<meta property="og:description" content="v-model语法糖 什么是v-model语法糖 如何去理解这个语法糖  ####    v-model 其实也是一个语法糖，想要理解语法糖，你首先要知道Input元素上本身有个oninput事件，这是HTML5新增加的，类似onchange，每当输入框内容发生变化的时候，就会触发这个事件，然后把 Input 输入框中    value 值再次传递给 newValue。    此时 value 运">
+<meta property="og:description" content="v-model语法糖 什么是v-model语法糖 如何去理解这个语法糖  v-model 其实也是一个语法糖，想要理解语法糖，你首先要知道Input元素上本身有个  oninput事件，这是HTML5新增加的，类似onchange，每当输入框内容发生变化的时候，就会触发这个事件，然后把 Input 输入框中value 值再次传递给 newValue。此时 value 运用在一个 Input 元素上">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-06-19T07:19:07.055Z">
+<meta property="og:updated_time" content="2019-06-19T08:24:43.644Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="vModel语法糖">
-<meta name="twitter:description" content="v-model语法糖 什么是v-model语法糖 如何去理解这个语法糖  ####    v-model 其实也是一个语法糖，想要理解语法糖，你首先要知道Input元素上本身有个oninput事件，这是HTML5新增加的，类似onchange，每当输入框内容发生变化的时候，就会触发这个事件，然后把 Input 输入框中    value 值再次传递给 newValue。    此时 value 运">
+<meta name="twitter:description" content="v-model语法糖 什么是v-model语法糖 如何去理解这个语法糖  v-model 其实也是一个语法糖，想要理解语法糖，你首先要知道Input元素上本身有个  oninput事件，这是HTML5新增加的，类似onchange，每当输入框内容发生变化的时候，就会触发这个事件，然后把 Input 输入框中value 值再次传递给 newValue。此时 value 运用在一个 Input 元素上">
 
 
 
@@ -332,7 +332,7 @@
                 
               
 
-              <time title="Created: 2019-06-19 15:18:34 / Modified: 15:19:07" itemprop="dateCreated datePublished" datetime="2019-06-19T15:18:34+08:00">2019-06-19</time>
+              <time title="Created: 2019-06-19 15:18:34 / Modified: 16:24:43" itemprop="dateCreated datePublished" datetime="2019-06-19T15:18:34+08:00">2019-06-19</time>
             
 
             
@@ -374,7 +374,7 @@
         <h3 id="v-model语法糖"><a href="#v-model语法糖" class="headerlink" title="v-model语法糖"></a>v-model语法糖</h3><blockquote>
 <p>什么是v-model语法糖 如何去理解这个语法糖</p>
 </blockquote>
-<p>####<br>    v-model 其实也是一个语法糖，想要理解语法糖，你首先要知道Input元素上本身有个oninput事件，这是HTML5新增加的，类似onchange，每当输入框内容发生变化的时候，就会触发这个事件，然后把 Input 输入框中<br>    value 值再次传递给 newValue。<br>    此时 value 运用在一个 Input 元素上，用：v-bind:value=’newValue’，意义上面只是把Input 输入框中的 value 值与 newValue 作为一一对应的双向绑定，这就像一个循环操作，当再次触发 Input 事件时，input($event.target)对象中的value值会再次改变newValue。<br>    这里我们对 v-model 绑定在 Input 元素上进行语法糖上的解析。</p>
+<h4 id="v-model-其实也是一个语法糖，想要理解语法糖，你首先要知道Input元素上本身有个-oninput事件，这是HTML5新增加的，类似onchange，每当输入框内容发生变化的时候，就会触发这个事件，然后把-Input-输入框中"><a href="#v-model-其实也是一个语法糖，想要理解语法糖，你首先要知道Input元素上本身有个-oninput事件，这是HTML5新增加的，类似onchange，每当输入框内容发生变化的时候，就会触发这个事件，然后把-Input-输入框中" class="headerlink" title="v-model 其实也是一个语法糖，想要理解语法糖，你首先要知道Input元素上本身有个  oninput事件，这是HTML5新增加的，类似onchange，每当输入框内容发生变化的时候，就会触发这个事件，然后把 Input 输入框中"></a>v-model 其实也是一个语法糖，想要理解语法糖，你首先要知道Input元素上本身有个  oninput事件，这是HTML5新增加的，类似onchange，每当输入框内容发生变化的时候，就会触发这个事件，然后把 Input 输入框中</h4><p>value 值再次传递给 newValue。<br>此时 value 运用在一个 Input 元素上，用：v-bind:value=’newValue’，意义上面只是把Input 输入框中的 value 值与 newValue 作为一一对应的双向绑定，这就像一个循环操作，当再次触发 Input 事件时，input($event.target)对象中的value值会再次改变newValue。<br>这里我们对 v-model 绑定在 Input 元素上进行语法糖上的解析。</p>
 <h5 id="在组件中使用的时候-它相当于"><a href="#在组件中使用的时候-它相当于" class="headerlink" title="在组件中使用的时候 它相当于"></a>在组件中使用的时候 它相当于</h5><pre><code class="javascript">&lt;custom-input&gt;
     v-bind:value=&quot;newValue&quot;
     v-on:input = &quot;newValue = argument[0]&quot;
@@ -425,13 +425,11 @@ export default {
 }
 &lt;/script&gt;
 </code></pre>
-<p>####<br>    这是一个模态框的基本雏形，可以在父组件通过 v-model 来进行 model 框和父组件之间的显示交互。</p>
-<pre><code>通过子组件看出通过props接收了value值，当点击关闭的时候还是通过$emit事件触发input事件，然后通过传入 false 参数。
-
-父组件隐式 v-on:input=&quot;something = arguments[0]&quot; 进行了监听，一但 Input
-
-事件触发，父组件就会执行监听回调，从而做到了双向绑定。
-</code></pre><h3 id="定制组件-v-model"><a href="#定制组件-v-model" class="headerlink" title="定制组件 v-model"></a><strong><em>定制组件 v-model</em></strong></h3><hr>
+<p>####<br>这是一个模态框的基本雏形，可以在父组件通过 v-model 来进行 model 框和父组件之间的显示交互。</p>
+<p>通过子组件看出通过props接收了value值，当点击关闭的时候还是通过$emit事件触发input事件，然后通过传入 false 参数。</p>
+<p>父组件隐式 v-on:input=”something = arguments[0]” 进行了监听，一但 Input</p>
+<p>事件触发，父组件就会执行监听回调，从而做到了双向绑定。</p>
+<h3 id="定制组件-v-model"><a href="#定制组件-v-model" class="headerlink" title="定制组件 v-model"></a><strong><em>定制组件 v-model</em></strong></h3><hr>
 <h5 id="父组件-1"><a href="#父组件-1" class="headerlink" title="父组件"></a>父组件</h5><h5 id="定制组件，我们就可以重写v-model里的Props-和-event，默认情况下，一个组件的-v-model-会使用-value-属性和-input-事件，往往有些时候，value-值被占用了，或者表单的和自定义v-model的-emit-‘input’-事件发生冲突，为了避免这种冲突，可以定制组件-v-model，冲突示例。"><a href="#定制组件，我们就可以重写v-model里的Props-和-event，默认情况下，一个组件的-v-model-会使用-value-属性和-input-事件，往往有些时候，value-值被占用了，或者表单的和自定义v-model的-emit-‘input’-事件发生冲突，为了避免这种冲突，可以定制组件-v-model，冲突示例。" class="headerlink" title="定制组件，我们就可以重写v-model里的Props 和 event，默认情况下，一个组件的 v-model 会使用 value 属性和 input 事件，往往有些时候，value 值被占用了，或者表单的和自定义v-model的$emit(‘input’)事件发生冲突，为了避免这种冲突，可以定制组件 v-model，冲突示例。"></a>定制组件，我们就可以<font color="red">重写v-model里的Props 和 event</font>，默认情况下，一个组件的 v-model 会使用 value 属性和 input 事件，往往有些时候，value 值被占用了，或者表单的和自定义<font color="green">v-model的$emit(‘input’)</font>事件发生冲突，为了避免这种冲突，可以定制组件 v-model，冲突示例。</h5><h6 id="子组件-1"><a href="#子组件-1" class="headerlink" title="子组件"></a>子组件</h6><pre><code class="js">&lt;template&gt;
    &lt;div v-show=&quot;value&quot;&gt;
       &lt;div&gt;
@@ -480,16 +478,14 @@ export default {
 <p>定制 v-model， <font color="red">通过 model 选项改变 props 和 event 的值</font>，从而解除两者的冲突。</p>
 <ul>
 <li>props代替掉原本 value 的值，可以自定义值</li>
-<li>event代表掉原本 input 的触发事件，可以自定义触发事件<h5 id="子组件-2"><a href="#子组件-2" class="headerlink" title="子组件"></a>子组件</h5><code>`</code>vue<template><br> <div v-show="show"><br>    <div><br>       <p>这是一个Model框</p><br>      <input type="text" v-model="value"><br>      <br>       <button @click="closeModel">关闭model</button><br>    </div><br> </div><br></template>
+<li>event代表掉原本 input 的触发事件，可以自定义触发事件<h5 id="子组件-2"><a href="#子组件-2" class="headerlink" title="子组件"></a>子组件</h5><code>`</code>js<template><br> <div v-show="show"><br>    <div><br>       <p>这是一个Model框</p><br>      <input type="text" v-model="value"><br>      <br>       <button @click="closeModel">关闭model</button><br>    </div><br> </div><br></template>
 
 </li>
 </ul>
 <p><script><br>export default {<br>  model: {<br>    prop: ‘show’,<br>    event: ‘close’<br>  },<br>  props: [‘show’],<br>  data () {<br>     return {<br>       value: 10<br>     }<br>  },<br>  methods: {<br>    closeModel () {<br>      this.$emit(‘close’,false)<br>    }<br>  }<br>}<br></script><br><code>`</code></p>
-<p>#####<br>通过 model 选项的改变，把 props 从<font color="red">原本的value换成了show，input触发的事件换成了close</font>，从而两者都不相互依赖，解决了冲突的问题。</p>
-<p>有些时候通过父组件中的子组件模板中想传递<br>value 值，也会导致同样的冲突。</p>
+<h5 id="通过-model-选项的改变，把-props-从原本的value换成了show，input触发的事件换成了close，从而两者都不相互依赖，解决了冲突的问题。"><a href="#通过-model-选项的改变，把-props-从原本的value换成了show，input触发的事件换成了close，从而两者都不相互依赖，解决了冲突的问题。" class="headerlink" title="通过 model 选项的改变，把 props 从原本的value换成了show，input触发的事件换成了close，从而两者都不相互依赖，解决了冲突的问题。"></a>通过 model 选项的改变，把 props 从<font color="red">原本的value换成了show，input触发的事件换成了close</font>，从而两者都不相互依赖，解决了冲突的问题。</h5><p>有些时候通过父组件中的子组件模板中想传递<br>value 值，也会导致同样的冲突。</p>
 <p>在不用定制组件的情况下，以下的写法，也会同样导致冲突，导致同用一个 value。</p>
-<p>####<br>    <demo v-model="show" value="some value"></demo></p>
-<pre><code>props:[&#39;value&#39;]
+<h4 id><a href="#" class="headerlink" title></a><demo v-model="show" value="some value"></demo></h4><pre><code>props:[&#39;value&#39;]
 </code></pre><hr>
 <h3 id="END—-下一次分享-sync的使用-改变数据流单向流"><a href="#END—-下一次分享-sync的使用-改变数据流单向流" class="headerlink" title="END—  下一次分享  sync的使用 改变数据流单向流"></a>END—  下一次分享  <em>sync</em>的使用 改变数据流单向流</h3>
       
@@ -672,7 +668,7 @@ export default {
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#v-model语法糖"><span class="nav-number">1.</span> <span class="nav-text">v-model语法糖</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#在组件中使用的时候-它相当于"><span class="nav-number">1.0.1.</span> <span class="nav-text">在组件中使用的时候 它相当于</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#通过以上简写-通过自定义事件实现父子数据双向绑定"><span class="nav-number">1.0.2.</span> <span class="nav-text">通过以上简写,通过自定义事件实现父子数据双向绑定</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#接收的只能是-value-吗？必须是，因为-v-model-是基于-Input-输入框定制的，其中value-值是为-Input-内部定制的"><span class="nav-number">1.0.3.</span> <span class="nav-text">接收的只能是 value 吗？必须是，因为 v-model 是基于 Input 输入框定制的，其中value 值是为 Input 内部定制的</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#此时作用在组件上时，v-on-监听的语法糖也会有所改动，监听的并不是-event-target-value，而是回调函数中的第一个参数"><span class="nav-number">1.0.4.</span> <span class="nav-text">此时作用在组件上时，v-on 监听的语法糖也会有所改动，监听的并不是$event.target.value，而是回调函数中的第一个参数</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#父组件"><span class="nav-number">1.1.</span> <span class="nav-text">父组件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#子组件"><span class="nav-number">1.2.</span> <span class="nav-text">子组件</span></a></li></ol><li class="nav-item nav-level-3"><a class="nav-link" href="#定制组件-v-model"><span class="nav-number">2.</span> <span class="nav-text">定制组件 v-model</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#父组件-1"><span class="nav-number">2.0.1.</span> <span class="nav-text">父组件</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#定制组件，我们就可以重写v-model里的Props-和-event，默认情况下，一个组件的-v-model-会使用-value-属性和-input-事件，往往有些时候，value-值被占用了，或者表单的和自定义v-model的-emit-‘input’-事件发生冲突，为了避免这种冲突，可以定制组件-v-model，冲突示例。"><span class="nav-number">2.0.2.</span> <span class="nav-text">定制组件，我们就可以重写v-model里的Props 和 event，默认情况下，一个组件的 v-model 会使用 value 属性和 input 事件，往往有些时候，value 值被占用了，或者表单的和自定义v-model的$emit(‘input’)事件发生冲突，为了避免这种冲突，可以定制组件 v-model，冲突示例。</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#子组件-1"><span class="nav-number">2.0.2.1.</span> <span class="nav-text">子组件</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#父组件-2"><span class="nav-number">2.0.2.2.</span> <span class="nav-text">父组件</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#上面例子可以发现，在子组件中input中v-model和model显示的操作数据共同占用的-props"><span class="nav-number">2.0.3.</span> <span class="nav-text">上面例子可以发现，在子组件中input中v-model和model显示的操作数据共同占用的 props</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#子组件-2"><span class="nav-number">2.0.4.</span> <span class="nav-text">子组件</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#END—-下一次分享-sync的使用-改变数据流单向流"><span class="nav-number">3.</span> <span class="nav-text">END—  下一次分享  sync的使用 改变数据流单向流</span></a></li></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#v-model语法糖"><span class="nav-number">1.</span> <span class="nav-text">v-model语法糖</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#v-model-其实也是一个语法糖，想要理解语法糖，你首先要知道Input元素上本身有个-oninput事件，这是HTML5新增加的，类似onchange，每当输入框内容发生变化的时候，就会触发这个事件，然后把-Input-输入框中"><span class="nav-number">1.1.</span> <span class="nav-text">v-model 其实也是一个语法糖，想要理解语法糖，你首先要知道Input元素上本身有个  oninput事件，这是HTML5新增加的，类似onchange，每当输入框内容发生变化的时候，就会触发这个事件，然后把 Input 输入框中</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#在组件中使用的时候-它相当于"><span class="nav-number">1.1.1.</span> <span class="nav-text">在组件中使用的时候 它相当于</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#通过以上简写-通过自定义事件实现父子数据双向绑定"><span class="nav-number">1.1.2.</span> <span class="nav-text">通过以上简写,通过自定义事件实现父子数据双向绑定</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#接收的只能是-value-吗？必须是，因为-v-model-是基于-Input-输入框定制的，其中value-值是为-Input-内部定制的"><span class="nav-number">1.1.3.</span> <span class="nav-text">接收的只能是 value 吗？必须是，因为 v-model 是基于 Input 输入框定制的，其中value 值是为 Input 内部定制的</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#此时作用在组件上时，v-on-监听的语法糖也会有所改动，监听的并不是-event-target-value，而是回调函数中的第一个参数"><span class="nav-number">1.1.4.</span> <span class="nav-text">此时作用在组件上时，v-on 监听的语法糖也会有所改动，监听的并不是$event.target.value，而是回调函数中的第一个参数</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#父组件"><span class="nav-number">1.2.</span> <span class="nav-text">父组件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#子组件"><span class="nav-number">1.3.</span> <span class="nav-text">子组件</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#定制组件-v-model"><span class="nav-number">2.</span> <span class="nav-text">定制组件 v-model</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#父组件-1"><span class="nav-number">2.0.1.</span> <span class="nav-text">父组件</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#定制组件，我们就可以重写v-model里的Props-和-event，默认情况下，一个组件的-v-model-会使用-value-属性和-input-事件，往往有些时候，value-值被占用了，或者表单的和自定义v-model的-emit-‘input’-事件发生冲突，为了避免这种冲突，可以定制组件-v-model，冲突示例。"><span class="nav-number">2.0.2.</span> <span class="nav-text">定制组件，我们就可以重写v-model里的Props 和 event，默认情况下，一个组件的 v-model 会使用 value 属性和 input 事件，往往有些时候，value 值被占用了，或者表单的和自定义v-model的$emit(‘input’)事件发生冲突，为了避免这种冲突，可以定制组件 v-model，冲突示例。</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#子组件-1"><span class="nav-number">2.0.2.1.</span> <span class="nav-text">子组件</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#父组件-2"><span class="nav-number">2.0.2.2.</span> <span class="nav-text">父组件</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#上面例子可以发现，在子组件中input中v-model和model显示的操作数据共同占用的-props"><span class="nav-number">2.0.3.</span> <span class="nav-text">上面例子可以发现，在子组件中input中v-model和model显示的操作数据共同占用的 props</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#子组件-2"><span class="nav-number">2.0.4.</span> <span class="nav-text">子组件</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#通过-model-选项的改变，把-props-从原本的value换成了show，input触发的事件换成了close，从而两者都不相互依赖，解决了冲突的问题。"><span class="nav-number">2.0.5.</span> <span class="nav-text">通过 model 选项的改变，把 props 从原本的value换成了show，input触发的事件换成了close，从而两者都不相互依赖，解决了冲突的问题。</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#null"><span class="nav-number">2.1.</span> <span class="nav-text"></span></a></li></ol><li class="nav-item nav-level-3"><a class="nav-link" href="#END—-下一次分享-sync的使用-改变数据流单向流"><span class="nav-number">3.</span> <span class="nav-text">END—  下一次分享  sync的使用 改变数据流单向流</span></a></li></div>
             
 
           </div>

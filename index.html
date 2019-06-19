@@ -286,6 +286,1577 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://github.com/lifenglei/2019/06/19/vueConf总结/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="端端">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="https://static.soyoung.com/sy-pre/logo-1560924611786.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一个前端开发的记录">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/06/19/vueConf总结/" class="post-title-link" itemprop="url">vueConf总结</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-06-19 15:23:26 / Modified: 15:23:43" itemprop="dateCreated datePublished" datetime="2019-06-19T15:23:26+08:00">2019-06-19</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="vueConf-2019-尤雨溪演讲总结"><a href="#vueConf-2019-尤雨溪演讲总结" class="headerlink" title="vueConf 2019 尤雨溪演讲总结"></a>vueConf 2019 尤雨溪演讲总结</h3><blockquote>
+<p>距离参加 VueConf第一届大会已经很久了，yubo的介绍一如既往的有意思❤️，<br>是他的努力保持了大会热情的社区氛围！另一个彩蛋就是Evan You 带了自己的亲人和孩子来到现场，真的是其乐融融！</p>
+</blockquote>
+<h4 id="尤雨溪-State-of-vue"><a href="#尤雨溪-State-of-vue" class="headerlink" title="尤雨溪@State of vue"></a>尤雨溪@State of vue</h4><p><img src="https://static.soyoung.com/sy-pre/WX20190609-101450@2x-1560046205424.png" alt="imgConf" title="演讲图片"></p>
+<h3 id="发展现状"><a href="#发展现状" class="headerlink" title="发展现状"></a>发展现状</h3><p>#####<br>Chrome DevTools 有约 90 万的周活用户，React 相比有 160 万。Evan 推荐用 Chrome DevTools 来预测 Vue 的项目的真实开发者数据。Vue 有全球化的影响力，在非常多的国家有相应的活动，可以 通过<a href="https://events.vuejs.org/" target="_blank"> events.vuejs.org</a> 查找。State of JavaScript 2018 年统计说明在前端框架的满意度是第一名（91%），并在 Stack Overflow 的数据里体现是第二受欢迎的前端框架。</p>
+<h3 id="团队"><a href="#团队" class="headerlink" title="团队"></a>团队</h3><p>####<br>现在 Vue 有 20 人活跃的开发者，大部分日常工作与Vue 相关，完全独立运营，而成本主要来自于赞助商，年来稳步增长。蒋豪群（@sodatea）全职在维护CLI及相关工具链。</p>
+<h3 id="进展"><a href="#进展" class="headerlink" title="进展"></a>进展</h3><p><img src="https://static.soyoung.com/sy-pre/WX20190609-102403@2x-1560046205424.png" alt="imgConf" title="进展"></p>
+<p>####<br>自 2018 年年底有过预告 Vue.js 3.0 的设定目标，其实在今年年初的时候大部分功能已经实现。但同时，在开发的同是也在研究业界最新的方案，Vue 在 3.0 使用了 Proxy 的功能，但是 IE 11 仍然无法支持却有一定市场占有率。</p>
+<h4 id="更快"><a href="#更快" class="headerlink" title="更快"></a>更快</h4><p><img src="https://static.soyoung.com/sy-pre/WX20190609-102631@2x-1560046205424.png" alt="imgConf" title="更快"></p>
+<p>#####<br>1.<font style="color:red">Object.defineProperty -&gt; Proxy：Proxy </font>不需要对原始对象做太多改动，效率更高</p>
+<p>2.Virtual DOM 重构：组建的启动速度等比 2.5 快了一倍，生成 VNode 参数一致化。但是还是可以做的更好，Virtual DOM 的目的并非只是速度，其核心价值在于用 JavaScript 表达 DOM 状态，因此它本身其实是有成本的。即每次更新时， vdom 树需要每次都重新建立，因此传统的 vdom 是有性能瓶颈。而这背后的原因是 vdom 最早是由 JSX 写的表达逻辑（灵活性），而非是模版语言，因此不能通过模版内容推测一些信息。<br><img src="https://static.soyoung.com/sy-pre/WX20190609-103238@2x-1560046205424.png" alt="lifenglei" title="vdom"></p>
+<p><img src="https://static.soyoung.com/sy-pre/WX20190609-103254@2x-1560046205424.png" alt><br>3.如何最大化的动静结合？即兼容 render function 的灵活性，及模版表达的信息<br><img src="https://static.soyoung.com/sy-pre/WX20190609-103314@2x-1560046205424.png" alt><br>将一个逻辑内部、外部的节点分开，每个动态节点当成一个 (fragment) 这使得动态节点别话只会出现在如 v-if、v-for 这样的结构性指令之下。将节点关系切分为一个一个的区块树（Block Tree，梗😊），减少无谓的遍历。</p>
+<p>这使得vdom 的更新性能与模版大小相关 =&gt; 与动态内容的数量相关（即哪儿需要改，就只让哪儿改，只实现最小操作）<br><img src="https://static.soyoung.com/sy-pre/WX20190609-104007@2x-1560046205424.png" alt><br>速度优化：2.6.10（36ms），3.0（5.44ms）约 6 倍的速度增长</p>
+<h5 id="TypeScript"><a href="#TypeScript" class="headerlink" title="TypeScript"></a>TypeScript</h5><ul>
+<li>Class API ❌：<ul>
+<li>原本的目的是支持 TypeScript：this 下的属性类型推到无法有效实现，Decorator 提案很不稳定</li>
+<li>Class API 除了使用了原生愈发，并未带来任何新的优势，OOP 里的继承等价值在 UI 层使用较少</li>
+</ul>
+</li>
+<li>Function-based API ✅：<ul>
+<li><img src="https://static.soyoung.com/sy-pre/WX20190609-104845@2x-1560046205424.png" alt></li>
+<li><img src="https://static.soyoung.com/sy-pre/WX20190609-105018@2x-1560046205424.png" alt></li>
+<li>更好的 TypeScript 类型推导支持（不需要任何手动的类型声明，一套代码同时支持），更灵活的逻辑复用（没有命名冲突、props 等数据来源更清晰、没有额外的创建成本），Tree-shaking 友好，代码可以被压缩<h4 id="逻辑复用案例：鼠标位置监听"><a href="#逻辑复用案例：鼠标位置监听" class="headerlink" title="逻辑复用案例：鼠标位置监听"></a>逻辑复用案例：鼠标位置监听</h4><img src="https://static.soyoung.com/sy-pre/WX20190609-105202@2x-1560046205424.png" alt><h4 id="mixins"><a href="#mixins" class="headerlink" title="mixins"></a>mixins</h4></li>
+</ul>
+</li>
+<li>当大量使用时候<ul>
+<li>❌ 命名空间冲突</li>
+<li>❌   模板数据来源不清晰<h4 id="高阶组件"><a href="#高阶组件" class="headerlink" title="高阶组件"></a>高阶组件</h4></li>
+</ul>
+</li>
+<li><img src="https://static.soyoung.com/sy-pre/WX20190609-105617@2x-1560046205424.png" alt></li>
+<li>当高阶组件大量使用时候<ul>
+<li>❌  props命名空间冲突 </li>
+<li>❌   props来源不清晰 </li>
+<li>❌   额外的组件实例性能消耗</li>
+</ul>
+</li>
+</ul>
+<h4 id="Renderless-Components-作用域插槽"><a href="#Renderless-Components-作用域插槽" class="headerlink" title="Renderless Components 作用域插槽"></a>Renderless Components 作用域插槽</h4><p><img src="https://static.soyoung.com/sy-pre/WX20190609-110404@2x-1560046205424.png" alt></p>
+<ul>
+<li>当使用作用域插槽时候<ul>
+<li>✅  没有命名空间冲突</li>
+<li>✅  数据来源清晰</li>
+<li>❌   额外的组件实例性能消耗<h4 id="with-New-API"><a href="#with-New-API" class="headerlink" title="with New API"></a>with New API</h4><img src="https://static.soyoung.com/sy-pre/WX20190609-110823@2x-1560046205424.png" alt><br><img src="https://static.soyoung.com/sy-pre/WX20190609-110840@2x-1560046205424.png" alt></li>
+</ul>
+</li>
+<li>当使用新的api时候<ul>
+<li>✅ 没有命名空间冲突</li>
+<li>✅  数据来源清晰</li>
+<li>✅   没有额外的组件实例性能消耗</li>
+<li>对比React Hooks<ul>
+<li>同样的逻辑组合、复用能力</li>
+<li>只调用一次<ul>
+<li>符合js直觉</li>
+<li>没有闭包变量问题</li>
+<li>没有内存/GC压力</li>
+<li>不存在内联回调导致子组件无法永远更新</li>
+<li><a href="https://github.com/vuejs/rfcs" target="_blank"> 更多RFC详情</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h4 id="Q-amp-A"><a href="#Q-amp-A" class="headerlink" title="Q&amp;A"></a>Q&amp;A</h4><p>1.Vue.js 3.0 还有哪些不足？</p>
+<blockquote>
+<p>  IE 11 还是会支持，只是会额外花时间来解决。此外，3.0 的劣势都在尽力解决</p>
+<ol start="2">
+<li>3.0 是否有破坏性的改动？升级效率？<br>这就是 RFC 的价值，所有的重大改变、背后的意义、如何应对这些修改。基本的修改都会有自动化工具来更新。同时会有一个兼容版本，降低更新成本。</li>
+<li>React 渲染切片，Vue 仍会有相关成本？<br>切片并非是万能药，只有极端条件下可以完成性能的保障。内部的复杂度较高，实现后仍未能满足性能效果，切片会让 <font style="color:red">nextTick</font> 等代码都有破坏性修改（因为可能是多个 nextTick。</li>
+<li>Vue 未来的发展方向？<br>门槛低，价值高。只要有人用，就一直维护和更新</li>
+<li>很多企业用户在用 React，因为在 Native 方向有更好的兼容，Vue 未来会对 Native 有更好的兼容吗？<br>一套代码，多端实现。React 虽然有 React Native，但是各个厂家都有相应的对策，Google 有Flutter、Apple 有 SwiftUI，大家不可能让一个开发范式被一个公司使用。恰好，Vue 是独立的开源，没有企业竞争。</li>
+</ol>
+</blockquote>
+<hr>
+<h3 id="END"><a href="#END" class="headerlink" title="END"></a>END</h3>
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://github.com/lifenglei/2019/06/19/自定义指令/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="端端">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="https://static.soyoung.com/sy-pre/logo-1560924611786.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一个前端开发的记录">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/06/19/自定义指令/" class="post-title-link" itemprop="url">自定义指令</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-06-19 15:22:52 / Modified: 15:23:08" itemprop="dateCreated datePublished" datetime="2019-06-19T15:22:52+08:00">2019-06-19</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="自定义指令directive-混合mixins"><a href="#自定义指令directive-混合mixins" class="headerlink" title="自定义指令directive,混合mixins"></a>自定义指令directive,混合mixins</h2><h3 id="一-自定义指令directive"><a href="#一-自定义指令directive" class="headerlink" title="一.自定义指令directive"></a>一.自定义指令directive</h3><hr>
+<h5 id="除了核心功能默认内置的指令-v-model-和-v-show-，Vue-也允许注册自定义指令。注意，在-Vue2-0-中，代码复用和抽象的主要形式是组件。然而，有的情况下，你仍然需要对普通-DOM-元素进行底层操作，这时候就会用到自定义指令。"><a href="#除了核心功能默认内置的指令-v-model-和-v-show-，Vue-也允许注册自定义指令。注意，在-Vue2-0-中，代码复用和抽象的主要形式是组件。然而，有的情况下，你仍然需要对普通-DOM-元素进行底层操作，这时候就会用到自定义指令。" class="headerlink" title="除了核心功能默认内置的指令 (v-model 和 v-show)，Vue 也允许注册自定义指令。注意，在 Vue2.0 中，代码复用和抽象的主要形式是组件。然而，有的情况下，你仍然需要对普通 DOM 元素进行底层操作，这时候就会用到自定义指令。"></a>除了核心功能默认内置的指令 (v-model 和 v-show)，Vue 也允许注册自定义指令。注意，在 Vue2.0 中，代码复用和抽象的主要形式是组件。然而，有的情况下，你仍然需要对普通 DOM 元素进行底层操作，这时候就会用到自定义指令。</h5><p>来个实例，当页面加载时，该input元素将获得焦点：</p>
+<h4 id="注册一个全局自定义指令-v-focus"><a href="#注册一个全局自定义指令-v-focus" class="headerlink" title="注册一个全局自定义指令 v-focus"></a>注册一个全局自定义指令 <code>v-focus</code></h4><pre><code>Vue.directive(&#39;focus&#39;, {
+  // 当被绑定的元素插入到 DOM 中时……
+  inserted: function (el) {
+    // 聚焦元素
+    el.focus()
+  }
+})
+</code></pre><h4 id="如果想注册局部指令，组件中也接受一个-directives-的选项："><a href="#如果想注册局部指令，组件中也接受一个-directives-的选项：" class="headerlink" title="如果想注册局部指令，组件中也接受一个 directives 的选项："></a>如果想注册局部指令，组件中也接受一个 <font color="red">directives</font> 的选项：</h4><pre><code>directives: {
+  focus: {
+    // 指令的定义
+    inserted: function (el) {
+      el.focus()
+    }
+  }
+}
+</code></pre><h4 id="然后你可以在模板中任何元素上使用新的-v-focus-属性，如下："><a href="#然后你可以在模板中任何元素上使用新的-v-focus-属性，如下：" class="headerlink" title="然后你可以在模板中任何元素上使用新的 v-focus 属性，如下："></a>然后你可以在模板中任何元素上使用新的 v-focus 属性，如下：</h4><pre><code>&lt;input v-focus&gt;
+</code></pre><h3 id="钩子函数"><a href="#钩子函数" class="headerlink" title="钩子函数"></a>钩子函数</h3><hr>
+<h4 id="一个指令定义对象可以提供如下几个钩子函数-均为可选-："><a href="#一个指令定义对象可以提供如下几个钩子函数-均为可选-：" class="headerlink" title="一个指令定义对象可以提供如下几个钩子函数 (均为可选)："></a>一个指令定义对象可以提供如下几个钩子函数 (均为可选)：</h4><ul>
+<li><font color="red">bind</font>：只调用一次，指令第一次绑定到元素时调用。在这里可以进行一次性的初始化设置。</li>
+<li><font color="red">inserted</font>：被绑定元素插入父节点时调用 (仅保证父节点存在，但不一定已被插入文档中)。</li>
+<li><font color="red">update</font>：所在组件的 VNode 更新时调用，但是可能发生在其子 VNode 更新之前。指令的值可能发生了改变，也可能没有。但是你可以通过比较更新前后的值来忽略不必要的模板更新 (详细的钩子函数参数见下)。</li>
+<li><font color="red">componentUpdated</font>：指令所在组件的 VNode 及其子 VNode 全部更新后调用。</li>
+<li><font color="red">unbind</font>：只调用一次，指令与元素解绑时调用。<h4 id="接下来我们来看一下钩子函数的参数-即-el、binding、vnode-和-oldVnode-。"><a href="#接下来我们来看一下钩子函数的参数-即-el、binding、vnode-和-oldVnode-。" class="headerlink" title="接下来我们来看一下钩子函数的参数 (即 el、binding、vnode 和 oldVnode)。"></a>接下来我们来看一下钩子函数的参数 (即 el、binding、vnode 和 oldVnode)。</h4><h4 id="钩子函数参数"><a href="#钩子函数参数" class="headerlink" title="钩子函数参数"></a>钩子函数参数</h4></li>
+</ul>
+<hr>
+<h4 id="指令钩子函数会被传入以下参数："><a href="#指令钩子函数会被传入以下参数：" class="headerlink" title="指令钩子函数会被传入以下参数："></a>指令钩子函数会被传入以下参数：</h4><ul>
+<li><font color="red">el</font>:指令所绑定的元素，可以用来直接操作 DOM 。</li>
+<li><font color="red">binding</font>:一个对象，包含以下属性: <ul>
+<li><font color="red">name</font>:指令名，不包括 v- 前缀。</li>
+<li><font color="red">value</font>:指令的绑定值，例如：v-my-directive=”1 + 1” 中，绑定值为 2。</li>
+<li><font color="red">oldValue</font>:指令绑定的前一个值，仅在 update 和 componentUpdated 钩子中可用。无论值是否改变都可用。</li>
+<li><font color="red">expression</font>:字符串形式的指令表达式。例如 v-my-directive=”1 + 1” 中，表达式为 “1 + 1”。</li>
+<li><font color="red">arg</font>: 传给指令的参数，可选。例如 v-my-directive:foo 中，参数为 “foo”。</li>
+<li><font color="red">modifiers</font>:一个包含修饰符的对象。例如：v-my-directive.foo.bar 中，修饰符对象为 { foo: true, bar: true }。</li>
+</ul>
+</li>
+<li><font color="red">vnode</font>:   Vue 编译生成的虚拟节点。移步 VNode API 来了解更多详情。</li>
+<li><font color="red">oldVnode</font>: 上一个虚拟节点，仅在 update 和 componentUpdated 钩子中可用。<blockquote>
+<font color="green">除了 el 之外，其它参数都应该是只读的，切勿进行修改。如果需要在钩子之间共享数据，建议通过元素的 <font color="red">dataset</font> 来进行。</font>
+</blockquote>
+<h3 id="这是一个使用了这些属性的自定义钩子样例："><a href="#这是一个使用了这些属性的自定义钩子样例：" class="headerlink" title="这是一个使用了这些属性的自定义钩子样例："></a>这是一个使用了这些属性的自定义钩子样例：</h3>  <div id="hook-arguments-example" v-demo:foo.a.b="message"></div><br><code>`</code><br>Vue.directive(‘demo’, {<br>bind: function (el, binding, vnode) {<br>  var s = JSON.stringify<br>  el.innerHTML =<pre><code>&#39;name: &#39;       + s(binding.name) + &#39;&lt;br&gt;&#39; +
+&#39;value: &#39;      + s(binding.value) + &#39;&lt;br&gt;&#39; +
+&#39;expression: &#39; + s(binding.expression) + &#39;&lt;br&gt;&#39; +
+&#39;argument: &#39;   + s(binding.arg) + &#39;&lt;br&gt;&#39; +
+&#39;modifiers: &#39;  + s(binding.modifiers) + &#39;&lt;br&gt;&#39; +
+&#39;vnode keys: &#39; + Object.keys(vnode).join(&#39;, &#39;)
+</code></pre>}<br>})</li>
+</ul>
+<p>new Vue({<br>  el: ‘#hook-arguments-example’,<br>  data: {<br>    message: ‘hello!’<br>  }<br>})</p>
+<pre><code>结果：
+</code></pre><p>name: “demo”<br>value: “hello!”<br>expression: “message”<br>argument: “foo”<br>modifiers: {“a”:true,”b”:true}<br>vnode keys: tag, data, children, text, elm, ns, context, fnContext, fnOptions, fnScopeId, key, componentOptions, componentInstance, parent, raw, isStatic, isRootInsert, isComment, isCloned, isOnce, asyncFactory, asyncMeta, isAsyncPlaceholder</p>
+<pre><code>##### 在很多时候，你可能想在 bind 和update时触发相同行为，而不关心其它的钩子。比如这样写:
+    Vue.directive(&#39;color-swatch&#39;, function (el, binding) {
+     el.style.backgroundColor = binding.value
+    })
+### 对象字面量
+---
+###### 如果指令需要多个值，可以传入一个 JavaScript 对象字面量。记住，指令函数能够接受所有合法的 JavaScript 表达式。
+    &lt;div v-demo=&quot;{ color: &#39;white&#39;, text: &#39;hello!&#39; }&quot;&gt;&lt;/div&gt;
+
+
+    Vue.directive(&#39;demo&#39;, function (el, binding) {
+        console.log(binding.value.color) // =&gt; &quot;white&quot;
+        console.log(binding.value.text)  // =&gt; &quot;hello!&quot;
+    })
+### 混合mixins
+#### 混合 (&lt;font color=&quot;red&quot;&gt;mixins&lt;/font&gt;) 是一种分发 Vue 组件中可复用功能的非常灵活的方式。混合对象可以包含任意组件选项。当组件使用混合对象时，所有混合对象的选项将被混入该组件本身的选项。
+</code></pre><pre><code>// 定义一个混合对象
+</code></pre><p>var myMixin = {<br>  created: function () {<br>    this.hello()<br>  },<br>  methods: {<br>    hello: function () {<br>      console.log(‘hello from mixin!’)<br>    }<br>  }<br>}</p>
+<p>// 定义一个使用混合对象的组件<br>var Component = Vue.extend({<br>  mixins: [myMixin]<br>})</p>
+<p>var component = new Component() // =&gt; “hello from mixin!”</p>
+<pre><code>### 选项合并
+---
+##### 当组件和混合对象含有同名选项时，这些选项将以恰当的方式混合。比如，同名钩子函数将混合为一个数组，因此都将被调用。另外，混合对象的 钩子将在组件自身钩子 之前 调用 ：
+</code></pre><pre><code>var mixin = {
+</code></pre><p>  created: function () {<br>    console.log(‘混合对象的钩子被调用’)<br>  }<br>}</p>
+<p>new Vue({<br>  mixins: [mixin],<br>  created: function () {<br>    console.log(‘组件钩子被调用’)<br>  }<br>})</p>
+<p>// =&gt; “混合对象的钩子被调用”<br>// =&gt; “组件钩子被调用”</p>
+<pre><code>##### 值为对象的选项，例如 &lt;font color=&quot;red&quot;&gt;methods, components 和 directives&lt;/font&gt;，将被混合为同一个对象。两个对象键名冲突时，取组件对象的键值对。
+</code></pre><pre><code>var mixin = {
+</code></pre><p>  methods: {<br>    foo: function () {<br>      console.log(‘foo’)<br>    },<br>    conflicting: function () {<br>      console.log(‘from mixin’)<br>    }<br>  }<br>}</p>
+<p>var vm = new Vue({<br>  mixins: [mixin],<br>  methods: {<br>    bar: function () {<br>      console.log(‘bar’)<br>    },<br>    conflicting: function () {<br>      console.log(‘from self’)<br>    }<br>  }<br>})</p>
+<p>vm.foo() // =&gt; “foo”<br>vm.bar() // =&gt; “bar”<br>vm.conflicting() // =&gt; “from self”</p>
+<pre><code>&gt;注意：&lt;font color=&quot;red&quot;&gt;Vue.extend()&lt;/font&gt; 也使用同样的策略进行合并。
+### 全局混合
+---
+#####   也可以全局注册混合对象。注意使用！ 一旦使用全局混合对象，将会影响到 所有 之后创建的 Vue 实例。使用恰当时，可以为自定义对象注入处理逻辑。
+</code></pre><p>// 为自定义的选项 ‘myOption’ 注入一个处理器。<br>Vue.mixin({<br>  created: function () {<br>    var myOption = this.$options.myOption<br>    if (myOption) {<br>      console.log(myOption)<br>    }<br>  }<br>})</p>
+<p>new Vue({<br>  myOption: ‘hello!’<br>})<br>// =&gt; “hello!”<br><code>`</code></p>
+<blockquote>
+<p><font color="red">谨慎使用全局混合对象</font>，因为会影响到每个单独创建的 Vue<br>实例 (包括第三方模板)。大多数情况下，只应当应用于自定义选项，就像上面示例一样。也可以将其用作 Plugins 以避免产生重复应用</p>
+</blockquote>
+<h3 id="自定义选项合并策略"><a href="#自定义选项合并策略" class="headerlink" title="自定义选项合并策略"></a>自定义选项合并策略</h3><hr>
+<h5 id="自定义选项将使用默认策略，即简单地覆盖已有值。如果想让自定义选项以自定义逻辑合并，可以向-Vue-config-optionMergeStrategies-添加一个函数："><a href="#自定义选项将使用默认策略，即简单地覆盖已有值。如果想让自定义选项以自定义逻辑合并，可以向-Vue-config-optionMergeStrategies-添加一个函数：" class="headerlink" title="自定义选项将使用默认策略，即简单地覆盖已有值。如果想让自定义选项以自定义逻辑合并，可以向 Vue.config.optionMergeStrategies 添加一个函数："></a>自定义选项将使用默认策略，即简单地覆盖已有值。如果想让自定义选项以自定义逻辑合并，可以向 <font color="red">Vue.config.optionMergeStrategies</font> 添加一个函数：</h5><pre><code>Vue.config.optionMergeStrategies.myOption = function (toVal, fromVal) {
+    // return mergedVal
+}
+</code></pre><h5 id="对于大多数对象选项，可以使用-methods-的合并策略："><a href="#对于大多数对象选项，可以使用-methods-的合并策略：" class="headerlink" title="对于大多数对象选项，可以使用 methods 的合并策略："></a>对于大多数对象选项，可以使用 methods 的合并策略：</h5><pre><code>var strategies = Vue.config.optionMergeStrategies
+strategies.myOption = strategies.methods
+</code></pre><h3 id="结束"><a href="#结束" class="headerlink" title="结束^^"></a>结束^^</h3><hr>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://github.com/lifenglei/2019/06/19/vue插件开发/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="端端">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="https://static.soyoung.com/sy-pre/logo-1560924611786.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一个前端开发的记录">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/06/19/vue插件开发/" class="post-title-link" itemprop="url">vue插件开发</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-06-19 15:22:21 / Modified: 15:22:34" itemprop="dateCreated datePublished" datetime="2019-06-19T15:22:21+08:00">2019-06-19</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="如何去写Vue插件"><a href="#如何去写Vue插件" class="headerlink" title="如何去写Vue插件"></a>如何去写Vue插件</h3><h4 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h4><h4 id="实现一个简单的提示插件"><a href="#实现一个简单的提示插件" class="headerlink" title="实现一个简单的提示插件"></a>实现一个简单的提示插件</h4><h5 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h5><h6 id="官方文档介绍"><a href="#官方文档介绍" class="headerlink" title="官方文档介绍"></a>官方文档介绍</h6><h6 id="插件通常会为Vue提供全局功能。插件的范围没有限制—-一般有以下"><a href="#插件通常会为Vue提供全局功能。插件的范围没有限制—-一般有以下" class="headerlink" title="插件通常会为Vue提供全局功能。插件的范围没有限制—-一般有以下"></a>插件通常会为Vue提供全局功能。插件的范围没有限制—-一般有以下</h6><blockquote>
+<ol>
+<li>添加全局方法或者属性，如: vue-custom-element </li>
+<li>添加全局资源：指令/过滤器/过渡等，如 vue-touch </li>
+<li>通过全局 mixin 方法添加一些组件选项，如: vue-router </li>
+<li>添加 Vue 实例方法，通过把它们添加到 Vue.prototype 上实现。 </li>
+<li>一个库，提供自己的 API，同时提供上面提到的一个或多个功能，如 vue-router</li>
+</ol>
+</blockquote>
+<h5 id="官网给出的代码框架如下"><a href="#官网给出的代码框架如下" class="headerlink" title="官网给出的代码框架如下"></a>官网给出的代码框架如下</h5><pre><code class="js">    Myplugin.install=function(Vue,options){
+    //添加全局方法或者属性
+        Vue.myGlobalMethods = function(){
+            ....逻辑
+        }
+    }
+    //添加全局指令
+    Vue.directive(&#39;my-directive&#39;,{
+        bind(el,binding,vnode,oldVnode){
+            // ...逻辑
+        }
+        ...
+    })
+    //注入组件
+    Vue.mixin({
+        created:function(){
+            ...//逻辑
+        }
+    })
+    添加实例方法
+    Vue.prototype.$myMethod=function(methodOptions){
+        ...逻辑
+    }
+</code></pre>
+<p>下面展示一个提示插件</p>
+<h5 id="1-编写组件"><a href="#1-编写组件" class="headerlink" title="1.编写组件"></a>1.编写组件</h5><p>toast.vue</p>
+<pre><code class="vue">&lt;template&gt;
+  &lt;div class=&quot;m-toast&quot; :class=&quot;{opacity}&quot; v-show=&quot;visible&quot;&gt;&lt;p v-html=&quot;html&quot;&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;/template&gt;
+&lt;script&gt;
+export default {
+  data () {
+    return {
+      opacity: false,
+      visible: false,
+      timer: null,
+      html: &#39;&#39;
+    }
+  },
+  mounted () {
+  },
+  methods: {
+    /*
+        * html 显示的html片段
+        * cb 隐藏之后的回调函数
+        * time 自动隐藏时间，-1为不进行隐藏
+        * */
+    show (html, cb, time) {
+      this.html = html
+      this.visible = true
+      this.$nextTick(() =&gt; {
+        this.opacity = true
+      })
+      window.clearTimeout(this.timer)
+      this.timer = window.setTimeout(() =&gt; {
+        this.opacity = false
+        setTimeout(() =&gt; {
+          this.visible = false
+        }, 500)
+        cb &amp;&amp; cb()
+      }, time || 3000)
+    },
+    hide () {
+      this.opacity = false
+      setTimeout(() =&gt; {
+        this.visible = false
+      }, 500)
+    }
+  }
+}
+&lt;/script&gt;
+&lt;style lang=&quot;less&quot;&gt;
+
+.m-toast {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  width: 100%;
+  left: 0;
+  top: 40%;
+  z-index: 99999;
+  transition: opacity .5s;
+  opacity: 0;
+  &amp;.opacity{
+      opacity: 1;
+  }
+  p {
+    position: relative;
+    display: inline-block;
+    background: rgba(252,93,123,.5);
+    padding: 2% 4%;
+    min-width: 20%;
+    text-align: center;
+    color: #FFF;
+    line-height: 1.2;
+    border-radius: .2rem;
+    font-size: .28rem;
+    max-width: 60%;
+    line-height: .4rem;
+  }
+}
+&lt;/style&gt;
+</code></pre>
+<h5 id="2-插件需要有install方法"><a href="#2-插件需要有install方法" class="headerlink" title="2.插件需要有install方法"></a>2.插件需要有install方法</h5><p>toast.js</p>
+<pre><code class="js">import Toast from &#39;./index&#39;
+export default {
+  install (Vue, options = {}) {
+    const VueToast = Vue.extend(Toast)
+    let toast = null
+    function $toast (html, cb, time) {
+      return new Promise(resolve =&gt; {
+        if (!toast) {
+          toast = new VueToast()
+
+          toast.$mount()
+
+          document.querySelector(options.container || &#39;body&#39;).appendChild(toast.$el)
+        }
+        toast.show(html, cb, time)
+        resolve()
+      })
+    }
+
+    Vue.prototype.$toast = $toast
+  }
+}
+</code></pre>
+<h5 id="全局使用"><a href="#全局使用" class="headerlink" title="全局使用"></a>全局使用</h5><pre><code>  this.$toast(&#39;今日输送能量任务已完成明天再来吧~&#39;)
+</code></pre>
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://github.com/lifenglei/2019/06/19/sync使用/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="端端">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="https://static.soyoung.com/sy-pre/logo-1560924611786.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一个前端开发的记录">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/06/19/sync使用/" class="post-title-link" itemprop="url">sync使用</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-06-19 15:21:41 / Modified: 15:21:57" itemprop="dateCreated datePublished" datetime="2019-06-19T15:21:41+08:00">2019-06-19</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h5 id="Sync的使用"><a href="#Sync的使用" class="headerlink" title="Sync的使用"></a>Sync的使用</h5><blockquote>
+<p>在一些情况下，我们可能会需要对一个 prop 进行『双向绑定』。事实上，这正是 Vue 1.x 中的<font color="red"> .sync </font>修饰符所提供的功能。当一个子组件改变了一个 prop 的值时，这个变化也会同步到父组件中所绑定的值。这很方便，但也会导致问题，因为它破坏了『单向数据流』的假设。由于子组件改变 prop 的代码和普通的状态改动代码毫无区别，当光看子组件的代码时，你完全不知道它何时悄悄地改变了父组件的状态。这在 debug 复杂结构的应用时会带来很高的维护成本。</p>
+</blockquote>
+<blockquote>
+<p>在2.0发布一段之后，无论在业务组件还是在功能组件库上面的，大量的子组件改变父子组件的数据和组件库中可能达到大功率的复用，但是在2.3中回归，重新引入了 .sync 修饰符，这次它只是作为一个编译时的语法糖存在。它会被扩展为一个自动更新父组件属性的 v-on 侦听器。<br>之前的例子中，v-model 毕竟不是给组件与组件之间通信而设计的双向绑定，无论从语意上和代码写法上都没有 .sync 直观和方便。<br>无论从 v-model 还是 .sync 修饰符来看，都离不开 $emit v-on 语法糖的封装，主要目的还是为了保证数据的正确单向流动与显示流动。</p>
+</blockquote>
+<pre><code>&lt;demo :foo.sync=&quot;something&quot;&gt;&lt;/demo&gt;
+</code></pre><h6 id="语法糖的扩展"><a href="#语法糖的扩展" class="headerlink" title="语法糖的扩展"></a>语法糖的扩展</h6><pre><code>&lt;demo :foo=&quot;something&quot; @update:foo=&quot;val =&gt; something = val&quot;&gt;&lt;/demo&gt;
+</code></pre><p>######</p>
+<ul>
+<li>foo 则是 demo 子组件需要从父组件 props 接收的数据</li>
+<li>通过事件显示监听 update:foo (foo则是 props 显示监听的数据)，通过箭头函数执行回调，把参数传给 something，则就形成了一种双向绑定的循环链条<h6 id="当子组件需要更新-foo-的值时，它需要显式地触发一个更新事件："><a href="#当子组件需要更新-foo-的值时，它需要显式地触发一个更新事件：" class="headerlink" title="当子组件需要更新 foo 的值时，它需要显式地触发一个更新事件："></a>当子组件需要更新 foo 的值时，它需要显式地触发一个更新事件：</h6>this.$emit(‘update:foo’, newValue)<br>同时父组件<font color="red">@update:foo</font>也是依赖于子组件的显示触发，这样就可以很轻松的捕捉到了数据的正确的流动。<br>第一个参数则是 <font color="red">update 显示更新的事件</font>，跟在后面的：foo则是需要<font color="red">改变对应的props值</font>。<br>第二个参数传入的是你希望父组件<font color="red">foo数据里将要变化的值</font>，以用于父组件接收update时更新数据。<h5 id="子组件"><a href="#子组件" class="headerlink" title="子组件"></a>子组件</h5><pre><code class="js">&lt;template&gt;
+&lt;div v-show=&quot;show&quot;&gt;
+  &lt;p&gt;这是一个Model框&lt;/p&gt;
+  &lt;button @click=&quot;closeModel&quot;&gt;关闭model&lt;/button&gt;
+&lt;/div&gt;
+&lt;/template&gt;
+&lt;script&gt;
+export default {
+props: [&#39;show&#39;],
+methods: {
+closeModel () {
+  this.$emit(&#39;update:show&#39;,false)
+}
+}
+}
+&lt;/script&gt;
+</code></pre>
+<h5 id="父组件"><a href="#父组件" class="headerlink" title="父组件"></a>父组件</h5><code>`</code>js<template><br><div class="hello"><br><button @click="show=true">打开model</button><br><demo :show.sync="show"></demo><br></div><br></template>
+
+</li>
+</ul>
+<p><script><br>  import Demo from ‘./Demo.vue’<br>  export default {<br>    name: ‘hello’,<br>    components: {<br>      Demo<br>    },<br>    data () {<br>      return {<br>        show: false<br>      }<br>    }<br>  }<br></script></p>
+<pre><code>######  
+上面的 case 同样也解决了 model 显示交互操作，从代码的语意上看上去让开发者一目了然，同样也做了 v-model 做不了的事，基于 props 的原子化，对传入的 props 进行多个数据双向绑定.sync 也能轻松做到。
+
+#####   父组件
+```js
+&lt;template&gt;
+  &lt;div class=&quot;hello&quot;&gt;
+    &lt;button @click=&quot;show=true&quot;&gt;打开model&lt;/button&gt;
+    &lt;demo :show.sync=&quot;show&quot; :msg.sync=&quot;msg&quot;&gt;&lt;/demo&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+  import Demo from &#39;./Demo.vue&#39;
+  export default {
+    name: &#39;hello&#39;,
+    components: {
+      Demo
+    },
+    data () {
+      return {
+        show: false,
+        msg: &#39;这是一个model&#39;
+      }
+    }
+  }
+&lt;/script&gt;
+</code></pre><h5 id="子组件-1"><a href="#子组件-1" class="headerlink" title="子组件"></a>子组件</h5><pre><code class="js">&lt;template&gt;
+   &lt;div v-show=&quot;show&quot;&gt;
+      &lt;p&gt;{{msg}}&lt;/p&gt;
+      &lt;button @click=&quot;closeModel&quot;&gt;关闭model&lt;/button&gt;
+     &lt;button @click=&quot;$emit(&#39;update:msg&#39;,&#39;改变了model文案&#39;)&quot;&gt;改变文案&lt;/button&gt;
+   &lt;/div&gt;
+&lt;/template&gt;
+&lt;script&gt;
+export default {
+  props: [&#39;show&#39;, &#39;msg&#39;],
+  methods: {
+    closeModel () {
+      this.$emit(&#39;update:show&#39;,false)
+    }
+  }
+}
+&lt;/script&gt;
+</code></pre>
+<h3 id="warn"><a href="#warn" class="headerlink" title="warn"></a><font color="red">warn</font></h3><blockquote>
+<p>子组件改变父组件的数据时，update 冒号后面的参数和父组件传递进来的值是同步的，想改变那个，则冒号后面的值对应的那个，两者是一一对应的，同时也是必填的。<br>同样还可以在组件 template 里点击执行 click 后不但可以支持回调函数，还可以写入表达式，只是一种直观的表现还是推荐这种写法的。<br>.sync 修饰符给我们开发中带来了很大的方便，同时在2.0的初期的组件库中大量的 v-model 给开发者用起来还是很别扭，在.sync 回归后同时也会慢慢向.sync 进行一个版本的迁移。</p>
+</blockquote>
+<h3 id="END—-下一次分享-attrs-listeners使用"><a href="#END—-下一次分享-attrs-listeners使用" class="headerlink" title="END—  下一次分享$attrs $listeners使用"></a>END—  下一次分享$attrs $listeners使用</h3>
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://github.com/lifenglei/2019/06/19/��使用/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="端端">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="https://static.soyoung.com/sy-pre/logo-1560924611786.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一个前端开发的记录">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/06/19/��使用/" class="post-title-link" itemprop="url">$attr使用</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-06-19 15:20:23 / Modified: 15:20:56" itemprop="dateCreated datePublished" datetime="2019-06-19T15:20:23+08:00">2019-06-19</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="attrs与-listenrs使用"><a href="#attrs与-listenrs使用" class="headerlink" title="$attrs与$listenrs使用"></a>$attrs与$listenrs使用</h3><blockquote>
+<p>2.4.0 新增</p>
+<ul>
+<li>类型：<font color="orange">{ [key: string]: string }</font></li>
+<li>只读</li>
+<li>详细:</li>
+</ul>
+</blockquote>
+<p>####<br>包含了父作用域中不作为 prop 被识别 (且获取) 的特性绑定 (<font color="orange">class 和 style 除外)</font>。当一个组件没有声明任何 prop 时，这里会包含所有父作用域的绑定 (class 和 style 除外)，并且可以通过<font color="orange"> v-bind=”$attrs”</font> 传入内部组件——在创建高级别的组件时非常有用。</p>
+<h5 id="官方说法似乎有点模糊-其实可以这么去理解"><a href="#官方说法似乎有点模糊-其实可以这么去理解" class="headerlink" title="官方说法似乎有点模糊 其实可以这么去理解"></a>官方说法似乎有点模糊 其实可以这么去理解</h5><pre><code>因为在项目中深层次组件交互的话可能就需要 Vuex 助力了，但是如果只是一个简单的深层次数据传递，
+
+或者进行某种交互时需要向上通知顶层或父层组件数据改变时，大材小用Vuex可能未免有点多余！
+</code></pre><h4 id="attr-与-interitAttrs-之间的关系"><a href="#attr-与-interitAttrs-之间的关系" class="headerlink" title="$attr 与 interitAttrs 之间的关系"></a><font color="red">$attr 与 interitAttrs 之间的关系</font></h4><h4 id="interitAttrs："><a href="#interitAttrs：" class="headerlink" title="interitAttrs："></a>interitAttrs：</h4><blockquote>
+<p>2.4.0 新增</p>
+<ul>
+<li>类型：<font color="orange">boolean</font></li>
+<li>默认值：<font color="orange">true</font></li>
+<li>详细:</li>
+</ul>
+</blockquote>
+<p>####<br>默认情况下父作用域的不被认作 props 的特性绑定 (attribute bindings) 将会“回退”且作为普通的 HTML 特性应用在子组件的根元素上。当撰写包裹一个目标元素或另一个组件的组件时，这可能不会总是符合预期行为。通过设置 inheritAttrs 到 false，这些默认行为将会被去掉。而通过 (同样是 2.4 新增的) 实例属性 $attrs 可以让这些特性生效，且可以通过 v-bind 显性的绑定到非根元素上。</p>
+<h2 id="warn：这个选项不影响-class-和-style-绑定。"><a href="#warn：这个选项不影响-class-和-style-绑定。" class="headerlink" title="warn：这个选项不影响 class 和 style 绑定。"></a><font color="red">warn：这个选项不影响 class 和 style 绑定。</font></h2><h4 id="下面通过简单demo解释下"><a href="#下面通过简单demo解释下" class="headerlink" title="下面通过简单demo解释下"></a>下面通过简单demo解释下</h4><p>父组件</p>
+<pre><code class="js">&lt;template&gt;
+  &lt;div class=&quot;hello&quot;&gt;
+     &lt;demo :count=&quot;count&quot; :num=&quot;num&quot;&gt;&lt;/demo&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+  import Demo from &#39;./demo.vue&#39;
+  export default {
+    name: &#39;hello&#39;,
+    components: {
+      Demo
+    },
+    data () {
+      return {
+        count: &#39;count message&#39;,
+        num: &#39;num message&#39;
+      }
+    },
+  }
+&lt;/script&gt;
+</code></pre>
+<p>子组件</p>
+<pre><code class="js">&lt;template&gt;
+   &lt;div&gt;
+      {{count}}
+   &lt;/div&gt;
+&lt;/template&gt;
+&lt;script&gt;
+export default {
+   name: &#39;demo&#39;,
+   props: [&#39;count&#39;]
+}
+&lt;/script&gt;
+</code></pre>
+<p>#####<br>父组件在子组件中进行传递 count 和num 两个数据，在子组件中，应该有相对应的 props 定义的接收点，如果在 props 中定义了，你会发现无论是 count 和 num 都成了子组件的接收来的数据了，可以用来进行数据展示和行为操作。<br>虽然在父组件中在子组件模版上通过 props 定义了两个数据，但是子组件中的 props 只接收了一个，只接收了 count，并没有接收 num，没有进行接收的此时就会成为<font color="red">子组件根无素的属性节点。</font></p>
+<p><img src="http://1.z9ls.com/t6/701/1555570189x2890191817.png" alt="blockchain" title="$attrs"></p>
+<h5 id="interitAttrs-false-发生了什么-？"><a href="#interitAttrs-false-发生了什么-？" class="headerlink" title="interitAttrs = false 发生了什么 ？"></a>interitAttrs = false 发生了什么 ？</h5><p>子组件</p>
+<pre><code class="js">&lt;template&gt;
+   &lt;div&gt;
+      {{count}}
+   &lt;/div&gt;
+&lt;/template&gt;
+&lt;script&gt;
+export default {
+   name: &#39;demo&#39;,
+   props: [&#39;count&#39;],
+   interitAttrs:false
+}
+&lt;/script&gt;
+</code></pre>
+<p><img src="http://1.z9ls.com/t6/701/1555570594x2918527158.png" alt="blockchain" title="$attrs"></p>
+<h4 id="对子组件进行一个改动，我们加上-inheritAttrs-false，从字面上的翻译的意思，取消继承的属性，然而-props-里仍然没有接收-num，发现就算-props-里没有接收-num，在子组件的根元素上并没有绑定任何属性。"><a href="#对子组件进行一个改动，我们加上-inheritAttrs-false，从字面上的翻译的意思，取消继承的属性，然而-props-里仍然没有接收-num，发现就算-props-里没有接收-num，在子组件的根元素上并没有绑定任何属性。" class="headerlink" title="对子组件进行一个改动，我们加上 inheritAttrs: false，从字面上的翻译的意思，取消继承的属性，然而 props 里仍然没有接收 num，发现就算 props 里没有接收 num，在子组件的根元素上并没有绑定任何属性。"></a>对子组件进行一个改动，我们加上 inheritAttrs: false，从字面上的翻译的意思，取消继承的属性，然而 props 里仍然没有接收 num，发现就算 props 里没有接收 num，在子组件的根元素上并没有绑定任何属性。</h4><blockquote>
+<p>$attrs</p>
+</blockquote>
+<p>在前面的例子中，子组件props中并没有接受num，设置选项 inheritAttrs： false，同样也不会作为根元素的属性节点，整个没有接收的数据都被 $attr 实例属性给接收，里面包含着所有父组件传入而子组件并没有在 Props里显示接收的数据。</p>
+<p>为了验证事实，可以在子组件中加上</p>
+<pre><code>    created () {
+       console.log(this.$attrs)
+    }
+</code></pre><p>打印出来则是一个对象 {num: “num message”}</p>
+<h3 id="warn"><a href="#warn" class="headerlink" title="warn"></a><font color="red">warn</font></h3><p>想要通 $attr 接收，但必须要保证设置选项<font color="red"> inheritAttrs: false，</font>不然会默认变成根元素的属性节点。<br>开头说了，最有用的情况则是在深层次组件运用的时候，创建第三层孙子组件，作为第二层父组件的子组件，在子组件引入的孙子组件，在模版上把整个 $attr 当数作数据传递下去，中间则并不用通过任何方法去手动转换数据。<br>子组件</p>
+<pre><code class="js">&lt;template&gt;
+   &lt;div&gt;
+      &lt;next-demo v-bind=&quot;$attrs&quot;&gt;&lt;/next-demo&gt;
+   &lt;/div&gt;
+&lt;/template&gt;
+&lt;script&gt;
+import nextDemo from &#39;./nextdemo.vue&#39;
+export default {
+   name: &#39;demo&#39;,
+   components: {
+      nextDemo
+    },
+   created () {
+       console.log(this.$attrs)
+    }
+}
+&lt;/script&gt;
+</code></pre>
+<p>孙子组件</p>
+<pre><code class="js">&lt;template&gt;
+  &lt;div&gt;
+      {{count}}{{num}}
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+  export default {
+     props : [ &#39;count&#39; , &#39;num&#39;]
+  }
+&lt;/script&gt;
+</code></pre>
+<p>####<br>孙子组件在 props 接收子组件中通过 <font color="red">$attrs</font> 包裹传来的数据，同样是通过父组件传来的数据，只是在子组件用了<font color="red">$attrs</font>进行了统一接收，再往下传递，最后通过孙子组件进行接收。<br>以此类推孙子组件仍然不想接收，再传入下级组件，我们仍然需要对孙子组件实力选项进行设置选项 inheritAttrs: false，否则仍然会成为孙子组件根元素的属性节点。</p>
+<h2 id="从而利用-attrs-来接收-props-为接收的数据再次向下传递是一件很方便的事件，深层次接收数据我们理解了，那从深层次向层请求改变数据如何实现。意思就是让顶层数据和最底层数据进行一个双向绑定。"><a href="#从而利用-attrs-来接收-props-为接收的数据再次向下传递是一件很方便的事件，深层次接收数据我们理解了，那从深层次向层请求改变数据如何实现。意思就是让顶层数据和最底层数据进行一个双向绑定。" class="headerlink" title="从而利用 $attrs 来接收 props 为接收的数据再次向下传递是一件很方便的事件，深层次接收数据我们理解了，那从深层次向层请求改变数据如何实现。意思就是让顶层数据和最底层数据进行一个双向绑定。"></a>从而利用 <font color="red">$attrs</font> 来接收 props 为接收的数据再次向下传递是一件很方便的事件，深层次接收数据我们理解了，那从深层次向层请求改变数据如何实现。意思就是让顶层数据和最底层数据进行一个双向绑定。</h2><h4 id="listeners"><a href="#listeners" class="headerlink" title="$listeners"></a>$listeners</h4><blockquote>
+<p>2.4.0 新增</p>
+<ul>
+<li>类型：<font color="orange">{ [key: string]: Function | Array<function> }</function></font></li>
+<li>只读</li>
+<li>详细:</li>
+</ul>
+</blockquote>
+<pre><code>包含了父作用域中的 (不含 .native 修饰器的) v-on 事件监听器。它可以通过 v-on=&quot;$listeners&quot; 传入内部组件——在创建更高层次的组件时非常有用。
+
+$listeners 和 $attrs 两者表面层都是一个意思，$attrs 是向下传递数据，$listeners 是向下传递方法，通过手动去调用 $listeners 对象里的方法，原理就是 $emit 监听事件，$listeners 也可以看成一个包裹监听事件的一个对象。
+父组件
+``` js
+&lt;template&gt;
+  &lt;div class=&quot;hello&quot;&gt;
+     {{firstMsg}}
+     &lt;demo v-on:changeData=&quot;changeData&quot; v-on:another = &#39;another&#39;&gt;&lt;/demo&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+  import Demo from &#39;./demo.vue&#39;
+  export default {
+    name: &#39;hello&#39;,
+    components: {
+      Demo
+    },
+    data () {
+      return {
+        firstMsg: &#39;父组件&#39;,
+      }
+    },
+    methods: {
+      changeData (params) {
+         this.firstMsg = params
+      },
+      another () {
+        alert(2)
+      }
+    }
+  }
+&lt;/script&gt;
+```
+子组件
+```js
+&lt;template&gt;
+   &lt;div&gt;
+      &lt;p @click=&quot;$emit(&#39;another&#39;)&quot;&gt;子组件&lt;/p&gt;  
+      &lt;next-demo  v-on=&#39;$listeners&#39;&gt;&lt;/next-demo&gt;
+   &lt;/div&gt;
+
+&lt;/template&gt;
+&lt;script&gt;
+import NextDemo from &#39;./nextdemo.vue&#39;
+export default {
+   name: &#39;demo&#39;,
+   components: {
+       NextDemo
+   },
+   created () {
+     console.log(this.$listeners)
+   },
+}
+&lt;/script&gt;
+```
+  孙子组件
+```js
+&lt;template&gt;
+  &lt;div class=&quot;hello&quot;&gt;
+      &lt;p @click=&#39;$listeners.changeData(&quot;change&quot;)&#39;&gt;孙子组件&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+export default {
+  name: &#39;demo&#39;,
+  created () {
+      console.log(this.$listeners)
+  },
+}
+&lt;/script&gt;
+```
+
+![blockchain](http://1.z9ls.com/t6/701/1555572193x2918527158.png &quot;$listeners&quot;)
+###    
+</code></pre><p>依然能拿到从子组中传递过来的$listeners所有的监听事件，此时并不是通过$emit去触发，而是像调用函数一样，$emit只是针对于父子组件的双向通信，<font color="red">$listeners包了一个对象，分别是 changeData 和 another，通过$listeners.changeData(‘change’)等于直接触发了事件</font>，执行监听后的回调函数，就是通过函数的传递，调用了父组件的函数。<br>通过 $attrs 和 $listeners 可以很愉快地解决深层次组件的通信问题，更加合理的组织你的代码。</p>
+<h3 id="END-—下次分享-parent-children使用"><a href="#END-—下次分享-parent-children使用" class="headerlink" title="END —下次分享$parent $children使用"></a>END —下次分享$parent $children使用</h3>
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://github.com/lifenglei/2019/06/19/vModel语法糖/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="端端">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="https://static.soyoung.com/sy-pre/logo-1560924611786.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一个前端开发的记录">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/06/19/vModel语法糖/" class="post-title-link" itemprop="url">vModel语法糖</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-06-19 15:18:34 / Modified: 15:19:07" itemprop="dateCreated datePublished" datetime="2019-06-19T15:18:34+08:00">2019-06-19</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="v-model语法糖"><a href="#v-model语法糖" class="headerlink" title="v-model语法糖"></a>v-model语法糖</h3><blockquote>
+<p>什么是v-model语法糖 如何去理解这个语法糖</p>
+</blockquote>
+<p>####<br>    v-model 其实也是一个语法糖，想要理解语法糖，你首先要知道Input元素上本身有个oninput事件，这是HTML5新增加的，类似onchange，每当输入框内容发生变化的时候，就会触发这个事件，然后把 Input 输入框中<br>    value 值再次传递给 newValue。<br>    此时 value 运用在一个 Input 元素上，用：v-bind:value=’newValue’，意义上面只是把Input 输入框中的 value 值与 newValue 作为一一对应的双向绑定，这就像一个循环操作，当再次触发 Input 事件时，input($event.target)对象中的value值会再次改变newValue。<br>    这里我们对 v-model 绑定在 Input 元素上进行语法糖上的解析。</p>
+<h5 id="在组件中使用的时候-它相当于"><a href="#在组件中使用的时候-它相当于" class="headerlink" title="在组件中使用的时候 它相当于"></a>在组件中使用的时候 它相当于</h5><pre><code class="javascript">&lt;custom-input&gt;
+    v-bind:value=&quot;newValue&quot;
+    v-on:input = &quot;newValue = argument[0]&quot;
+&lt;/custom-input&gt;
+
+</code></pre>
+<h5 id="通过以上简写-通过自定义事件实现父子数据双向绑定"><a href="#通过以上简写-通过自定义事件实现父子数据双向绑定" class="headerlink" title="通过以上简写,通过自定义事件实现父子数据双向绑定"></a>通过以上简写,通过自定义事件实现父子数据双向绑定</h5><pre><code>v-bind:value=&#39;newValue&#39; 此时 value 是作为子组件接收的 Props
+</code></pre><h5 id="接收的只能是-value-吗？必须是，因为-v-model-是基于-Input-输入框定制的，其中value-值是为-Input-内部定制的"><a href="#接收的只能是-value-吗？必须是，因为-v-model-是基于-Input-输入框定制的，其中value-值是为-Input-内部定制的" class="headerlink" title="接收的只能是 value 吗？必须是，因为 v-model 是基于 Input 输入框定制的，其中value 值是为 Input 内部定制的"></a>接收的只能是 value 吗？必须是，因为 v-model 是基于 Input 输入框定制的，其中value 值是为 Input 内部定制的</h5><pre><code>v-on:input=&quot;newValue = arguments[0]&quot;
+</code></pre><h5 id="此时作用在组件上时，v-on-监听的语法糖也会有所改动，监听的并不是-event-target-value，而是回调函数中的第一个参数"><a href="#此时作用在组件上时，v-on-监听的语法糖也会有所改动，监听的并不是-event-target-value，而是回调函数中的第一个参数" class="headerlink" title="此时作用在组件上时，v-on 监听的语法糖也会有所改动，监听的并不是$event.target.value，而是回调函数中的第一个参数"></a>此时作用在组件上时，v-on 监听的语法糖也会有所改动，监听的并不是<font color="red">$event.target.value</font>，而是回调函数中的第一个参数</h5><h4 id="父组件"><a href="#父组件" class="headerlink" title="父组件"></a>父组件</h4><pre><code class="javascript">&lt;template&gt;
+  &lt;div class=&quot;hello&quot;&gt;
+    &lt;button @click=&quot;show=true&quot;&gt;打开model&lt;/button&gt;
+    &lt;demo v-model=&quot;show&quot;&gt;&lt;/demo&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+import Demo from &#39;./Demo.vue&#39;
+export default {
+  name: &#39;hello&#39;,
+  components: {
+    Demo
+  },
+  data () {
+    return {
+      show: false
+    }
+  }
+}
+
+</code></pre>
+<h4 id="子组件"><a href="#子组件" class="headerlink" title="子组件"></a>子组件</h4><pre><code class="js">&lt;template&gt;
+   &lt;div v-show=&quot;value&quot;&gt;
+      &lt;div&gt;
+         &lt;p&gt;这是一个Model框&lt;/p&gt;
+         &lt;button @click=&quot;close&quot;&gt;关闭model&lt;/button&gt;
+      &lt;/div&gt;
+   &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+export default {
+  props: [&#39;value&#39;],
+  methods: {
+    close () {
+      this.$emit(&#39;input&#39;,false)
+    }
+  }
+}
+&lt;/script&gt;
+</code></pre>
+<p>####<br>    这是一个模态框的基本雏形，可以在父组件通过 v-model 来进行 model 框和父组件之间的显示交互。</p>
+<pre><code>通过子组件看出通过props接收了value值，当点击关闭的时候还是通过$emit事件触发input事件，然后通过传入 false 参数。
+
+父组件隐式 v-on:input=&quot;something = arguments[0]&quot; 进行了监听，一但 Input
+
+事件触发，父组件就会执行监听回调，从而做到了双向绑定。
+</code></pre><h3 id="定制组件-v-model"><a href="#定制组件-v-model" class="headerlink" title="定制组件 v-model"></a><strong><em>定制组件 v-model</em></strong></h3><hr>
+<h5 id="父组件-1"><a href="#父组件-1" class="headerlink" title="父组件"></a>父组件</h5><h5 id="定制组件，我们就可以重写v-model里的Props-和-event，默认情况下，一个组件的-v-model-会使用-value-属性和-input-事件，往往有些时候，value-值被占用了，或者表单的和自定义v-model的-emit-‘input’-事件发生冲突，为了避免这种冲突，可以定制组件-v-model，冲突示例。"><a href="#定制组件，我们就可以重写v-model里的Props-和-event，默认情况下，一个组件的-v-model-会使用-value-属性和-input-事件，往往有些时候，value-值被占用了，或者表单的和自定义v-model的-emit-‘input’-事件发生冲突，为了避免这种冲突，可以定制组件-v-model，冲突示例。" class="headerlink" title="定制组件，我们就可以重写v-model里的Props 和 event，默认情况下，一个组件的 v-model 会使用 value 属性和 input 事件，往往有些时候，value 值被占用了，或者表单的和自定义v-model的$emit(‘input’)事件发生冲突，为了避免这种冲突，可以定制组件 v-model，冲突示例。"></a>定制组件，我们就可以<font color="red">重写v-model里的Props 和 event</font>，默认情况下，一个组件的 v-model 会使用 value 属性和 input 事件，往往有些时候，value 值被占用了，或者表单的和自定义<font color="green">v-model的$emit(‘input’)</font>事件发生冲突，为了避免这种冲突，可以定制组件 v-model，冲突示例。</h5><h6 id="子组件-1"><a href="#子组件-1" class="headerlink" title="子组件"></a>子组件</h6><pre><code class="js">&lt;template&gt;
+   &lt;div v-show=&quot;value&quot;&gt;
+      &lt;div&gt;
+         &lt;p&gt;这是一个Model框&lt;/p&gt;
+        &lt;input type=&quot;text&quot; v-model=&quot;value&quot;&gt;
+        {{value}}
+         &lt;button @click=&quot;close&quot;&gt;关闭model&lt;/button&gt;
+      &lt;/div&gt;
+   &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+export default {
+  props: [&#39;value&#39;],
+  methods: {
+    close () {
+      this.$emit(&#39;input&#39;,false)
+    }
+  }
+}
+&lt;/script&gt;
+</code></pre>
+<h6 id="父组件-2"><a href="#父组件-2" class="headerlink" title="父组件"></a>父组件</h6><pre><code>&lt;template&gt;
+  &lt;div class=&quot;hello&quot;&gt;
+    &lt;button @click=&quot;show=true&quot;&gt;打开model&lt;/button&gt;
+    &lt;demo v-model=&quot;show&quot;&gt;&lt;/demo&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+  import Demo from &#39;./Demo.vue&#39;
+  export default {
+    name: &#39;hello&#39;,
+    components: {
+      Demo
+    },
+    data () {
+      return {
+        show: false
+      }
+    }
+  }
+&lt;/script&gt;
+</code></pre><h5 id="上面例子可以发现，在子组件中input中v-model和model显示的操作数据共同占用的-props"><a href="#上面例子可以发现，在子组件中input中v-model和model显示的操作数据共同占用的-props" class="headerlink" title="上面例子可以发现，在子组件中input中v-model和model显示的操作数据共同占用的 props"></a>上面例子可以发现，在子组件中input中v-model和model显示的操作数据共同占用的 props</h5><p>中的（value），同样两者也共同占用了 emit(‘input’) 触发事件，Input 输入框的事件是自动出发，而 model<br>显示消失是手动触发。</p>
+<p>初始化的时候，Input 输入框的值的会被 value 传入的 false 值给自动加上，当改变 Input<br>输入框的时候，因为冲突而导致报错。</p>
+<p>定制 v-model， <font color="red">通过 model 选项改变 props 和 event 的值</font>，从而解除两者的冲突。</p>
+<ul>
+<li>props代替掉原本 value 的值，可以自定义值</li>
+<li>event代表掉原本 input 的触发事件，可以自定义触发事件<h5 id="子组件-2"><a href="#子组件-2" class="headerlink" title="子组件"></a>子组件</h5><code>`</code>vue<template><br> <div v-show="show"><br>    <div><br>       <p>这是一个Model框</p><br>      <input type="text" v-model="value"><br>      <br>       <button @click="closeModel">关闭model</button><br>    </div><br> </div><br></template>
+
+</li>
+</ul>
+<p><script><br>export default {<br>  model: {<br>    prop: ‘show’,<br>    event: ‘close’<br>  },<br>  props: [‘show’],<br>  data () {<br>     return {<br>       value: 10<br>     }<br>  },<br>  methods: {<br>    closeModel () {<br>      this.$emit(‘close’,false)<br>    }<br>  }<br>}<br></script><br><code>`</code></p>
+<p>#####<br>通过 model 选项的改变，把 props 从<font color="red">原本的value换成了show，input触发的事件换成了close</font>，从而两者都不相互依赖，解决了冲突的问题。</p>
+<p>有些时候通过父组件中的子组件模板中想传递<br>value 值，也会导致同样的冲突。</p>
+<p>在不用定制组件的情况下，以下的写法，也会同样导致冲突，导致同用一个 value。</p>
+<p>####<br>    <demo v-model="show" value="some value"></demo></p>
+<pre><code>props:[&#39;value&#39;]
+</code></pre><hr>
+<h3 id="END—-下一次分享-sync的使用-改变数据流单向流"><a href="#END—-下一次分享-sync的使用-改变数据流单向流" class="headerlink" title="END—  下一次分享  sync的使用 改变数据流单向流"></a>END—  下一次分享  <em>sync</em>的使用 改变数据流单向流</h3>
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://github.com/lifenglei/2018/08/10/my-blog/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -524,7 +2095,7 @@ showLogreg:&#39;setLogregShow&#39;
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">1</span>
+                    <span class="site-state-item-count">7</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>

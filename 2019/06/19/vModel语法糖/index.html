@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.2">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.2">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.1.2">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.1.2">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.2" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.1.2',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="v-model语法糖 什么是v-model语法糖 如何去理解这个语法糖  ####    v-model 其实也是一个语法糖，想要理解语法糖，你首先要知道Input元素上本身有个oninput事件，这是HTML5新增加的，类似onchange，每当输入框内容发生变化的时候，就会触发这个事件，然后把 Input 输入框中    value 值再次传递给 newValue。    此时 value 运">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vModel语法糖">
+<meta property="og:url" content="https://github.com/lifenglei/2019/06/19/vModel语法糖/index.html">
+<meta property="og:site_name" content="一个前端开发的记录">
+<meta property="og:description" content="v-model语法糖 什么是v-model语法糖 如何去理解这个语法糖  ####    v-model 其实也是一个语法糖，想要理解语法糖，你首先要知道Input元素上本身有个oninput事件，这是HTML5新增加的，类似onchange，每当输入框内容发生变化的时候，就会触发这个事件，然后把 Input 输入框中    value 值再次传递给 newValue。    此时 value 运">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-06-19T07:19:07.055Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="vModel语法糖">
+<meta name="twitter:description" content="v-model语法糖 什么是v-model语法糖 如何去理解这个语法糖  ####    v-model 其实也是一个语法糖，想要理解语法糖，你首先要知道Input元素上本身有个oninput事件，这是HTML5新增加的，类似onchange，每当输入框内容发生变化的时候，就会触发这个事件，然后把 Input 输入框中    value 值再次传递给 newValue。    此时 value 运">
+
+
+
+
+
+  
+  
+  <link rel="canonical" href="https://github.com/lifenglei/2019/06/19/vModel语法糖/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>vModel语法糖 | 一个前端开发的记录</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">一个前端开发的记录</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://github.com/lifenglei/2019/06/19/vModel语法糖/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="端端">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="https://static.soyoung.com/sy-pre/logo-1560924611786.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一个前端开发的记录">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">vModel语法糖
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-06-19 15:18:34 / Modified: 15:19:07" itemprop="dateCreated datePublished" datetime="2019-06-19T15:18:34+08:00">2019-06-19</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="v-model语法糖"><a href="#v-model语法糖" class="headerlink" title="v-model语法糖"></a>v-model语法糖</h3><blockquote>
+<p>什么是v-model语法糖 如何去理解这个语法糖</p>
+</blockquote>
+<p>####<br>    v-model 其实也是一个语法糖，想要理解语法糖，你首先要知道Input元素上本身有个oninput事件，这是HTML5新增加的，类似onchange，每当输入框内容发生变化的时候，就会触发这个事件，然后把 Input 输入框中<br>    value 值再次传递给 newValue。<br>    此时 value 运用在一个 Input 元素上，用：v-bind:value=’newValue’，意义上面只是把Input 输入框中的 value 值与 newValue 作为一一对应的双向绑定，这就像一个循环操作，当再次触发 Input 事件时，input($event.target)对象中的value值会再次改变newValue。<br>    这里我们对 v-model 绑定在 Input 元素上进行语法糖上的解析。</p>
+<h5 id="在组件中使用的时候-它相当于"><a href="#在组件中使用的时候-它相当于" class="headerlink" title="在组件中使用的时候 它相当于"></a>在组件中使用的时候 它相当于</h5><pre><code class="javascript">&lt;custom-input&gt;
+    v-bind:value=&quot;newValue&quot;
+    v-on:input = &quot;newValue = argument[0]&quot;
+&lt;/custom-input&gt;
+
+</code></pre>
+<h5 id="通过以上简写-通过自定义事件实现父子数据双向绑定"><a href="#通过以上简写-通过自定义事件实现父子数据双向绑定" class="headerlink" title="通过以上简写,通过自定义事件实现父子数据双向绑定"></a>通过以上简写,通过自定义事件实现父子数据双向绑定</h5><pre><code>v-bind:value=&#39;newValue&#39; 此时 value 是作为子组件接收的 Props
+</code></pre><h5 id="接收的只能是-value-吗？必须是，因为-v-model-是基于-Input-输入框定制的，其中value-值是为-Input-内部定制的"><a href="#接收的只能是-value-吗？必须是，因为-v-model-是基于-Input-输入框定制的，其中value-值是为-Input-内部定制的" class="headerlink" title="接收的只能是 value 吗？必须是，因为 v-model 是基于 Input 输入框定制的，其中value 值是为 Input 内部定制的"></a>接收的只能是 value 吗？必须是，因为 v-model 是基于 Input 输入框定制的，其中value 值是为 Input 内部定制的</h5><pre><code>v-on:input=&quot;newValue = arguments[0]&quot;
+</code></pre><h5 id="此时作用在组件上时，v-on-监听的语法糖也会有所改动，监听的并不是-event-target-value，而是回调函数中的第一个参数"><a href="#此时作用在组件上时，v-on-监听的语法糖也会有所改动，监听的并不是-event-target-value，而是回调函数中的第一个参数" class="headerlink" title="此时作用在组件上时，v-on 监听的语法糖也会有所改动，监听的并不是$event.target.value，而是回调函数中的第一个参数"></a>此时作用在组件上时，v-on 监听的语法糖也会有所改动，监听的并不是<font color="red">$event.target.value</font>，而是回调函数中的第一个参数</h5><h4 id="父组件"><a href="#父组件" class="headerlink" title="父组件"></a>父组件</h4><pre><code class="javascript">&lt;template&gt;
+  &lt;div class=&quot;hello&quot;&gt;
+    &lt;button @click=&quot;show=true&quot;&gt;打开model&lt;/button&gt;
+    &lt;demo v-model=&quot;show&quot;&gt;&lt;/demo&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+import Demo from &#39;./Demo.vue&#39;
+export default {
+  name: &#39;hello&#39;,
+  components: {
+    Demo
+  },
+  data () {
+    return {
+      show: false
+    }
+  }
+}
+
+</code></pre>
+<h4 id="子组件"><a href="#子组件" class="headerlink" title="子组件"></a>子组件</h4><pre><code class="js">&lt;template&gt;
+   &lt;div v-show=&quot;value&quot;&gt;
+      &lt;div&gt;
+         &lt;p&gt;这是一个Model框&lt;/p&gt;
+         &lt;button @click=&quot;close&quot;&gt;关闭model&lt;/button&gt;
+      &lt;/div&gt;
+   &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+export default {
+  props: [&#39;value&#39;],
+  methods: {
+    close () {
+      this.$emit(&#39;input&#39;,false)
+    }
+  }
+}
+&lt;/script&gt;
+</code></pre>
+<p>####<br>    这是一个模态框的基本雏形，可以在父组件通过 v-model 来进行 model 框和父组件之间的显示交互。</p>
+<pre><code>通过子组件看出通过props接收了value值，当点击关闭的时候还是通过$emit事件触发input事件，然后通过传入 false 参数。
+
+父组件隐式 v-on:input=&quot;something = arguments[0]&quot; 进行了监听，一但 Input
+
+事件触发，父组件就会执行监听回调，从而做到了双向绑定。
+</code></pre><h3 id="定制组件-v-model"><a href="#定制组件-v-model" class="headerlink" title="定制组件 v-model"></a><strong><em>定制组件 v-model</em></strong></h3><hr>
+<h5 id="父组件-1"><a href="#父组件-1" class="headerlink" title="父组件"></a>父组件</h5><h5 id="定制组件，我们就可以重写v-model里的Props-和-event，默认情况下，一个组件的-v-model-会使用-value-属性和-input-事件，往往有些时候，value-值被占用了，或者表单的和自定义v-model的-emit-‘input’-事件发生冲突，为了避免这种冲突，可以定制组件-v-model，冲突示例。"><a href="#定制组件，我们就可以重写v-model里的Props-和-event，默认情况下，一个组件的-v-model-会使用-value-属性和-input-事件，往往有些时候，value-值被占用了，或者表单的和自定义v-model的-emit-‘input’-事件发生冲突，为了避免这种冲突，可以定制组件-v-model，冲突示例。" class="headerlink" title="定制组件，我们就可以重写v-model里的Props 和 event，默认情况下，一个组件的 v-model 会使用 value 属性和 input 事件，往往有些时候，value 值被占用了，或者表单的和自定义v-model的$emit(‘input’)事件发生冲突，为了避免这种冲突，可以定制组件 v-model，冲突示例。"></a>定制组件，我们就可以<font color="red">重写v-model里的Props 和 event</font>，默认情况下，一个组件的 v-model 会使用 value 属性和 input 事件，往往有些时候，value 值被占用了，或者表单的和自定义<font color="green">v-model的$emit(‘input’)</font>事件发生冲突，为了避免这种冲突，可以定制组件 v-model，冲突示例。</h5><h6 id="子组件-1"><a href="#子组件-1" class="headerlink" title="子组件"></a>子组件</h6><pre><code class="js">&lt;template&gt;
+   &lt;div v-show=&quot;value&quot;&gt;
+      &lt;div&gt;
+         &lt;p&gt;这是一个Model框&lt;/p&gt;
+        &lt;input type=&quot;text&quot; v-model=&quot;value&quot;&gt;
+        {{value}}
+         &lt;button @click=&quot;close&quot;&gt;关闭model&lt;/button&gt;
+      &lt;/div&gt;
+   &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+export default {
+  props: [&#39;value&#39;],
+  methods: {
+    close () {
+      this.$emit(&#39;input&#39;,false)
+    }
+  }
+}
+&lt;/script&gt;
+</code></pre>
+<h6 id="父组件-2"><a href="#父组件-2" class="headerlink" title="父组件"></a>父组件</h6><pre><code>&lt;template&gt;
+  &lt;div class=&quot;hello&quot;&gt;
+    &lt;button @click=&quot;show=true&quot;&gt;打开model&lt;/button&gt;
+    &lt;demo v-model=&quot;show&quot;&gt;&lt;/demo&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+  import Demo from &#39;./Demo.vue&#39;
+  export default {
+    name: &#39;hello&#39;,
+    components: {
+      Demo
+    },
+    data () {
+      return {
+        show: false
+      }
+    }
+  }
+&lt;/script&gt;
+</code></pre><h5 id="上面例子可以发现，在子组件中input中v-model和model显示的操作数据共同占用的-props"><a href="#上面例子可以发现，在子组件中input中v-model和model显示的操作数据共同占用的-props" class="headerlink" title="上面例子可以发现，在子组件中input中v-model和model显示的操作数据共同占用的 props"></a>上面例子可以发现，在子组件中input中v-model和model显示的操作数据共同占用的 props</h5><p>中的（value），同样两者也共同占用了 emit(‘input’) 触发事件，Input 输入框的事件是自动出发，而 model<br>显示消失是手动触发。</p>
+<p>初始化的时候，Input 输入框的值的会被 value 传入的 false 值给自动加上，当改变 Input<br>输入框的时候，因为冲突而导致报错。</p>
+<p>定制 v-model， <font color="red">通过 model 选项改变 props 和 event 的值</font>，从而解除两者的冲突。</p>
+<ul>
+<li>props代替掉原本 value 的值，可以自定义值</li>
+<li>event代表掉原本 input 的触发事件，可以自定义触发事件<h5 id="子组件-2"><a href="#子组件-2" class="headerlink" title="子组件"></a>子组件</h5><code>`</code>vue<template><br> <div v-show="show"><br>    <div><br>       <p>这是一个Model框</p><br>      <input type="text" v-model="value"><br>      <br>       <button @click="closeModel">关闭model</button><br>    </div><br> </div><br></template>
+
+</li>
+</ul>
+<p><script><br>export default {<br>  model: {<br>    prop: ‘show’,<br>    event: ‘close’<br>  },<br>  props: [‘show’],<br>  data () {<br>     return {<br>       value: 10<br>     }<br>  },<br>  methods: {<br>    closeModel () {<br>      this.$emit(‘close’,false)<br>    }<br>  }<br>}<br></script><br><code>`</code></p>
+<p>#####<br>通过 model 选项的改变，把 props 从<font color="red">原本的value换成了show，input触发的事件换成了close</font>，从而两者都不相互依赖，解决了冲突的问题。</p>
+<p>有些时候通过父组件中的子组件模板中想传递<br>value 值，也会导致同样的冲突。</p>
+<p>在不用定制组件的情况下，以下的写法，也会同样导致冲突，导致同用一个 value。</p>
+<p>####<br>    <demo v-model="show" value="some value"></demo></p>
+<pre><code>props:[&#39;value&#39;]
+</code></pre><hr>
+<h3 id="END—-下一次分享-sync的使用-改变数据流单向流"><a href="#END—-下一次分享-sync的使用-改变数据流单向流" class="headerlink" title="END—  下一次分享  sync的使用 改变数据流单向流"></a>END—  下一次分享  <em>sync</em>的使用 改变数据流单向流</h3>
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/08/10/my-blog/" rel="next" title="如何开发一个登录注册组件">
+                <i class="fa fa-chevron-left"></i> 如何开发一个登录注册组件
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/06/19/��使用/" rel="prev" title="$attr使用">
+                $attr使用 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="https://static.soyoung.com/sy-pre/logo-1560924611786.png" alt="端端">
+            
+              <p class="site-author-name" itemprop="name">端端</p>
+              <div class="site-description motion-element" itemprop="description"></div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">7</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/lifenglei" title="GitHub &rarr; https://github.com/lifenglei"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="/lifenglei@soyoung.com" title="E-Mail &rarr; lifenglei@soyoung.com"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#v-model语法糖"><span class="nav-number">1.</span> <span class="nav-text">v-model语法糖</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#在组件中使用的时候-它相当于"><span class="nav-number">1.0.1.</span> <span class="nav-text">在组件中使用的时候 它相当于</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#通过以上简写-通过自定义事件实现父子数据双向绑定"><span class="nav-number">1.0.2.</span> <span class="nav-text">通过以上简写,通过自定义事件实现父子数据双向绑定</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#接收的只能是-value-吗？必须是，因为-v-model-是基于-Input-输入框定制的，其中value-值是为-Input-内部定制的"><span class="nav-number">1.0.3.</span> <span class="nav-text">接收的只能是 value 吗？必须是，因为 v-model 是基于 Input 输入框定制的，其中value 值是为 Input 内部定制的</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#此时作用在组件上时，v-on-监听的语法糖也会有所改动，监听的并不是-event-target-value，而是回调函数中的第一个参数"><span class="nav-number">1.0.4.</span> <span class="nav-text">此时作用在组件上时，v-on 监听的语法糖也会有所改动，监听的并不是$event.target.value，而是回调函数中的第一个参数</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#父组件"><span class="nav-number">1.1.</span> <span class="nav-text">父组件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#子组件"><span class="nav-number">1.2.</span> <span class="nav-text">子组件</span></a></li></ol><li class="nav-item nav-level-3"><a class="nav-link" href="#定制组件-v-model"><span class="nav-number">2.</span> <span class="nav-text">定制组件 v-model</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#父组件-1"><span class="nav-number">2.0.1.</span> <span class="nav-text">父组件</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#定制组件，我们就可以重写v-model里的Props-和-event，默认情况下，一个组件的-v-model-会使用-value-属性和-input-事件，往往有些时候，value-值被占用了，或者表单的和自定义v-model的-emit-‘input’-事件发生冲突，为了避免这种冲突，可以定制组件-v-model，冲突示例。"><span class="nav-number">2.0.2.</span> <span class="nav-text">定制组件，我们就可以重写v-model里的Props 和 event，默认情况下，一个组件的 v-model 会使用 value 属性和 input 事件，往往有些时候，value 值被占用了，或者表单的和自定义v-model的$emit(‘input’)事件发生冲突，为了避免这种冲突，可以定制组件 v-model，冲突示例。</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#子组件-1"><span class="nav-number">2.0.2.1.</span> <span class="nav-text">子组件</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#父组件-2"><span class="nav-number">2.0.2.2.</span> <span class="nav-text">父组件</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#上面例子可以发现，在子组件中input中v-model和model显示的操作数据共同占用的-props"><span class="nav-number">2.0.3.</span> <span class="nav-text">上面例子可以发现，在子组件中input中v-model和model显示的操作数据共同占用的 props</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#子组件-2"><span class="nav-number">2.0.4.</span> <span class="nav-text">子组件</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#END—-下一次分享-sync的使用-改变数据流单向流"><span class="nav-number">3.</span> <span class="nav-text">END—  下一次分享  sync的使用 改变数据流单向流</span></a></li></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">端端</span>
+
+  
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.2"></script>
+
+  <script src="/js/motion.js?v=7.1.2"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.1.2"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.1.2"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.2"></script>
+<script src="/js/post-details.js?v=7.1.2"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.2"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

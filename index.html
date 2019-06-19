@@ -286,6 +286,302 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://github.com/lifenglei/2019/06/19/canvas海报/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="端端">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="https://static.soyoung.com/sy-pre/logo-1560924611786.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一个前端开发的记录">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/06/19/canvas海报/" class="post-title-link" itemprop="url">canvas海报</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-06-19 15:28:35 / Modified: 15:28:43" itemprop="dateCreated datePublished" datetime="2019-06-19T15:28:35+08:00">2019-06-19</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="分享到朋友圈海报生成实现"><a href="#分享到朋友圈海报生成实现" class="headerlink" title="分享到朋友圈海报生成实现"></a>分享到朋友圈海报生成实现</h2><h4 id="临时接到一个需求需要实现一个分享到朋友圈的功能-用户点击分享到朋友圈按钮后要生成海报图-方便用户保存分享-刚接到这个需求的时候是一脸懵逼-接着是三脸懵逼-在技术群里咨询-然而并没有找到答案-思考一番后我决定使用canvas去实现-然而我认识canvas-canvas却不认识我-只好当天晚上看canvas的api-隔天完成了这个需求-下面分享下绘制的过程-也是自己的一个总结"><a href="#临时接到一个需求需要实现一个分享到朋友圈的功能-用户点击分享到朋友圈按钮后要生成海报图-方便用户保存分享-刚接到这个需求的时候是一脸懵逼-接着是三脸懵逼-在技术群里咨询-然而并没有找到答案-思考一番后我决定使用canvas去实现-然而我认识canvas-canvas却不认识我-只好当天晚上看canvas的api-隔天完成了这个需求-下面分享下绘制的过程-也是自己的一个总结" class="headerlink" title="临时接到一个需求需要实现一个分享到朋友圈的功能 用户点击分享到朋友圈按钮后要生成海报图 方便用户保存分享 刚接到这个需求的时候是一脸懵逼 接着是三脸懵逼 在技术群里咨询 然而并没有找到答案 思考一番后我决定使用canvas去实现 然而我认识canvas  canvas却不认识我 只好当天晚上看canvas的api  隔天完成了这个需求 下面分享下绘制的过程 也是自己的一个总结"></a>临时接到一个需求需要实现一个分享到朋友圈的功能 用户点击分享到朋友圈按钮后要生成海报图 方便用户保存分享 刚接到这个需求的时候是一脸懵逼 接着是三脸懵逼 在技术群里咨询 然而并没有找到答案 思考一番后我决定使用canvas去实现 然而我认识canvas  canvas却不认识我 只好当天晚上看canvas的api  隔天完成了这个需求 下面分享下绘制的过程 也是自己的一个总结</h4><h3 id="一：canvas有哪些功能"><a href="#一：canvas有哪些功能" class="headerlink" title="一：canvas有哪些功能"></a>一：canvas有哪些功能</h3><pre><code>1.绘制图形
+2.绘制图像
+3.绘制文字
+</code></pre><h3 id="二：canvas的绘制步骤"><a href="#二：canvas的绘制步骤" class="headerlink" title="二：canvas的绘制步骤"></a>二：canvas的绘制步骤</h3><p>canvas就是画图 那么到底该怎么画图呢 首先大家要明白canvas 2D环境坐标系 下面以一张简单的图来说明一下(注：该图来自为w3cPlus)<br><img src="https://www.w3cplus.com/sites/default/files/blogs/2017/1703/canvas-2-4.png" alt><br>相信学过坐标系系统的同学都能明白这张图的意思 其实canvas就是在正确的位置用正确的api绘制出自己想要的图 正确的位置就是需要坐标来体现的</p>
+<h4 id="设计稿呈现"><a href="#设计稿呈现" class="headerlink" title="设计稿呈现"></a>设计稿呈现</h4><p><img src="http://pic5.40017.cn/02/001/b0/90/rBLkCVuCX8yAJuFyAADZncnHWh0076.jpg" alt="设计稿"></p>
+<h4 id="代码部分-要想学好canvas对着代码看一句-然后就翻看canvas的api"><a href="#代码部分-要想学好canvas对着代码看一句-然后就翻看canvas的api" class="headerlink" title="代码部分 要想学好canvas对着代码看一句 然后就翻看canvas的api"></a>代码部分 要想学好canvas对着代码看一句 然后就翻看canvas的api</h4><pre><code class="javascript">      import wepy from &#39;wepy&#39;
+  let app = getApp()
+  export default class tczan extends wepy.component {
+    props = {
+      ob:{
+        type:Object,
+        default:{
+                   //头像路径
+        }
+      }
+    }
+    methods = {
+      saveImageToPhotosAlbum(){
+        this.savePhoto()
+      }
+    }
+    //文字换行
+    canvasWrapText(text,cs,x, y, maxWidth, lineHeight){
+        // 字符分隔为数组
+        var arrText = text.split(&#39;&#39;);
+        var line = &#39;&#39;;
+        for (var n = 0; n &lt; arrText.length; n++) {
+            var testLine = line + arrText[n];
+            var metrics = cs.measureText(testLine);
+            var testWidth = metrics.width;
+            if (testWidth &gt; maxWidth &amp;&amp; n &gt; 0) {
+                cs.fillText(line, x, y);
+                line = arrText[n];
+                y += lineHeight;
+            } else {
+                line = testLine;
+            }
+        }
+        cs.fillText(line, x, y);
+    }
+    onLoad(options){
+        wx.downloadFile({
+          url:  this.ob.avatarUrl
+        })
+        this.imageToPhotosAlbum()
+    }
+    savePhoto(){
+         wx.showLoading({
+          title:&#39;保存中...&#39;
+        })
+        var that = this;
+        var unit = that.ob.screenWidth/375
+        wx.canvasToTempFilePath({
+              x: 0,
+              y: 0,
+              width: unit * 375,
+              height: unit * 462.5,
+              destWidth: unit * 375,
+              destHeight: unit * 462.5,
+              canvasId: &#39;share&#39;,
+              success: function (res) {
+                that.ob.shareImgPath=res.tempFilePath
+                  if (!res.tempFilePath) {
+                      wx.showModal({
+                          title: &#39;提示&#39;,
+                          content: &#39;图片绘制中，请稍后重试&#39;,
+                          showCancel: false
+                      })
+                  }
+                  //画板路径保存成功后，调用方法吧图片保存到用户相册
+                  wx.saveImageToPhotosAlbum({
+                      filePath: res.tempFilePath,
+                      //保存成功失败之后，都要隐藏画板，否则影响界面显示。
+                      success: (res) =&gt; {
+                         wx.showToast({
+                              title: &#39;保存完成&#39;,  //标题
+                              icon: &#39;success&#39;,  //图标，支持&quot;success&quot;、&quot;loading&quot;
+                              duration: 2000 //提示的延迟时间，单位毫秒，默认：1500
+                          })
+                          that.ob.canvasHidden=true
+                      },
+                      fail: (err) =&gt; {
+                          wx.showToast({
+                              title: &#39;保存失败&#39;,  //标题
+                              icon: &#39;&#39;,  //图标，支持&quot;success&quot;、&quot;loading&quot;
+                              duration: 2000, //提示的延迟时间，单位毫秒，默认：1500
+                              mask: false  //是否显示透明蒙层，防止触摸穿透，默认：false
+                          })
+                          that.ob.canvasHidden=true
+                      }
+                  })
+              }
+          })
+    }
+    imageToPhotosAlbum(){
+        wx.showLoading({
+          title:&#39;生成中...&#39;
+        })
+        var that = this;
+        that.canvasHidden = false
+        var unit = that.ob.screenWidth/375
+        var {avatarurl,cover,nickName,type,poi,description,title}=that.ob
+        var context = wx.createCanvasContext(&#39;share&#39;)
+      var description = that.ob.description
+      var wxappName = &quot;打开小程序马上浏览&quot;
+      var gradient = context.createLinearGradient(0, 0, unit * 50, 0); 
+      //绘制渐变部分
+      gradient.addColorStop(0,&quot;#F3EED1&quot;);
+      gradient.addColorStop(1,&quot;#EDE5B7&quot;);
+      context.fillStyle=gradient;
+      context.fillRect(-unit*20,unit*10,unit *85,unit *50);
+      var gradients = context.createLinearGradient(0, 0, unit * 50, 0); 
+      //绘制渐变部分
+      gradients.addColorStop(0,&quot;#F3EED1&quot;);
+      gradients.addColorStop(1,&quot;#fff&quot;);
+      context.fillStyle=gradients;
+      context.fillRect(-unit*40,unit*90,unit *100,unit *50);
+      context.drawImage(`${cover}`, unit * 140, unit * 455, unit * 64, unit * 64)
+      context.drawImage(`${cover}`, unit * 40, unit * 175, unit * 255, unit * 150)
+      //绘制文本
+      context.font=&quot;bold 12px PingFangSC-Medium&quot;;
+      context.setFillStyle(&#39;#666&#39;)
+      context.fillText(`${nickName}`, unit * 90, unit * 30)  //绘制文字
+      context.font=&quot;12px PingFangSC-Light&quot;;
+      context.setFillStyle(&#39;#999&#39;)
+      context.fillText(`推荐了1篇${type}`, unit * 90, unit * 53)  //绘制文字
+      context.fillText(`${poi}`, unit * 40, unit * 160)  //绘制文字
+      context.fillText(wxappName, unit * 115, unit * 580)
+      context.setFontSize(14)
+      context.setFillStyle(&quot;#999&quot;)
+      context.fillText(&quot;长按识别小程序&quot;, unit * 115, unit * 560)  //绘制文字
+      that.canvasWrapText(`${description}`,context, unit * 40, unit * 355,unit * 255,unit * 24)
+      context.font=&quot;24px PingFangSC-Medium&quot;;
+      context.setFillStyle(&#39;#444&#39;)
+      that.canvasWrapText(`${title}`,context, unit * 40, unit * 129,unit * 225,unit * 24)
+      //圆形裁剪填充头像
+      context.save()
+      context.beginPath()
+      context.lineWidth = unit *8;
+      context.strokeStyle = &quot;#fff&quot;;//线条的颜色
+      context.lineCap = &quot;round&quot;;
+      context.arc(unit * 59, unit * 36, unit *22, 0, 2 * Math.PI,true)  
+      context.stroke();
+      context.closePath();
+      context.clip() 
+      context.drawImage(`${cover}`, unit * 33, unit *10, unit * 50, unit * 50)  
+      context.restore()
+      wx.hideLoading()
+      context.draw(false, function () {
+      });
+    }
+  }
+</code></pre>
+<h4 id="设计稿还原-（部分字段没有-设计变更-图中不展示）"><a href="#设计稿还原-（部分字段没有-设计变更-图中不展示）" class="headerlink" title="设计稿还原 （部分字段没有 设计变更 图中不展示）"></a>设计稿还原 （部分字段没有 设计变更 图中不展示）</h4><p> <img src="http://pic5.40017.cn/01/001/b0/8a/rBLkBluCYJSAZfuyAADapaVzAvQ829.jpg" alt></p>
+<h4 id="还原能力有限-目前还在进行细节调整-但是已经具备雏形-从懵逼到理解-到完成需求-我觉得也是一种进步吧"><a href="#还原能力有限-目前还在进行细节调整-但是已经具备雏形-从懵逼到理解-到完成需求-我觉得也是一种进步吧" class="headerlink" title="还原能力有限 目前还在进行细节调整 但是已经具备雏形 从懵逼到理解 到完成需求 我觉得也是一种进步吧"></a>还原能力有限 目前还在进行细节调整 但是已经具备雏形 从懵逼到理解 到完成需求 我觉得也是一种进步吧</h4><h4 id="canvas的api很多-重在理解和自己动手操作-可以看看w3c上的教程"><a href="#canvas的api很多-重在理解和自己动手操作-可以看看w3c上的教程" class="headerlink" title="canvas的api很多 重在理解和自己动手操作 可以看看w3c上的教程"></a>canvas的api很多 重在理解和自己动手操作 可以看看w3c上的教程</h4>
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://github.com/lifenglei/2019/06/19/vueConf总结/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2095,7 +2391,7 @@ showLogreg:&#39;setLogregShow&#39;
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">7</span>
+                    <span class="site-state-item-count">8</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>

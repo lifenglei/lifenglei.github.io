@@ -103,7 +103,7 @@
 <meta property="og:site_name" content="前端开发沉淀">
 <meta property="og:description" content="基础类型介绍为了让程序有价值，我们需要能够处理最简单的数据单元：数字，字符串，结构体，布尔值等。 TypeScript支持与JavaScript几乎相同的数据类型，此外还提供了实用的枚举类型方便我们使用。布尔值let isDuan: boolean = false 数字和javascript一样，ts里的所有数字都是浮点数，这些浮点数的类型是number。除了支持十进制和十六进制字面量，ts还支持">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-06-20T04:03:24.078Z">
+<meta property="og:updated_time" content="2019-06-20T04:07:14.371Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ts章之基础类型">
 <meta name="twitter:description" content="基础类型介绍为了让程序有价值，我们需要能够处理最简单的数据单元：数字，字符串，结构体，布尔值等。 TypeScript支持与JavaScript几乎相同的数据类型，此外还提供了实用的枚举类型方便我们使用。布尔值let isDuan: boolean = false 数字和javascript一样，ts里的所有数字都是浮点数，这些浮点数的类型是number。除了支持十进制和十六进制字面量，ts还支持">
@@ -332,7 +332,7 @@
                 
               
 
-              <time title="Created: 2019-06-20 11:54:41 / Modified: 12:03:24" itemprop="dateCreated datePublished" datetime="2019-06-20T11:54:41+08:00">2019-06-20</time>
+              <time title="Created: 2019-06-20 11:54:41 / Modified: 12:07:14" itemprop="dateCreated datePublished" datetime="2019-06-20T11:54:41+08:00">2019-06-20</time>
             
 
             
@@ -405,10 +405,11 @@ console.log(x[1].substr(1))// &#39;number&#39; does not have &#39;substr&#39;
 console.log(x[5].toString()); // OK, &#39;string&#39; 和 &#39;number&#39; 都有 toString
 
 x[6] = true; // Error, 布尔不是(string | number)类型
-</code></pre><h4 id="联合类型是高级主题，我们会在以后的章节里讨论它。"><a href="#联合类型是高级主题，我们会在以后的章节里讨论它。" class="headerlink" title="联合类型是高级主题，我们会在以后的章节里讨论它。"></a>联合类型是高级主题，我们会在以后的章节里讨论它。</h4><h4 id="枚举"><a href="#枚举" class="headerlink" title="枚举"></a>枚举</h4><pre><code>&lt;font style=&quot;color:red&quot;&gt;enum&lt;/font&gt;类型是对JavaScript标准数据类型的一个补充。
-enum Info {name=&#39;duanduan&#39;,website=&#39;blog&#39;,age=29}
-let n: Info = Info.name
-</code></pre><h5 id="枚举类型提供的一个便利是你可以由枚举的值得到它的名字。-例如，我们知道数值为2，但是不确定它映射到Color里的哪个名字，我们可以查找相应的名字："><a href="#枚举类型提供的一个便利是你可以由枚举的值得到它的名字。-例如，我们知道数值为2，但是不确定它映射到Color里的哪个名字，我们可以查找相应的名字：" class="headerlink" title="枚举类型提供的一个便利是你可以由枚举的值得到它的名字。 例如，我们知道数值为2，但是不确定它映射到Color里的哪个名字，我们可以查找相应的名字："></a>枚举类型提供的一个便利是你可以由枚举的值得到它的名字。 例如，我们知道数值为2，但是不确定它映射到Color里的哪个名字，我们可以查找相应的名字：</h5><pre><code>enum Color {Red = 1, Green, Blue}
+</code></pre><h4 id="联合类型是高级主题，我们会在以后的章节里讨论它。"><a href="#联合类型是高级主题，我们会在以后的章节里讨论它。" class="headerlink" title="联合类型是高级主题，我们会在以后的章节里讨论它。"></a>联合类型是高级主题，我们会在以后的章节里讨论它。</h4><h4 id="枚举"><a href="#枚举" class="headerlink" title="枚举"></a>枚举</h4><p><font style="color:red">enum</font>类型是对JavaScript标准数据类型的一个补充。</p>
+<pre><code class="ts">    enum Info {name=&#39;duanduan&#39;,website=&#39;blog&#39;,age=29}
+    let n: Info = Info.name
+</code></pre>
+<h5 id="枚举类型提供的一个便利是你可以由枚举的值得到它的名字。-例如，我们知道数值为2，但是不确定它映射到Color里的哪个名字，我们可以查找相应的名字："><a href="#枚举类型提供的一个便利是你可以由枚举的值得到它的名字。-例如，我们知道数值为2，但是不确定它映射到Color里的哪个名字，我们可以查找相应的名字：" class="headerlink" title="枚举类型提供的一个便利是你可以由枚举的值得到它的名字。 例如，我们知道数值为2，但是不确定它映射到Color里的哪个名字，我们可以查找相应的名字："></a>枚举类型提供的一个便利是你可以由枚举的值得到它的名字。 例如，我们知道数值为2，但是不确定它映射到Color里的哪个名字，我们可以查找相应的名字：</h5><pre><code>enum Color {Red = 1, Green, Blue}
 let colorName: string = Color[2];
 
 console.log(colorName);  // 显示&#39;Green&#39;因为上面代码里它的值是2

@@ -103,7 +103,7 @@
 <meta property="og:site_name" content="前端开发沉淀">
 <meta property="og:description" content="基础类型介绍为了让程序有价值，我们需要能够处理最简单的数据单元：数字，字符串，结构体，布尔值等。 TypeScript支持与JavaScript几乎相同的数据类型，此外还提供了实用的枚举类型方便我们使用。布尔值let isDuan: boolean = false 数字和javascript一样，ts里的所有数字都是浮点数，这些浮点数的类型是number。除了支持十进制和十六进制字面量，ts还支持">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-06-20T03:56:15.388Z">
+<meta property="og:updated_time" content="2019-06-20T04:03:24.078Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ts章之基础类型">
 <meta name="twitter:description" content="基础类型介绍为了让程序有价值，我们需要能够处理最简单的数据单元：数字，字符串，结构体，布尔值等。 TypeScript支持与JavaScript几乎相同的数据类型，此外还提供了实用的枚举类型方便我们使用。布尔值let isDuan: boolean = false 数字和javascript一样，ts里的所有数字都是浮点数，这些浮点数的类型是number。除了支持十进制和十六进制字面量，ts还支持">
@@ -332,7 +332,7 @@
                 
               
 
-              <time title="Created: 2019-06-20 11:54:41 / Modified: 11:56:15" itemprop="dateCreated datePublished" datetime="2019-06-20T11:54:41+08:00">2019-06-20</time>
+              <time title="Created: 2019-06-20 11:54:41 / Modified: 12:03:24" itemprop="dateCreated datePublished" datetime="2019-06-20T11:54:41+08:00">2019-06-20</time>
             
 
             
@@ -385,52 +385,118 @@ let sentence: string = `Hello,my name is ${name}.I will be ${age+1} years old ne
 <li>可以在元素类型后面接上<font style="color:red">[]</font>,表示由此类型元素组成的U一个数组<pre><code class="js">let list: number[] = [1,2,3];
 </code></pre>
 </li>
-<li><p>数组泛型，<font style="color:red">Array&lt;元素类型&gt;</font></p>
-<pre><code class="js">let list: Array&lt;number&gt; = [1,2,3]
+<li>数组泛型，<font style="color:red">Array&lt;元素类型&gt;</font><pre><code class="js">let list: Array&lt;number&gt; = [1,2,3]
 </code></pre>
-<h4 id="元祖类型-Tuple"><a href="#元祖类型-Tuple" class="headerlink" title="元祖类型 Tuple"></a>元祖类型 Tuple</h4><h5 id="元组类型允许表示一个已知元素数量和类型的数组，各元素的类型不必相同。-比如，你可以定义一对值分别为-string和number类型的元组。"><a href="#元组类型允许表示一个已知元素数量和类型的数组，各元素的类型不必相同。-比如，你可以定义一对值分别为-string和number类型的元组。" class="headerlink" title="元组类型允许表示一个已知元素数量和类型的数组，各元素的类型不必相同。 比如，你可以定义一对值分别为 string和number类型的元组。"></a>元组类型允许表示一个已知元素数量和类型的数组，各元素的类型不必相同。 比如，你可以定义一对值分别为 <font style="color:red">string和number</font>类型的元组。</h5><p>//declare a tuple type<br>let x: [string,number];<br>//Initialize it<br>x = [‘duanduan’,29] // ok<br>//Initialize it incorrectly<br>x = [10,’duanduan’] // Error</p>
-<h5 id="当访问一个已知索引的元素-会得到正确的类型"><a href="#当访问一个已知索引的元素-会得到正确的类型" class="headerlink" title="当访问一个已知索引的元素 会得到正确的类型"></a>当访问一个已知索引的元素 会得到正确的类型</h5><p>console.log(x[0].substr(1)) //ok<br>console.log(x[1].substr(1))// ‘number’ does not have ‘substr’<br>当访问一个越界的元素 会使用联合类型替代</p>
-<p>x[3] = ‘world’; // OK, 字符串可以赋值给(string | number)类型</p>
-<p>console.log(x[5].toString()); // OK, ‘string’ 和 ‘number’ 都有 toString</p>
-<p>x[6] = true; // Error, 布尔不是(string | number)类型</p>
-<h4 id="联合类型是高级主题，我们会在以后的章节里讨论它。"><a href="#联合类型是高级主题，我们会在以后的章节里讨论它。" class="headerlink" title="联合类型是高级主题，我们会在以后的章节里讨论它。"></a>联合类型是高级主题，我们会在以后的章节里讨论它。</h4><h4 id="枚举"><a href="#枚举" class="headerlink" title="枚举"></a>枚举</h4><p><font style="color:red">enum</font>类型是对JavaScript标准数据类型的一个补充。<br>enum Info {name=’duanduan’,website=’blog’,age=29}<br>let n: Info = Info.name</p>
-<h5 id="枚举类型提供的一个便利是你可以由枚举的值得到它的名字。-例如，我们知道数值为2，但是不确定它映射到Color里的哪个名字，我们可以查找相应的名字："><a href="#枚举类型提供的一个便利是你可以由枚举的值得到它的名字。-例如，我们知道数值为2，但是不确定它映射到Color里的哪个名字，我们可以查找相应的名字：" class="headerlink" title="枚举类型提供的一个便利是你可以由枚举的值得到它的名字。 例如，我们知道数值为2，但是不确定它映射到Color里的哪个名字，我们可以查找相应的名字："></a>枚举类型提供的一个便利是你可以由枚举的值得到它的名字。 例如，我们知道数值为2，但是不确定它映射到Color里的哪个名字，我们可以查找相应的名字：</h5><p>enum Color {Red = 1, Green, Blue}<br>let colorName: string = Color[2];</p>
-<p>console.log(colorName);  // 显示’Green’因为上面代码里它的值是2</p>
-<h4 id="Any"><a href="#Any" class="headerlink" title="Any"></a>Any</h4><h5 id="有时候，我们会想要为那些在编程阶段还不清楚类型的变量指定一个类型。-这些值可能来自于动态的内容，比如来自用户输入或第三方代码库。-这种情况下，我们不希望类型检查器对这些值进行检查而是直接让它们通过编译阶段的检查。-那么我们可以使用-any类型来标记这些变量："><a href="#有时候，我们会想要为那些在编程阶段还不清楚类型的变量指定一个类型。-这些值可能来自于动态的内容，比如来自用户输入或第三方代码库。-这种情况下，我们不希望类型检查器对这些值进行检查而是直接让它们通过编译阶段的检查。-那么我们可以使用-any类型来标记这些变量：" class="headerlink" title="有时候，我们会想要为那些在编程阶段还不清楚类型的变量指定一个类型。 这些值可能来自于动态的内容，比如来自用户输入或第三方代码库。 这种情况下，我们不希望类型检查器对这些值进行检查而是直接让它们通过编译阶段的检查。 那么我们可以使用 any类型来标记这些变量："></a>有时候，我们会想要为那些在编程阶段还不清楚类型的变量指定一个类型。 这些值可能来自于动态的内容，比如来自用户输入或第三方代码库。 这种情况下，我们不希望类型检查器对这些值进行检查而是直接让它们通过编译阶段的检查。 那么我们可以使用 any类型来标记这些变量：</h5><p>let notSure: any = 4;<br>notSure = “maybe a string instead”;<br>notSure = false; // okay, definitely a boolean</p>
-<h5 id="当你只知道一部分数据的类型时，any类型也是有用的。-比如，你有一个数组，它包含了不同的类型的数据："><a href="#当你只知道一部分数据的类型时，any类型也是有用的。-比如，你有一个数组，它包含了不同的类型的数据：" class="headerlink" title="当你只知道一部分数据的类型时，any类型也是有用的。 比如，你有一个数组，它包含了不同的类型的数据："></a>当你只知道一部分数据的类型时，any类型也是有用的。 比如，你有一个数组，它包含了不同的类型的数据：</h5><p>let list: any[] = [1, true, “free”];<br>list[1] = 100;</p>
-<h4 id="Void"><a href="#Void" class="headerlink" title="Void"></a>Void</h4><h4 id="某种程度上来说，void类型像是与any类型相反，它表示没有任何类型。-当一个函数没有返回值时，你通常会见到其返回值类型是-void："><a href="#某种程度上来说，void类型像是与any类型相反，它表示没有任何类型。-当一个函数没有返回值时，你通常会见到其返回值类型是-void：" class="headerlink" title="某种程度上来说，void类型像是与any类型相反，它表示没有任何类型。 当一个函数没有返回值时，你通常会见到其返回值类型是 void："></a>某种程度上来说，void类型像是与any类型相反，它表示没有任何类型。 当一个函数没有返回值时，你通常会见到其返回值类型是 void：</h4><p>function warnUser(): void {</p>
-<pre><code>console.log(&quot;This is my warning message&quot;);
-</code></pre><p>}</p>
-<h4 id="Null-和-Undefined"><a href="#Null-和-Undefined" class="headerlink" title="Null 和 Undefined"></a>Null 和 Undefined</h4><h5 id="TypeScript里，undefined和null两者各自有自己的类型分别叫做undefined和null。-和-void相似，它们的本身的类型用处不是很大："><a href="#TypeScript里，undefined和null两者各自有自己的类型分别叫做undefined和null。-和-void相似，它们的本身的类型用处不是很大：" class="headerlink" title="TypeScript里，undefined和null两者各自有自己的类型分别叫做undefined和null。 和 void相似，它们的本身的类型用处不是很大："></a>TypeScript里，undefined和null两者各自有自己的类型分别叫做undefined和null。 和 void相似，它们的本身的类型用处不是很大：</h5><p>let u: undefined = undefined;<br>let n: null = null;</p>
-<h5 id="默认情况下null和undefined是所有类型的子类型。-就是说你可以把-null和undefined赋值给number类型的变量。"><a href="#默认情况下null和undefined是所有类型的子类型。-就是说你可以把-null和undefined赋值给number类型的变量。" class="headerlink" title="默认情况下null和undefined是所有类型的子类型。 就是说你可以把 null和undefined赋值给number类型的变量。"></a>默认情况下null和undefined是所有类型的子类型。 就是说你可以把 null和undefined赋值给number类型的变量。</h5><h4 id="Never"><a href="#Never" class="headerlink" title="Never"></a>Never</h4><h5 id="never类型表示的是那些永不存在的值的类型"><a href="#never类型表示的是那些永不存在的值的类型" class="headerlink" title="never类型表示的是那些永不存在的值的类型"></a><font style="color:red">never</font>类型表示的是那些永不存在的值的类型</h5><p>// 返回never的函数必须存在无法达到的终点<br>function error(message: string): never {</p>
-<pre><code>throw new Error(message);
-</code></pre><p>}</p>
-<p>// 推断的返回值类型为never<br>function fail() {</p>
-<pre><code>return error(&quot;Something failed&quot;);
-</code></pre><p>}</p>
-<p>// 返回never的函数必须存在无法达到的终点<br>function infiniteLoop(): never {</p>
-<pre><code>while (true) {
+<h4 id="元祖类型-Tuple"><a href="#元祖类型-Tuple" class="headerlink" title="元祖类型 Tuple"></a>元祖类型 Tuple</h4><h5 id="元组类型允许表示一个已知元素数量和类型的数组，各元素的类型不必相同。-比如，你可以定义一对值分别为-string和number类型的元组。"><a href="#元组类型允许表示一个已知元素数量和类型的数组，各元素的类型不必相同。-比如，你可以定义一对值分别为-string和number类型的元组。" class="headerlink" title="元组类型允许表示一个已知元素数量和类型的数组，各元素的类型不必相同。 比如，你可以定义一对值分别为 string和number类型的元组。"></a>元组类型允许表示一个已知元素数量和类型的数组，各元素的类型不必相同。 比如，你可以定义一对值分别为 <font style="color:red">string和number</font>类型的元组。</h5><pre><code class="ts">//declare a tuple type
+let x: [string,number];
+//Initialize it 
+x = [&#39;duanduan&#39;,29] // ok
+//Initialize it incorrectly
+x = [10,&#39;duanduan&#39;] // Error
+</code></pre>
+<h5 id="当访问一个已知索引的元素-会得到正确的类型"><a href="#当访问一个已知索引的元素-会得到正确的类型" class="headerlink" title="当访问一个已知索引的元素 会得到正确的类型"></a>当访问一个已知索引的元素 会得到正确的类型</h5><pre><code class="ts">console.log(x[0].substr(1)) //ok
+console.log(x[1].substr(1))// &#39;number&#39; does not have &#39;substr&#39;
+</code></pre>
+</li>
+</ul>
+<p>当访问一个越界的元素 会使用联合类型替代</p>
+<pre><code>x[3] = &#39;world&#39;; // OK, 字符串可以赋值给(string | number)类型
+
+console.log(x[5].toString()); // OK, &#39;string&#39; 和 &#39;number&#39; 都有 toString
+
+x[6] = true; // Error, 布尔不是(string | number)类型
+</code></pre><h4 id="联合类型是高级主题，我们会在以后的章节里讨论它。"><a href="#联合类型是高级主题，我们会在以后的章节里讨论它。" class="headerlink" title="联合类型是高级主题，我们会在以后的章节里讨论它。"></a>联合类型是高级主题，我们会在以后的章节里讨论它。</h4><h4 id="枚举"><a href="#枚举" class="headerlink" title="枚举"></a>枚举</h4><pre><code>&lt;font style=&quot;color:red&quot;&gt;enum&lt;/font&gt;类型是对JavaScript标准数据类型的一个补充。
+enum Info {name=&#39;duanduan&#39;,website=&#39;blog&#39;,age=29}
+let n: Info = Info.name
+</code></pre><h5 id="枚举类型提供的一个便利是你可以由枚举的值得到它的名字。-例如，我们知道数值为2，但是不确定它映射到Color里的哪个名字，我们可以查找相应的名字："><a href="#枚举类型提供的一个便利是你可以由枚举的值得到它的名字。-例如，我们知道数值为2，但是不确定它映射到Color里的哪个名字，我们可以查找相应的名字：" class="headerlink" title="枚举类型提供的一个便利是你可以由枚举的值得到它的名字。 例如，我们知道数值为2，但是不确定它映射到Color里的哪个名字，我们可以查找相应的名字："></a>枚举类型提供的一个便利是你可以由枚举的值得到它的名字。 例如，我们知道数值为2，但是不确定它映射到Color里的哪个名字，我们可以查找相应的名字：</h5><pre><code>enum Color {Red = 1, Green, Blue}
+let colorName: string = Color[2];
+
+console.log(colorName);  // 显示&#39;Green&#39;因为上面代码里它的值是2
+</code></pre><h4 id="Any"><a href="#Any" class="headerlink" title="Any"></a>Any</h4><h5 id="有时候，我们会想要为那些在编程阶段还不清楚类型的变量指定一个类型。-这些值可能来自于动态的内容，比如来自用户输入或第三方代码库。-这种情况下，我们不希望类型检查器对这些值进行检查而是直接让它们通过编译阶段的检查。-那么我们可以使用-any类型来标记这些变量："><a href="#有时候，我们会想要为那些在编程阶段还不清楚类型的变量指定一个类型。-这些值可能来自于动态的内容，比如来自用户输入或第三方代码库。-这种情况下，我们不希望类型检查器对这些值进行检查而是直接让它们通过编译阶段的检查。-那么我们可以使用-any类型来标记这些变量：" class="headerlink" title="有时候，我们会想要为那些在编程阶段还不清楚类型的变量指定一个类型。 这些值可能来自于动态的内容，比如来自用户输入或第三方代码库。 这种情况下，我们不希望类型检查器对这些值进行检查而是直接让它们通过编译阶段的检查。 那么我们可以使用 any类型来标记这些变量："></a>有时候，我们会想要为那些在编程阶段还不清楚类型的变量指定一个类型。 这些值可能来自于动态的内容，比如来自用户输入或第三方代码库。 这种情况下，我们不希望类型检查器对这些值进行检查而是直接让它们通过编译阶段的检查。 那么我们可以使用 any类型来标记这些变量：</h5><pre><code>let notSure: any = 4;
+notSure = &quot;maybe a string instead&quot;;
+notSure = false; // okay, definitely a boolean
+</code></pre><h5 id="当你只知道一部分数据的类型时，any类型也是有用的。-比如，你有一个数组，它包含了不同的类型的数据："><a href="#当你只知道一部分数据的类型时，any类型也是有用的。-比如，你有一个数组，它包含了不同的类型的数据：" class="headerlink" title="当你只知道一部分数据的类型时，any类型也是有用的。 比如，你有一个数组，它包含了不同的类型的数据："></a>当你只知道一部分数据的类型时，any类型也是有用的。 比如，你有一个数组，它包含了不同的类型的数据：</h5><pre><code>let list: any[] = [1, true, &quot;free&quot;];
+list[1] = 100;
+</code></pre><h4 id="Void"><a href="#Void" class="headerlink" title="Void"></a>Void</h4><h4 id="某种程度上来说，void类型像是与any类型相反，它表示没有任何类型。-当一个函数没有返回值时，你通常会见到其返回值类型是-void："><a href="#某种程度上来说，void类型像是与any类型相反，它表示没有任何类型。-当一个函数没有返回值时，你通常会见到其返回值类型是-void：" class="headerlink" title="某种程度上来说，void类型像是与any类型相反，它表示没有任何类型。 当一个函数没有返回值时，你通常会见到其返回值类型是 void："></a>某种程度上来说，void类型像是与any类型相反，它表示没有任何类型。 当一个函数没有返回值时，你通常会见到其返回值类型是 void：</h4><pre><code>function warnUser(): void {
+    console.log(&quot;This is my warning message&quot;);
 }
-</code></pre><p>}</p>
-<h4 id="Object"><a href="#Object" class="headerlink" title="Object"></a>Object</h4><h5 id="object表示非原始类型，也就是除number，string，boolean，symbol，null或undefined之外的类型。"><a href="#object表示非原始类型，也就是除number，string，boolean，symbol，null或undefined之外的类型。" class="headerlink" title="object表示非原始类型，也就是除number，string，boolean，symbol，null或undefined之外的类型。"></a>object表示非原始类型，也就是除<font style="color:red">number，string，boolean，symbol，null或undefined</font>之外的类型。</h5><h5 id="使用object类型，就可以更好的表示像Object-create这样的API。例如："><a href="#使用object类型，就可以更好的表示像Object-create这样的API。例如：" class="headerlink" title="使用object类型，就可以更好的表示像Object.create这样的API。例如："></a>使用object类型，就可以更好的表示像Object.create这样的API。例如：</h5><p>declare function create(o: object | null): void;</p>
-<p>create({ prop: 0 }); // OK<br>create(null); // OK</p>
-<p>create(42); // Error<br>create(“string”); // Error<br>create(false); // Error<br>create(undefined); // Error</p>
-<h4 id="类型断言"><a href="#类型断言" class="headerlink" title="类型断言"></a>类型断言</h4></li>
+</code></pre><h4 id="Null-和-Undefined"><a href="#Null-和-Undefined" class="headerlink" title="Null 和 Undefined"></a>Null 和 Undefined</h4><h5 id="TypeScript里，undefined和null两者各自有自己的类型分别叫做undefined和null。-和-void相似，它们的本身的类型用处不是很大："><a href="#TypeScript里，undefined和null两者各自有自己的类型分别叫做undefined和null。-和-void相似，它们的本身的类型用处不是很大：" class="headerlink" title="TypeScript里，undefined和null两者各自有自己的类型分别叫做undefined和null。 和 void相似，它们的本身的类型用处不是很大："></a>TypeScript里，undefined和null两者各自有自己的类型分别叫做undefined和null。 和 void相似，它们的本身的类型用处不是很大：</h5><pre><code>let u: undefined = undefined;
+let n: null = null;
+</code></pre><h5 id="默认情况下null和undefined是所有类型的子类型。-就是说你可以把-null和undefined赋值给number类型的变量。"><a href="#默认情况下null和undefined是所有类型的子类型。-就是说你可以把-null和undefined赋值给number类型的变量。" class="headerlink" title="默认情况下null和undefined是所有类型的子类型。 就是说你可以把 null和undefined赋值给number类型的变量。"></a>默认情况下null和undefined是所有类型的子类型。 就是说你可以把 null和undefined赋值给number类型的变量。</h5><h4 id="Never"><a href="#Never" class="headerlink" title="Never"></a>Never</h4><h5 id="never类型表示的是那些永不存在的值的类型"><a href="#never类型表示的是那些永不存在的值的类型" class="headerlink" title="never类型表示的是那些永不存在的值的类型"></a><font style="color:red">never</font>类型表示的是那些永不存在的值的类型</h5><pre><code>// 返回never的函数必须存在无法达到的终点
+function error(message: string): never {
+    throw new Error(message);
+}
+
+// 推断的返回值类型为never
+function fail() {
+    return error(&quot;Something failed&quot;);
+}
+
+// 返回never的函数必须存在无法达到的终点
+function infiniteLoop(): never {
+    while (true) {
+    }
+}
+</code></pre><h4 id="Object"><a href="#Object" class="headerlink" title="Object"></a>Object</h4><h5 id="object表示非原始类型，也就是除number，string，boolean，symbol，null或undefined之外的类型。"><a href="#object表示非原始类型，也就是除number，string，boolean，symbol，null或undefined之外的类型。" class="headerlink" title="object表示非原始类型，也就是除number，string，boolean，symbol，null或undefined之外的类型。"></a>object表示非原始类型，也就是除<font style="color:red">number，string，boolean，symbol，null或undefined</font>之外的类型。</h5><h5 id="使用object类型，就可以更好的表示像Object-create这样的API。例如："><a href="#使用object类型，就可以更好的表示像Object-create这样的API。例如：" class="headerlink" title="使用object类型，就可以更好的表示像Object.create这样的API。例如："></a>使用object类型，就可以更好的表示像Object.create这样的API。例如：</h5><pre><code>declare function create(o: object | null): void;
+
+create({ prop: 0 }); // OK
+create(null); // OK
+
+create(42); // Error
+create(&quot;string&quot;); // Error
+create(false); // Error
+create(undefined); // Error
+</code></pre><h4 id="类型断言"><a href="#类型断言" class="headerlink" title="类型断言"></a>类型断言</h4><ul>
 <li>尖括号<pre><code class="js">    let someValue: any = &quot;this is a string&quot;;
     let strLength: number = (&lt;string&gt;someValue).length;
 </code></pre>
 </li>
-<li><p>as语法</p>
+<li><p><font style="color:red">as</font>语法</p>
 <pre><code class="js">    let someValue: any = &quot;this is a string&quot;;
     let strLength: number = (someValue as string).length;
 </code></pre>
 <h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><h4 id="TypeScript中的数据类型有："><a href="#TypeScript中的数据类型有：" class="headerlink" title="TypeScript中的数据类型有："></a>TypeScript中的数据类型有：</h4><p>Undefined :<br>Number:数值类型;<br>string : 字符串类型;<br>Boolean: 布尔类型；<br>enum：枚举类型；<br>any : 任意类型，一个牛X的类型；<br>void：空类型；<br>Array : 数组类型;<br>Tuple : 元祖类型；<br>Null ：空类型</p>
-<h4 id="附上我在学习ts的时候写的测试代码"><a href="#附上我在学习ts的时候写的测试代码" class="headerlink" title="附上我在学习ts的时候写的测试代码"></a>附上我在学习ts的时候写的测试代码</h4><p><code>`</code>ts<br> //数组声明<br>let arr1:number[] //声明数值类型的数组<br>let arr2:Array<string>//声明字符串类型的数组</string></p>
-<p>//字面量赋值<br>let arr3:number[] = []<br>let arr4:number[] = [1,2,3,4]<br>let arr5:Array<string>=[‘1’,’3’,’6’]<br>let someValue:string=’this is a boy’<br>let strLength:number = (<string>someValue).length<br>//  console.log(strLength)<br>let arr6:Array<boolean>=[true,false,true]<br>//元祖类型<br>let x:[string,number]<br>x=[‘1’,2]<br>//引用类型字符串<br>let like:String = new String(‘code’)<br>//  console.log(like)<br>//引用类型日期对象<br>let d:Date = new Date()<br>//传递一个整数<br>let da:Date = new Date(1000)<br>console.log(da)<br>//传递一个字符串<br>//yyyy/MM/dd hh:mm:ss，yyyy-MM-dd hh:mm:ss，yyyy-MM-ddThh:mm:ss<br>let dt:Date = new Date(‘2018/09/06 05:30:00’)<br>// console.log(dt)<br>//正则表达式</boolean></string></string></p>
-</li>
+<h4 id="附上我在学习ts的时候写的测试代码"><a href="#附上我在学习ts的时候写的测试代码" class="headerlink" title="附上我在学习ts的时候写的测试代码"></a>附上我在学习ts的时候写的测试代码</h4><pre><code class="ts">//数组声明
+let arr1:number[] //声明数值类型的数组
+let arr2:Array&lt;string&gt;//声明字符串类型的数组
+
+//字面量赋值
+let arr3:number[] = []
+let arr4:number[] = [1,2,3,4]
+let arr5:Array&lt;string&gt;=[&#39;1&#39;,&#39;3&#39;,&#39;6&#39;]
+let someValue:string=&#39;this is a boy&#39;
+let strLength:number = (&lt;string&gt;someValue).length
+//  console.log(strLength)
+let arr6:Array&lt;boolean&gt;=[true,false,true]
+//元祖类型
+let x:[string,number]
+x=[&#39;1&#39;,2]
+//引用类型字符串
+let like:String = new String(&#39;code&#39;)
+//  console.log(like)
+//引用类型日期对象
+let d:Date = new Date()
+//传递一个整数
+let da:Date = new Date(1000)
+console.log(da)
+//传递一个字符串
+//yyyy/MM/dd hh:mm:ss，yyyy-MM-dd hh:mm:ss，yyyy-MM-ddThh:mm:ss
+let dt:Date = new Date(&#39;2018/09/06 05:30:00&#39;)
+// console.log(dt)
+//正则表达式
+
+let reg1:RegExp = new RegExp(&#39;code&#39;)
+let reg2:RegExp = new RegExp(&#39;code&#39;,&#39;gi&#39;)
+let reg3:RegExp = /code/
+let reg4:RegExp = /code/gi
+let site:string = &#39;codeview.com&#39;
+let isT:boolean = reg3.test(site)
+// console.log(isT)
+console.log(reg4.exec(site))
+</code></pre>
+<h3 id="下一节-ts章之接口"><a href="#下一节-ts章之接口" class="headerlink" title="^^下一节 ts章之接口"></a>^^下一节 ts章之接口</h3></li>
 </ul>
-<p>let reg1:RegExp = new RegExp(‘code’)<br>let reg2:RegExp = new RegExp(‘code’,’gi’)<br>let reg3:RegExp = /code/<br>let reg4:RegExp = /code/gi<br>let site:string = ‘codeview.com’<br>let isT:boolean = reg3.test(site)<br>// console.log(isT)<br>console.log(reg4.exec(site))<br><code>`</code></p>
-<h3 id="下一节-ts章之接口"><a href="#下一节-ts章之接口" class="headerlink" title="^^下一节 ts章之接口"></a>^^下一节 ts章之接口</h3>
+
       
     </div>
 

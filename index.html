@@ -286,6 +286,242 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://github.com/lifenglei/2019/06/24/ts章之函数/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="端端">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="https://static.soyoung.com/sy-pre/logo-1560924611786.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="前端开发沉淀">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/06/24/ts章之函数/" class="post-title-link" itemprop="url">ts章之函数</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-06-24 11:24:11 / Modified: 11:24:38" itemprop="dateCreated datePublished" datetime="2019-06-24T11:24:11+08:00">2019-06-24</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h3><h4 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h4><h4 id="函数是javascript的基础。它帮助你实现抽象层，模拟类，信息隐藏和模块，在ts里，虽然已经支持类，命名空间和模块，但函数仍然是主要的定义行为的地方。ts为js函数添加了额外的功能，让我们可以更容易使用。"><a href="#函数是javascript的基础。它帮助你实现抽象层，模拟类，信息隐藏和模块，在ts里，虽然已经支持类，命名空间和模块，但函数仍然是主要的定义行为的地方。ts为js函数添加了额外的功能，让我们可以更容易使用。" class="headerlink" title="函数是javascript的基础。它帮助你实现抽象层，模拟类，信息隐藏和模块，在ts里，虽然已经支持类，命名空间和模块，但函数仍然是主要的定义行为的地方。ts为js函数添加了额外的功能，让我们可以更容易使用。"></a>函数是javascript的基础。它帮助你实现抽象层，模拟类，信息隐藏和模块，在ts里，虽然已经支持类，命名空间和模块，但函数仍然是主要的定义行为的地方。ts为js函数添加了额外的功能，让我们可以更容易使用。</h4><h4 id="函数-（有名函数和匿名函数）"><a href="#函数-（有名函数和匿名函数）" class="headerlink" title="函数 （有名函数和匿名函数）"></a>函数 （有名函数和匿名函数）</h4><h5 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h5><pre><code class="ts">    function add (x,y){
+        return x+y
+    }
+    let myAdd = function(x,y){
+        return x+y
+    }
+</code></pre>
+<h5 id="在JavaScript里，函数可以使用函数体外部的变量"><a href="#在JavaScript里，函数可以使用函数体外部的变量" class="headerlink" title="在JavaScript里，函数可以使用函数体外部的变量"></a>在JavaScript里，函数可以使用函数体外部的变量</h5><pre><code class="ts">    let z = 100;
+    function addToZ(x,y){
+        return x+y+z
+    }
+</code></pre>
+<h4 id="函数类型"><a href="#函数类型" class="headerlink" title="函数类型"></a>函数类型</h4><h5 id="为函数定义类型"><a href="#为函数定义类型" class="headerlink" title="为函数定义类型"></a>为函数定义类型</h5><pre><code class="ts">    function add(x: number, y: number): number {
+        return x + y;
+    }
+
+    let myAdd = function(x: number, y: number): number { return x + y; };
+</code></pre>
+<h5 id="书写完整函数类型"><a href="#书写完整函数类型" class="headerlink" title="书写完整函数类型"></a>书写完整函数类型</h5><h6 id="现在我们已经为函数指定了类型-下面我们写出函数的完整类型"><a href="#现在我们已经为函数指定了类型-下面我们写出函数的完整类型" class="headerlink" title="现在我们已经为函数指定了类型 下面我们写出函数的完整类型"></a>现在我们已经为函数指定了类型 下面我们写出函数的完整类型</h6><pre><code class="ts">    let myAdd: (x: number, y: number) =&gt; number =
+    function(x: number, y: number): number { return x + y; };
+</code></pre>
+<h6 id="函数类型包含两部分：参数类型和返回值类型。-当写出完整函数类型的时候，这两部分都是需要的。-我们以参数列表的形式写出参数类型，为每个参数指定一个名字和类型。-这个名字只是为了增加可读性。-我们也可以这么写："><a href="#函数类型包含两部分：参数类型和返回值类型。-当写出完整函数类型的时候，这两部分都是需要的。-我们以参数列表的形式写出参数类型，为每个参数指定一个名字和类型。-这个名字只是为了增加可读性。-我们也可以这么写：" class="headerlink" title="函数类型包含两部分：参数类型和返回值类型。 当写出完整函数类型的时候，这两部分都是需要的。 我们以参数列表的形式写出参数类型，为每个参数指定一个名字和类型。 这个名字只是为了增加可读性。 我们也可以这么写："></a>函数类型包含两部分：参数类型和返回值类型。 当写出完整函数类型的时候，这两部分都是需要的。 我们以参数列表的形式写出参数类型，为每个参数指定一个名字和类型。 这个名字只是为了增加可读性。 我们也可以这么写：</h6><pre><code class="ts">    let myAdd: (baseValue: number, increment: number) =&gt; number =
+    function(x: number, y: number): number { return x + y; };
+</code></pre>
+<h6 id="只要参数类型是匹配的，那么就认为它是有效的函数类型，而不在乎参数名是否正确。第二部分是返回值类型。-对于返回值，我们在函数和返回值类型之前使用-gt-符号，使之清晰明了。-如之前提到的，返回值类型是函数类型的必要部分，如果函数没有返回任何值，你也必须指定返回值类型为-void而不能留空。函数的类型只是由参数类型和返回值组成的。-函数中使用的捕获变量不会体现在类型里。-实际上，这些变量是函数的隐藏状态并不是组成API的一部分。"><a href="#只要参数类型是匹配的，那么就认为它是有效的函数类型，而不在乎参数名是否正确。第二部分是返回值类型。-对于返回值，我们在函数和返回值类型之前使用-gt-符号，使之清晰明了。-如之前提到的，返回值类型是函数类型的必要部分，如果函数没有返回任何值，你也必须指定返回值类型为-void而不能留空。函数的类型只是由参数类型和返回值组成的。-函数中使用的捕获变量不会体现在类型里。-实际上，这些变量是函数的隐藏状态并不是组成API的一部分。" class="headerlink" title="只要参数类型是匹配的，那么就认为它是有效的函数类型，而不在乎参数名是否正确。第二部分是返回值类型。 对于返回值，我们在函数和返回值类型之前使用( =&gt;)符号，使之清晰明了。 如之前提到的，返回值类型是函数类型的必要部分，如果函数没有返回任何值，你也必须指定返回值类型为 void而不能留空。函数的类型只是由参数类型和返回值组成的。 函数中使用的捕获变量不会体现在类型里。 实际上，这些变量是函数的隐藏状态并不是组成API的一部分。"></a>只要参数类型是匹配的，那么就认为它是有效的函数类型，而不在乎参数名是否正确。第二部分是返回值类型。 对于返回值，我们在函数和返回值类型之前使用( =&gt;)符号，使之清晰明了。 如之前提到的，返回值类型是函数类型的必要部分，如果函数没有返回任何值，你也必须指定返回值类型为 void而不能留空。函数的类型只是由参数类型和返回值组成的。 函数中使用的捕获变量不会体现在类型里。 实际上，这些变量是函数的隐藏状态并不是组成API的一部分。</h6><h4 id="可选参数和默认参数"><a href="#可选参数和默认参数" class="headerlink" title="可选参数和默认参数"></a>可选参数和默认参数</h4><pre><code class="ts">    function buildName(firstName: string, lastName?: string) {
+    if (lastName)
+        return firstName + &quot; &quot; + lastName;
+    else
+        return firstName;
+}
+
+    let result1 = buildName(&quot;Bob&quot;);  // works correctly now
+    let result2 = buildName(&quot;Bob&quot;, &quot;Adams&quot;, &quot;Sr.&quot;);  // error, too many parameters
+    let result3 = buildName(&quot;Bob&quot;, &quot;Adams&quot;);  // ah, just right
+</code></pre>
+<h6 id="默认参数"><a href="#默认参数" class="headerlink" title="默认参数"></a>默认参数</h6><pre><code class="ts">    function buildName(firstName = &quot;Will&quot;, lastName: string) {
+        return firstName + &quot; &quot; + lastName;
+    }
+
+    let result1 = buildName(&quot;Bob&quot;);                  // error, too few parameters
+    let result2 = buildName(&quot;Bob&quot;, &quot;Adams&quot;, &quot;Sr.&quot;);  // error, too many parameters
+    let result3 = buildName(&quot;Bob&quot;, &quot;Adams&quot;);         // okay and returns &quot;Bob Adams&quot;
+    let result4 = buildName(undefined, &quot;Adams&quot;);     // okay and returns &quot;Will Adams&quot;
+</code></pre>
+<h5 id="剩余参数"><a href="#剩余参数" class="headerlink" title="剩余参数"></a>剩余参数</h5><pre><code class="ts">    function buildName(firstName: string, ...restOfName: string[]) {
+  return firstName + &quot; &quot; + restOfName.join(&quot; &quot;);
+}
+
+let buildNameFun: (fname: string, ...rest: string[]) =&gt; string = buildName;
+
+</code></pre>
+<h5 id="附上在学习过程中的测试代码"><a href="#附上在学习过程中的测试代码" class="headerlink" title="附上在学习过程中的测试代码"></a>附上在学习过程中的测试代码</h5><pre><code class="ts">    //有可选参数的函数
+function searchJieJie(age:number,stature?:string):string{
+    let yy:string = &#39;&#39;
+    yy = &#39;找到了&#39;+age+&#39;岁&#39;
+    if(stature!=undefined){
+        yy = yy+stature
+    }
+    return yy+&#39;的小姐姐&#39;
+
+}
+var age: number = 28
+var result:string = searchJieJie(28,&#39;屁股大&#39;)
+
+//有剩余参数的函数
+function searchMM(...need:string[]):string{
+
+    let jj:string = &#39;找到了&#39;
+    for(let i = 0;i&lt;need.length;i++){
+      jj = jj + need[i]
+      if(i&lt;need.length){
+        jj = jj+&#39;、&#39;
+      }
+    }
+    jj = jj + &#39;的小姐姐&#39;
+    return  jj
+}
+var response :string = searchMM(&#39;22岁&#39;,&#39;大长腿&#39;,&#39;水蛇腰&#39;,&#39;瓜子脸&#39;)
+//定义函数的三种方式
+ function add(num1:number,num2?:number):any{
+   if(num2!=undefined)
+   return num1+num2
+ }
+ var res = add(1,3)
+
+ var add1 = function(n1:number=3,n2?:number){
+   if(n2!=undefined)
+   return n1+n2
+ }
+
+ var add2 = (n3:number,n4:number):number=&gt;{
+    return n3+n4
+ }
+</code></pre>
+<h3 id="下一节-ts中的类"><a href="#下一节-ts中的类" class="headerlink" title="^^下一节 ts中的类"></a>^^下一节 ts中的类</h3>
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://github.com/lifenglei/2019/06/21/ts章节之接口/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2852,218 +3088,13 @@ export default {
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://github.com/lifenglei/2018/08/10/my-blog/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="端端">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="https://static.soyoung.com/sy-pre/logo-1560924611786.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="前端开发沉淀">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2018/08/10/my-blog/" class="post-title-link" itemprop="url">如何开发一个登录注册组件</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2018-08-10 17:12:13 / Modified: 17:15:17" itemprop="dateCreated datePublished" datetime="2018-08-10T17:12:13+08:00">2018-08-10</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="如何开发一个登录注册组件"><a href="#如何开发一个登录注册组件" class="headerlink" title="如何开发一个登录注册组件"></a>如何开发一个登录注册组件</h3><h6 id="要开发某个功能我们就要去思考这个功能怎样实现最快捷最方便，下面以项目中的登录注册组件为例说明"><a href="#要开发某个功能我们就要去思考这个功能怎样实现最快捷最方便，下面以项目中的登录注册组件为例说明" class="headerlink" title="要开发某个功能我们就要去思考这个功能怎样实现最快捷最方便，下面以项目中的登录注册组件为例说明"></a>要开发某个功能我们就要去思考这个功能怎样实现最快捷最方便，下面以项目中的登录注册组件为例说明</h6><hr>
-<h5 id="一个功能要尽可能的去拆分比如这个登录注册组件就可以拆分成三个部分"><a href="#一个功能要尽可能的去拆分比如这个登录注册组件就可以拆分成三个部分" class="headerlink" title="一个功能要尽可能的去拆分比如这个登录注册组件就可以拆分成三个部分"></a>一个功能要尽可能的去拆分比如这个登录注册组件就可以拆分成三个部分</h5><h6 id="一：登录"><a href="#一：登录" class="headerlink" title="一：登录"></a>一：登录</h6><h6 id="二-：注册"><a href="#二-：注册" class="headerlink" title="二 ：注册"></a>二 ：注册</h6><h6 id="三：其他（example-找回密码）"><a href="#三：其他（example-找回密码）" class="headerlink" title="三：其他（example:找回密码）"></a>三：其他（example:找回密码）</h6><h6 id="组件好写-这里就不在去写了-（组件就是可以重复利用的片段）"><a href="#组件好写-这里就不在去写了-（组件就是可以重复利用的片段）" class="headerlink" title="组件好写 这里就不在去写了 （组件就是可以重复利用的片段）"></a>组件好写 这里就不在去写了 （组件就是可以重复利用的片段）</h6><h6 id="这里我先梳理思路"><a href="#这里我先梳理思路" class="headerlink" title="这里我先梳理思路"></a>这里我先梳理思路</h6><h6 id="我们要写一个全局方法-可以控制哪个组件显示-类似于这样this-setLogShow-n"><a href="#我们要写一个全局方法-可以控制哪个组件显示-类似于这样this-setLogShow-n" class="headerlink" title="我们要写一个全局方法 可以控制哪个组件显示 类似于这样this.setLogShow(n)"></a>我们要写一个全局方法 可以控制哪个组件显示 类似于这样this.setLogShow(n)</h6><h6 id="里面可以是Blooean-或者Number-比如登陆组件要显示-可以传入Number-1-注册组件为2-等"><a href="#里面可以是Blooean-或者Number-比如登陆组件要显示-可以传入Number-1-注册组件为2-等" class="headerlink" title="里面可以是Blooean 或者Number 比如登陆组件要显示 可以传入Number 1 ,注册组件为2 等"></a>里面可以是Blooean 或者Number 比如登陆组件要显示 可以传入Number 1 ,注册组件为2 等</h6><h6 id="下面我们来完善自己的仓库-log-js"><a href="#下面我们来完善自己的仓库-log-js" class="headerlink" title="下面我们来完善自己的仓库(log.js)"></a>下面我们来完善自己的仓库(log.js)</h6><h6 id="为了能让你学到更多东西我采用手动写代码方式"><a href="#为了能让你学到更多东西我采用手动写代码方式" class="headerlink" title="为了能让你学到更多东西我采用手动写代码方式"></a>为了能让你学到更多东西我采用手动写代码方式</h6><h4 id="首先要明白下面四点"><a href="#首先要明白下面四点" class="headerlink" title="首先要明白下面四点"></a>首先要明白下面四点</h4><h4 id="第一：vue是数据驱动-数据改变会会更新视图-我们需要有一个初始状态值-state"><a href="#第一：vue是数据驱动-数据改变会会更新视图-我们需要有一个初始状态值-state" class="headerlink" title="第一：vue是数据驱动 数据改变会会更新视图  我们需要有一个初始状态值 state;"></a>第一：vue是数据驱动 数据改变会会更新视图  我们需要有一个初始状态值 state;</h4><h4 id="第二：-vue中的数据是加了钩子的-不管是get-或者set-都会触发钩子-getter是在显示数据之前进行的在编辑"><a href="#第二：-vue中的数据是加了钩子的-不管是get-或者set-都会触发钩子-getter是在显示数据之前进行的在编辑" class="headerlink" title="第二： vue中的数据是加了钩子的 不管是get 或者set 都会触发钩子 getter是在显示数据之前进行的在编辑;"></a>第二： vue中的数据是加了钩子的 不管是get 或者set 都会触发钩子 getter是在显示数据之前进行的在编辑;</h4><h4 id="第三：数据状态的改变只能通过Mutations-同步修改状态"><a href="#第三：数据状态的改变只能通过Mutations-同步修改状态" class="headerlink" title="第三：数据状态的改变只能通过Mutations 同步修改状态;"></a>第三：数据状态的改变只能通过Mutations 同步修改状态;</h4><h4 id="第四：Actions-异步修改状态-且只能提交到Mutations"><a href="#第四：Actions-异步修改状态-且只能提交到Mutations" class="headerlink" title="第四：Actions  异步修改状态 且只能提交到Mutations;"></a>第四：Actions  异步修改状态 且只能提交到Mutations;</h4><h6 id="理解了上面四点我们开始构建我们的logIn仓库"><a href="#理解了上面四点我们开始构建我们的logIn仓库" class="headerlink" title="理解了上面四点我们开始构建我们的logIn仓库"></a>理解了上面四点我们开始构建我们的logIn仓库</h6><h5 id="一下代码均按照所在公司要求编写"><a href="#一下代码均按照所在公司要求编写" class="headerlink" title="一下代码均按照所在公司要求编写"></a>一下代码均按照所在公司要求编写</h5><h6 id="首先我们需要定义项目存在的事件"><a href="#首先我们需要定义项目存在的事件" class="headerlink" title="首先我们需要定义项目存在的事件"></a>首先我们需要定义项目存在的事件</h6><h5 id="mutation-type-js"><a href="#mutation-type-js" class="headerlink" title="mutation-type.js"></a>mutation-type.js</h5><h5 id="设置登录状态"><a href="#设置登录状态" class="headerlink" title="设置登录状态"></a>设置登录状态</h5><p>##### </p>
-<pre><code>export const SET_LOGREG_SHOW = &#39;SET_LOGREG_SHOW&#39;
-</code></pre><h6 id="接着在编写一个状态仓库-logreg-js"><a href="#接着在编写一个状态仓库-logreg-js" class="headerlink" title="接着在编写一个状态仓库(logreg.js)"></a>接着在编写一个状态仓库(logreg.js)</h6><pre><code>import * as types from &#39;../mutations-types&#39;(不理解import as的自行看es6模块章节)
-const state ={
-show: false //1:登录 2：注册 3：找回密码
-}
-const getters = {
-getLogregShow: state=&gt; state.show
-}
-const mutations = {
-[types.SET_ISLOGREGSHOW] (state,show){
-state.show = show
-}
-}
-const actions = {
-setLogregShow({commit},show）{
-commit(types.SET_ISLOGREGSHOW，show)
-}
-}
-export default {
-state,
-getters,
-mutations,
-actions
-}
-</code></pre><h6 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h6><blockquote>
-<p> 关于上面代码一些命名(比如getters下面的getLogregShow,以及actions下面的setLogregShow,),这个命名完全看个人爱好,我觉得这样写能更好的让人理解get是获取XXX,set是设置XXX.</p>
-</blockquote>
-<h6 id="接下来不用我说大家应该也知道要在store中导入这个仓库-并且在根组件注册仓库才能全局使用"><a href="#接下来不用我说大家应该也知道要在store中导入这个仓库-并且在根组件注册仓库才能全局使用" class="headerlink" title="接下来不用我说大家应该也知道要在store中导入这个仓库 ,并且在根组件注册仓库才能全局使用"></a>接下来不用我说大家应该也知道要在store中导入这个仓库 ,并且在根组件注册仓库才能全局使用</h6><pre><code> import Vue from &#39;vue&#39;
-import Vuex from &#39;vuex&#39;
-import logreg from &#39;./modules/logreg.js&#39;
-Vue.use(Vuex)
-export default new Vuex.Store({
-modules:{
-logreg
-}
-})
-</code></pre><h6 id="然后你的三个组件都写好了-那么接下来就要控制渲染哪个组件了"><a href="#然后你的三个组件都写好了-那么接下来就要控制渲染哪个组件了" class="headerlink" title="然后你的三个组件都写好了 那么接下来就要控制渲染哪个组件了"></a>然后你的三个组件都写好了 那么接下来就要控制渲染哪个组件了</h6><h6 id="比如你的三个组件分别为signUp-vue-signIn-vue-retrieve-vue"><a href="#比如你的三个组件分别为signUp-vue-signIn-vue-retrieve-vue" class="headerlink" title="比如你的三个组件分别为signUp.vue signIn.vue retrieve.vue"></a>比如你的三个组件分别为signUp.vue signIn.vue retrieve.vue</h6><h6 id="既然是渲染那么我们知道可以用v-if-自行看v-if与v-show的区别"><a href="#既然是渲染那么我们知道可以用v-if-自行看v-if与v-show的区别" class="headerlink" title="既然是渲染那么我们知道可以用v-if 自行看v-if与v-show的区别"></a>既然是渲染那么我们知道可以用v-if 自行看v-if与v-show的区别</h6><h6 id="我们可以做一个新的组件就叫做signComp-vue-是这三个组件的父组件"><a href="#我们可以做一个新的组件就叫做signComp-vue-是这三个组件的父组件" class="headerlink" title="我们可以做一个新的组件就叫做signComp.vue 是这三个组件的父组件"></a>我们可以做一个新的组件就叫做signComp.vue 是这三个组件的父组件</h6><pre><code>&lt;template&gt;
-&lt;div&gt;
-&lt;sign-in v-if=&quot;show===1&quot;&gt;&lt;/sign-in&gt;
-&lt;sign-up  v-else-if=&quot;show===2&quot;&gt;&lt;/sign-up&gt;
-&lt;retrieve v-else-if=&quot;show===3&quot;&gt;&lt;/retrieve&gt;
-&lt;/div&gt;
-&lt;/template&gt;
-&lt;script&gt;
-import signIn from 
-import signUp from 
-import retrieve from 
-components:{
-signIn,signUp,retrieve
-}
-&lt;/script&gt;
-</code></pre><h6 id="这样你在其他调用的时候只需要两部-映射方法-调用方法"><a href="#这样你在其他调用的时候只需要两部-映射方法-调用方法" class="headerlink" title="这样你在其他调用的时候只需要两部  映射方法 调用方法"></a>这样你在其他调用的时候只需要两部  映射方法 调用方法</h6><h6 id="第一："><a href="#第一：" class="headerlink" title="第一："></a>第一：</h6><pre><code>mapActions({
-showLogreg:&#39;setLogregShow&#39;
-})
-</code></pre><p>比如点击了登录<br>那么 可以用</p>
-<pre><code>this.showLogreg(1)
-</code></pre><p>就会弹出你的登录组件</p>
-<h4 id="注意-1"><a href="#注意-1" class="headerlink" title="注意"></a>注意</h4><blockquote>
-<p>新组建里面的show 也是通过getters映射到当前组件的</p>
-</blockquote>
-<pre><code> computed: {
-    ...mapGetters({
-      show: &#39;getLogregShow&#39;
-    })
-},
-</code></pre><h3 id="为什么会弹出呢-很简单-流程如下"><a href="#为什么会弹出呢-很简单-流程如下" class="headerlink" title="为什么会弹出呢  很简单 流程如下"></a>为什么会弹出呢  很简单 流程如下</h3><h6 id="调用showLogreg-1-》找到对应仓库的方法，找到setLogregShow-gt-由于调用的时候传入了1-那么就相当于提交到mutations一个新的状态值-mutations收到这个提交会做一件事情-会把state下面对应的数据改变-（把show变为1）"><a href="#调用showLogreg-1-》找到对应仓库的方法，找到setLogregShow-gt-由于调用的时候传入了1-那么就相当于提交到mutations一个新的状态值-mutations收到这个提交会做一件事情-会把state下面对应的数据改变-（把show变为1）" class="headerlink" title="调用showLogreg(1)=========》找到对应仓库的方法，找到setLogregShow() ====&gt;由于调用的时候传入了1 那么就相当于提交到mutations一个新的状态值, mutations收到这个提交会做一件事情 会把state下面对应的数据改变 （把show变为1）"></a>调用showLogreg(1)=========》找到对应仓库的方法，找到setLogregShow() ====&gt;由于调用的时候传入了1 那么就相当于提交到mutations一个新的状态值, mutations收到这个提交会做一件事情 会把state下面对应的数据改变 （把show变为1）</h6><h6 id="当show为1的时候-这个组件就会被渲染"><a href="#当show为1的时候-这个组件就会被渲染" class="headerlink" title="当show为1的时候  这个组件就会被渲染"></a>当show为1的时候 <sign-in v-if="show===1"></sign-in> 这个组件就会被渲染</h6><h6 id="那么用户就看到了登录组件"><a href="#那么用户就看到了登录组件" class="headerlink" title="那么用户就看到了登录组件"></a>那么用户就看到了登录组件</h6>
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+  </nav>
+
 
 
           </div>
@@ -3105,7 +3136,7 @@ showLogreg:&#39;setLogregShow&#39;
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">10</span>
+                    <span class="site-state-item-count">11</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>

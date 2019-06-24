@@ -1,0 +1,925 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.2">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.2">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.1.2">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.1.2">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.2" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.1.2',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="函数介绍函数是javascript的基础。它帮助你实现抽象层，模拟类，信息隐藏和模块，在ts里，虽然已经支持类，命名空间和模块，但函数仍然是主要的定义行为的地方。ts为js函数添加了额外的功能，让我们可以更容易使用。函数 （有名函数和匿名函数）例子    function add (x,y){         return x+y     }     let myAdd = function(x,">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ts章之函数">
+<meta property="og:url" content="https://github.com/lifenglei/2019/06/24/ts章之函数/index.html">
+<meta property="og:site_name" content="前端开发沉淀">
+<meta property="og:description" content="函数介绍函数是javascript的基础。它帮助你实现抽象层，模拟类，信息隐藏和模块，在ts里，虽然已经支持类，命名空间和模块，但函数仍然是主要的定义行为的地方。ts为js函数添加了额外的功能，让我们可以更容易使用。函数 （有名函数和匿名函数）例子    function add (x,y){         return x+y     }     let myAdd = function(x,">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-06-24T03:24:38.653Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ts章之函数">
+<meta name="twitter:description" content="函数介绍函数是javascript的基础。它帮助你实现抽象层，模拟类，信息隐藏和模块，在ts里，虽然已经支持类，命名空间和模块，但函数仍然是主要的定义行为的地方。ts为js函数添加了额外的功能，让我们可以更容易使用。函数 （有名函数和匿名函数）例子    function add (x,y){         return x+y     }     let myAdd = function(x,">
+
+
+
+
+
+  
+  
+  <link rel="canonical" href="https://github.com/lifenglei/2019/06/24/ts章之函数/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>ts章之函数 | 前端开发沉淀</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">前端开发沉淀</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://github.com/lifenglei/2019/06/24/ts章之函数/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="端端">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="https://static.soyoung.com/sy-pre/logo-1560924611786.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="前端开发沉淀">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">ts章之函数
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-06-24 11:24:11 / Modified: 11:24:38" itemprop="dateCreated datePublished" datetime="2019-06-24T11:24:11+08:00">2019-06-24</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h3><h4 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h4><h4 id="函数是javascript的基础。它帮助你实现抽象层，模拟类，信息隐藏和模块，在ts里，虽然已经支持类，命名空间和模块，但函数仍然是主要的定义行为的地方。ts为js函数添加了额外的功能，让我们可以更容易使用。"><a href="#函数是javascript的基础。它帮助你实现抽象层，模拟类，信息隐藏和模块，在ts里，虽然已经支持类，命名空间和模块，但函数仍然是主要的定义行为的地方。ts为js函数添加了额外的功能，让我们可以更容易使用。" class="headerlink" title="函数是javascript的基础。它帮助你实现抽象层，模拟类，信息隐藏和模块，在ts里，虽然已经支持类，命名空间和模块，但函数仍然是主要的定义行为的地方。ts为js函数添加了额外的功能，让我们可以更容易使用。"></a>函数是javascript的基础。它帮助你实现抽象层，模拟类，信息隐藏和模块，在ts里，虽然已经支持类，命名空间和模块，但函数仍然是主要的定义行为的地方。ts为js函数添加了额外的功能，让我们可以更容易使用。</h4><h4 id="函数-（有名函数和匿名函数）"><a href="#函数-（有名函数和匿名函数）" class="headerlink" title="函数 （有名函数和匿名函数）"></a>函数 （有名函数和匿名函数）</h4><h5 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h5><pre><code class="ts">    function add (x,y){
+        return x+y
+    }
+    let myAdd = function(x,y){
+        return x+y
+    }
+</code></pre>
+<h5 id="在JavaScript里，函数可以使用函数体外部的变量"><a href="#在JavaScript里，函数可以使用函数体外部的变量" class="headerlink" title="在JavaScript里，函数可以使用函数体外部的变量"></a>在JavaScript里，函数可以使用函数体外部的变量</h5><pre><code class="ts">    let z = 100;
+    function addToZ(x,y){
+        return x+y+z
+    }
+</code></pre>
+<h4 id="函数类型"><a href="#函数类型" class="headerlink" title="函数类型"></a>函数类型</h4><h5 id="为函数定义类型"><a href="#为函数定义类型" class="headerlink" title="为函数定义类型"></a>为函数定义类型</h5><pre><code class="ts">    function add(x: number, y: number): number {
+        return x + y;
+    }
+
+    let myAdd = function(x: number, y: number): number { return x + y; };
+</code></pre>
+<h5 id="书写完整函数类型"><a href="#书写完整函数类型" class="headerlink" title="书写完整函数类型"></a>书写完整函数类型</h5><h6 id="现在我们已经为函数指定了类型-下面我们写出函数的完整类型"><a href="#现在我们已经为函数指定了类型-下面我们写出函数的完整类型" class="headerlink" title="现在我们已经为函数指定了类型 下面我们写出函数的完整类型"></a>现在我们已经为函数指定了类型 下面我们写出函数的完整类型</h6><pre><code class="ts">    let myAdd: (x: number, y: number) =&gt; number =
+    function(x: number, y: number): number { return x + y; };
+</code></pre>
+<h6 id="函数类型包含两部分：参数类型和返回值类型。-当写出完整函数类型的时候，这两部分都是需要的。-我们以参数列表的形式写出参数类型，为每个参数指定一个名字和类型。-这个名字只是为了增加可读性。-我们也可以这么写："><a href="#函数类型包含两部分：参数类型和返回值类型。-当写出完整函数类型的时候，这两部分都是需要的。-我们以参数列表的形式写出参数类型，为每个参数指定一个名字和类型。-这个名字只是为了增加可读性。-我们也可以这么写：" class="headerlink" title="函数类型包含两部分：参数类型和返回值类型。 当写出完整函数类型的时候，这两部分都是需要的。 我们以参数列表的形式写出参数类型，为每个参数指定一个名字和类型。 这个名字只是为了增加可读性。 我们也可以这么写："></a>函数类型包含两部分：参数类型和返回值类型。 当写出完整函数类型的时候，这两部分都是需要的。 我们以参数列表的形式写出参数类型，为每个参数指定一个名字和类型。 这个名字只是为了增加可读性。 我们也可以这么写：</h6><pre><code class="ts">    let myAdd: (baseValue: number, increment: number) =&gt; number =
+    function(x: number, y: number): number { return x + y; };
+</code></pre>
+<h6 id="只要参数类型是匹配的，那么就认为它是有效的函数类型，而不在乎参数名是否正确。第二部分是返回值类型。-对于返回值，我们在函数和返回值类型之前使用-gt-符号，使之清晰明了。-如之前提到的，返回值类型是函数类型的必要部分，如果函数没有返回任何值，你也必须指定返回值类型为-void而不能留空。函数的类型只是由参数类型和返回值组成的。-函数中使用的捕获变量不会体现在类型里。-实际上，这些变量是函数的隐藏状态并不是组成API的一部分。"><a href="#只要参数类型是匹配的，那么就认为它是有效的函数类型，而不在乎参数名是否正确。第二部分是返回值类型。-对于返回值，我们在函数和返回值类型之前使用-gt-符号，使之清晰明了。-如之前提到的，返回值类型是函数类型的必要部分，如果函数没有返回任何值，你也必须指定返回值类型为-void而不能留空。函数的类型只是由参数类型和返回值组成的。-函数中使用的捕获变量不会体现在类型里。-实际上，这些变量是函数的隐藏状态并不是组成API的一部分。" class="headerlink" title="只要参数类型是匹配的，那么就认为它是有效的函数类型，而不在乎参数名是否正确。第二部分是返回值类型。 对于返回值，我们在函数和返回值类型之前使用( =&gt;)符号，使之清晰明了。 如之前提到的，返回值类型是函数类型的必要部分，如果函数没有返回任何值，你也必须指定返回值类型为 void而不能留空。函数的类型只是由参数类型和返回值组成的。 函数中使用的捕获变量不会体现在类型里。 实际上，这些变量是函数的隐藏状态并不是组成API的一部分。"></a>只要参数类型是匹配的，那么就认为它是有效的函数类型，而不在乎参数名是否正确。第二部分是返回值类型。 对于返回值，我们在函数和返回值类型之前使用( =&gt;)符号，使之清晰明了。 如之前提到的，返回值类型是函数类型的必要部分，如果函数没有返回任何值，你也必须指定返回值类型为 void而不能留空。函数的类型只是由参数类型和返回值组成的。 函数中使用的捕获变量不会体现在类型里。 实际上，这些变量是函数的隐藏状态并不是组成API的一部分。</h6><h4 id="可选参数和默认参数"><a href="#可选参数和默认参数" class="headerlink" title="可选参数和默认参数"></a>可选参数和默认参数</h4><pre><code class="ts">    function buildName(firstName: string, lastName?: string) {
+    if (lastName)
+        return firstName + &quot; &quot; + lastName;
+    else
+        return firstName;
+}
+
+    let result1 = buildName(&quot;Bob&quot;);  // works correctly now
+    let result2 = buildName(&quot;Bob&quot;, &quot;Adams&quot;, &quot;Sr.&quot;);  // error, too many parameters
+    let result3 = buildName(&quot;Bob&quot;, &quot;Adams&quot;);  // ah, just right
+</code></pre>
+<h6 id="默认参数"><a href="#默认参数" class="headerlink" title="默认参数"></a>默认参数</h6><pre><code class="ts">    function buildName(firstName = &quot;Will&quot;, lastName: string) {
+        return firstName + &quot; &quot; + lastName;
+    }
+
+    let result1 = buildName(&quot;Bob&quot;);                  // error, too few parameters
+    let result2 = buildName(&quot;Bob&quot;, &quot;Adams&quot;, &quot;Sr.&quot;);  // error, too many parameters
+    let result3 = buildName(&quot;Bob&quot;, &quot;Adams&quot;);         // okay and returns &quot;Bob Adams&quot;
+    let result4 = buildName(undefined, &quot;Adams&quot;);     // okay and returns &quot;Will Adams&quot;
+</code></pre>
+<h5 id="剩余参数"><a href="#剩余参数" class="headerlink" title="剩余参数"></a>剩余参数</h5><pre><code class="ts">    function buildName(firstName: string, ...restOfName: string[]) {
+  return firstName + &quot; &quot; + restOfName.join(&quot; &quot;);
+}
+
+let buildNameFun: (fname: string, ...rest: string[]) =&gt; string = buildName;
+
+</code></pre>
+<h5 id="附上在学习过程中的测试代码"><a href="#附上在学习过程中的测试代码" class="headerlink" title="附上在学习过程中的测试代码"></a>附上在学习过程中的测试代码</h5><pre><code class="ts">    //有可选参数的函数
+function searchJieJie(age:number,stature?:string):string{
+    let yy:string = &#39;&#39;
+    yy = &#39;找到了&#39;+age+&#39;岁&#39;
+    if(stature!=undefined){
+        yy = yy+stature
+    }
+    return yy+&#39;的小姐姐&#39;
+
+}
+var age: number = 28
+var result:string = searchJieJie(28,&#39;屁股大&#39;)
+
+//有剩余参数的函数
+function searchMM(...need:string[]):string{
+
+    let jj:string = &#39;找到了&#39;
+    for(let i = 0;i&lt;need.length;i++){
+      jj = jj + need[i]
+      if(i&lt;need.length){
+        jj = jj+&#39;、&#39;
+      }
+    }
+    jj = jj + &#39;的小姐姐&#39;
+    return  jj
+}
+var response :string = searchMM(&#39;22岁&#39;,&#39;大长腿&#39;,&#39;水蛇腰&#39;,&#39;瓜子脸&#39;)
+//定义函数的三种方式
+ function add(num1:number,num2?:number):any{
+   if(num2!=undefined)
+   return num1+num2
+ }
+ var res = add(1,3)
+
+ var add1 = function(n1:number=3,n2?:number){
+   if(n2!=undefined)
+   return n1+n2
+ }
+
+ var add2 = (n3:number,n4:number):number=&gt;{
+    return n3+n4
+ }
+</code></pre>
+<h3 id="下一节-ts中的类"><a href="#下一节-ts中的类" class="headerlink" title="^^下一节 ts中的类"></a>^^下一节 ts中的类</h3>
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+      <div>
+        <div id="reward-container">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="reward-button" disable="enable" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    Donate
+  </button>
+  <div id="qr" style="display: none;">
+
+    
+      
+      
+        
+      
+      <div style="display: inline-block">
+        <img src="https://static.soyoung.com/sy-pre/901561004178_.pic-1561003804337.jpg" alt="端端 WeChat Pay">
+        <p>WeChat Pay</p>
+      </div>
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/06/21/ts章节之接口/" rel="next" title="ts章之接口">
+                <i class="fa fa-chevron-left"></i> ts章之接口
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="https://static.soyoung.com/sy-pre/logo-1560924611786.png" alt="端端">
+            
+              <p class="site-author-name" itemprop="name">端端</p>
+              <div class="site-description motion-element" itemprop="description"></div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">11</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/lifenglei" title="GitHub &rarr; https://github.com/lifenglei"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="/1125911451" title="QQ &rarr; 1125911451"><i class="fa fa-fw fa-skype"></i>QQ</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#函数"><span class="nav-number">1.</span> <span class="nav-text">函数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#介绍"><span class="nav-number">1.1.</span> <span class="nav-text">介绍</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#函数是javascript的基础。它帮助你实现抽象层，模拟类，信息隐藏和模块，在ts里，虽然已经支持类，命名空间和模块，但函数仍然是主要的定义行为的地方。ts为js函数添加了额外的功能，让我们可以更容易使用。"><span class="nav-number">1.2.</span> <span class="nav-text">函数是javascript的基础。它帮助你实现抽象层，模拟类，信息隐藏和模块，在ts里，虽然已经支持类，命名空间和模块，但函数仍然是主要的定义行为的地方。ts为js函数添加了额外的功能，让我们可以更容易使用。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#函数-（有名函数和匿名函数）"><span class="nav-number">1.3.</span> <span class="nav-text">函数 （有名函数和匿名函数）</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#例子"><span class="nav-number">1.3.1.</span> <span class="nav-text">例子</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#在JavaScript里，函数可以使用函数体外部的变量"><span class="nav-number">1.3.2.</span> <span class="nav-text">在JavaScript里，函数可以使用函数体外部的变量</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#函数类型"><span class="nav-number">1.4.</span> <span class="nav-text">函数类型</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#为函数定义类型"><span class="nav-number">1.4.1.</span> <span class="nav-text">为函数定义类型</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#书写完整函数类型"><span class="nav-number">1.4.2.</span> <span class="nav-text">书写完整函数类型</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#现在我们已经为函数指定了类型-下面我们写出函数的完整类型"><span class="nav-number">1.4.2.1.</span> <span class="nav-text">现在我们已经为函数指定了类型 下面我们写出函数的完整类型</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#函数类型包含两部分：参数类型和返回值类型。-当写出完整函数类型的时候，这两部分都是需要的。-我们以参数列表的形式写出参数类型，为每个参数指定一个名字和类型。-这个名字只是为了增加可读性。-我们也可以这么写："><span class="nav-number">1.4.2.2.</span> <span class="nav-text">函数类型包含两部分：参数类型和返回值类型。 当写出完整函数类型的时候，这两部分都是需要的。 我们以参数列表的形式写出参数类型，为每个参数指定一个名字和类型。 这个名字只是为了增加可读性。 我们也可以这么写：</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#只要参数类型是匹配的，那么就认为它是有效的函数类型，而不在乎参数名是否正确。第二部分是返回值类型。-对于返回值，我们在函数和返回值类型之前使用-gt-符号，使之清晰明了。-如之前提到的，返回值类型是函数类型的必要部分，如果函数没有返回任何值，你也必须指定返回值类型为-void而不能留空。函数的类型只是由参数类型和返回值组成的。-函数中使用的捕获变量不会体现在类型里。-实际上，这些变量是函数的隐藏状态并不是组成API的一部分。"><span class="nav-number">1.4.2.3.</span> <span class="nav-text">只要参数类型是匹配的，那么就认为它是有效的函数类型，而不在乎参数名是否正确。第二部分是返回值类型。 对于返回值，我们在函数和返回值类型之前使用( =&gt;)符号，使之清晰明了。 如之前提到的，返回值类型是函数类型的必要部分，如果函数没有返回任何值，你也必须指定返回值类型为 void而不能留空。函数的类型只是由参数类型和返回值组成的。 函数中使用的捕获变量不会体现在类型里。 实际上，这些变量是函数的隐藏状态并不是组成API的一部分。</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#可选参数和默认参数"><span class="nav-number">1.5.</span> <span class="nav-text">可选参数和默认参数</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#默认参数"><span class="nav-number">1.5.0.1.</span> <span class="nav-text">默认参数</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#剩余参数"><span class="nav-number">1.5.1.</span> <span class="nav-text">剩余参数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#附上在学习过程中的测试代码"><span class="nav-number">1.5.2.</span> <span class="nav-text">附上在学习过程中的测试代码</span></a></li></ol></li></ol><li class="nav-item nav-level-3"><a class="nav-link" href="#下一节-ts中的类"><span class="nav-number">2.</span> <span class="nav-text">^^下一节 ts中的类</span></a></li></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">端端</span>
+
+  
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+    
+  
+  <script color="0,0,255" opacity="0.5" zindex="-1" count="99" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+
+  
+  
+
+
+
+  
+  
+
+
+
+  
+  
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/three/three.min.js"></script>
+
+  
+  <script src="/lib/three/three-waves.min.js"></script>
+
+  
+  <script src="/lib/three/canvas_lines.min.js"></script>
+
+  
+  <script src="/lib/three/canvas_sphere.min.js"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.2"></script>
+
+  <script src="/js/motion.js?v=7.1.2"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.1.2"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.1.2"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.2"></script>
+<script src="/js/post-details.js?v=7.1.2"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.2"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+<script>
+  $('.highlight').not('.gist .highlight').each(function(i, e) {
+    var $wrap = $('<div>').addClass('highlight-wrap');
+    $(e).after($wrap);
+    $wrap.append($('<button>').addClass('copy-btn').append('Copy').on('click', function(e) {
+      var code = $(this).parent().find('.code').find('.line').map(function(i, e) {
+        return $(e).text();
+      }).toArray().join('\n');
+      var ta = document.createElement('textarea');
+      var yPosition = window.pageYOffset || document.documentElement.scrollTop;
+      ta.style.top = yPosition + 'px'; // Prevent page scroll
+      ta.style.position = 'absolute';
+      ta.style.opacity = '0';
+      ta.readOnly = true;
+      ta.value = code;
+      document.body.appendChild(ta);
+      const selection = document.getSelection();
+      const selected = selection.rangeCount > 0 ? selection.getRangeAt(0) : false;
+      ta.select();
+      ta.setSelectionRange(0, code.length);
+      ta.readOnly = false;
+      var result = document.execCommand('copy');
+      
+        if (result) $(this).text('Copied');
+        else $(this).text('Copy failed');
+      
+      ta.blur(); // For iOS
+      $(this).blur();
+      if (selected) {
+        selection.removeAllRanges();
+        selection.addRange(selected);
+      }
+    })).on('mouseleave', function(e) {
+      var $b = $(this).find('.copy-btn');
+      setTimeout(function() {
+        $b.text('Copy');
+      }, 300);
+    }).append(e);
+  })
+</script>
+
+
+  
+
+  
+
+</body>
+</html>

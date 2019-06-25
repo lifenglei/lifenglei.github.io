@@ -1,0 +1,1063 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.2">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.2">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.1.2">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.1.2">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.2" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.1.2',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="类介绍认识TypeScript基于类的面向对象编程，就需要从一个简单的类开始。例子    class Greeter {         greeting:string;         constructor(message:string){             this.greeting = message;         }         greet(){             r">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ts章节之类">
+<meta property="og:url" content="https://github.com/lifenglei/2019/06/25/ts章节之类/index.html">
+<meta property="og:site_name" content="前端开发沉淀">
+<meta property="og:description" content="类介绍认识TypeScript基于类的面向对象编程，就需要从一个简单的类开始。例子    class Greeter {         greeting:string;         constructor(message:string){             this.greeting = message;         }         greet(){             r">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-06-25T07:14:53.303Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ts章节之类">
+<meta name="twitter:description" content="类介绍认识TypeScript基于类的面向对象编程，就需要从一个简单的类开始。例子    class Greeter {         greeting:string;         constructor(message:string){             this.greeting = message;         }         greet(){             r">
+
+
+
+
+
+  
+  
+  <link rel="canonical" href="https://github.com/lifenglei/2019/06/25/ts章节之类/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>ts章节之类 | 前端开发沉淀</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">前端开发沉淀</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://github.com/lifenglei/2019/06/25/ts章节之类/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="端端">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="https://static.soyoung.com/sy-pre/logo-1560924611786.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="前端开发沉淀">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">ts章节之类
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-06-25 15:14:37 / Modified: 15:14:53" itemprop="dateCreated datePublished" datetime="2019-06-25T15:14:37+08:00">2019-06-25</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="类"><a href="#类" class="headerlink" title="类"></a>类</h3><h4 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h4><h5 id="认识TypeScript基于类的面向对象编程，就需要从一个简单的类开始。"><a href="#认识TypeScript基于类的面向对象编程，就需要从一个简单的类开始。" class="headerlink" title="认识TypeScript基于类的面向对象编程，就需要从一个简单的类开始。"></a>认识TypeScript基于类的面向对象编程，就需要从一个简单的类开始。</h5><h5 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h5><pre><code class="ts">    class Greeter {
+        greeting:string;
+        constructor(message:string){
+            this.greeting = message;
+        }
+        greet(){
+            return &#39;hello,&#39;+this.greeting
+        }
+    }
+    let greeter = new Greeter(&#39;world&#39;)
+</code></pre>
+<h5 id="我们声明一个Greeter的类，这个类有3个成员-一个叫greeting属性，一个构造函数-和一个greet方法"><a href="#我们声明一个Greeter的类，这个类有3个成员-一个叫greeting属性，一个构造函数-和一个greet方法" class="headerlink" title="我们声明一个Greeter的类，这个类有3个成员:一个叫greeting属性，一个构造函数 和一个greet方法"></a>我们声明一个Greeter的类，这个类有3个成员:一个叫greeting<font color="red">属性</font>，一个<font color="red">构造函数</font> 和一个<font color="red">greet方法</font></h5><h5 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h5><pre><code>我们在引用任何一个类成员的时候都用了this,它表示我们访问的是类的成员
+</code></pre><h4 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h4><h5 id="在ts里，我们可以使用常见的面向对象模式。基于类的设计程序中一种最基本的允许使用继承来扩展现有的类"><a href="#在ts里，我们可以使用常见的面向对象模式。基于类的设计程序中一种最基本的允许使用继承来扩展现有的类" class="headerlink" title="在ts里，我们可以使用常见的面向对象模式。基于类的设计程序中一种最基本的允许使用继承来扩展现有的类"></a>在ts里，我们可以使用常见的面向对象模式。基于类的设计程序中一种最基本的允许使用继承来扩展现有的类</h5><h4 id="例子-1"><a href="#例子-1" class="headerlink" title="例子"></a>例子</h4><pre><code class="ts">    class Teature {
+        run(kilometer:number=200){
+            console.log(`Teature can run ${kilometer}m`)
+        }
+    }
+    class Student extends Teature{
+        oil(){
+            console.log(&#39;add oil&#39;)
+        }
+    }
+    const student = new Student()
+    student.oil();
+    student.run(800);
+</code></pre>
+<h5 id="使用super关键字属性继承"><a href="#使用super关键字属性继承" class="headerlink" title="使用super关键字属性继承"></a>使用super关键字属性继承</h5><pre><code class="ts">class Human {
+  name: string;
+  age: number;
+  constructor(name: string, age:number) {
+    this.name = name;
+    this.age = age;
+  }
+  tell() {
+    return this.name + &#39; &#39; + this.age;
+  }
+}
+
+// Student 继承自 Human
+class Student extends Human {
+  school: string;
+  // 此处Student 也必须传递构造方法
+  constructor(school: string) {
+    this.school = school;
+    super(&#39;Joh&#39;, 90);
+  }
+  tell() {
+    return this.name + &#39; &#39; + this.age + &#39; &#39; + this.school;
+  }
+}
+
+var ss = new Student(&#39;MIT&#39;);
+
+console.log(s.tell());
+</code></pre>
+<h4 id="类的访问修饰符"><a href="#类的访问修饰符" class="headerlink" title="类的访问修饰符"></a>类的访问修饰符</h4><h5 id="在ts中有两种访问修饰符："><a href="#在ts中有两种访问修饰符：" class="headerlink" title="在ts中有两种访问修饰符："></a>在ts中有两种访问修饰符：</h5><ul>
+<li>public:共有的</li>
+<li><p>private:私有的<br><code>`</code>ts<br>class People {<br>// public 是默认的， 不加修饰符都是public<br>public name:string;<br>age:number;<br>// private 无法访问和继承<br>private color:string;</p>
+<p>getInfo() {<br>return this.name + ‘:’ + this.age;<br>}<br>}</p>
+</li>
+</ul>
+<p>class Teacher extends People {<br>  school:string;<br>  getInfo() {<br>    return this.name + ‘:’ + this.age + ‘:’ + this.school;<br>  }<br>}</p>
+<p>var t = new Teacher();<br>t.name = ‘Joh’;<br>t.age = ‘90’;<br>t.school = ‘MIT’;<br>console.log(t.getInfo());</p>
+<pre><code>#### 存取器
+#### TypeScript支持通过getters/setters来截取对对象成员的访问。 它能帮助你有效的控制对对象成员的访问。
+```ts
+    let passcode = &quot;secret passcode&quot;;
+
+class Employee {
+    private _fullName: string;
+
+    get fullName(): string {
+        return this._fullName;
+    }
+
+    set fullName(newName: string) {
+        if (passcode &amp;&amp; passcode == &quot;secret passcode&quot;) {
+            this._fullName = newName;
+        }
+        else {
+            console.log(&quot;Error: Unauthorized update of employee!&quot;);
+        }
+    }
+}
+
+let employee = new Employee();
+employee.fullName = &quot;Bob Smith&quot;;
+if (employee.fullName) {
+    alert(employee.fullName);
+}
+</code></pre><h4 id="关键词-static"><a href="#关键词-static" class="headerlink" title="关键词 static"></a>关键词 static</h4><h5 id="到目前为止，我们只讨论了类的实例成员，那些仅当类被实例化的时候才会被初始化的属性。-我们也可以创建类的静态成员，这些属性存在于类本身上面而不是类的实例上。-在这个例子里，我们使用-static定义-origin，因为它是所有网格都会用到的属性。-每个实例想要访问这个属性的时候，都要在-origin前面加上类名。-如同在实例属性上使用-this-前缀来访问属性一样，这里我们使用-Grid-来访问静态属性。"><a href="#到目前为止，我们只讨论了类的实例成员，那些仅当类被实例化的时候才会被初始化的属性。-我们也可以创建类的静态成员，这些属性存在于类本身上面而不是类的实例上。-在这个例子里，我们使用-static定义-origin，因为它是所有网格都会用到的属性。-每个实例想要访问这个属性的时候，都要在-origin前面加上类名。-如同在实例属性上使用-this-前缀来访问属性一样，这里我们使用-Grid-来访问静态属性。" class="headerlink" title="到目前为止，我们只讨论了类的实例成员，那些仅当类被实例化的时候才会被初始化的属性。 我们也可以创建类的静态成员，这些属性存在于类本身上面而不是类的实例上。 在这个例子里，我们使用 static定义 origin，因为它是所有网格都会用到的属性。 每个实例想要访问这个属性的时候，都要在 origin前面加上类名。 如同在实例属性上使用 this.前缀来访问属性一样，这里我们使用 Grid.来访问静态属性。"></a>到目前为止，我们只讨论了类的实例成员，那些仅当类被实例化的时候才会被初始化的属性。 我们也可以创建类的静态成员，这些属性存在于类本身上面而不是类的实例上。 在这个例子里，我们使用 static定义 origin，因为它是所有网格都会用到的属性。 每个实例想要访问这个属性的时候，都要在 origin前面加上类名。 如同在实例属性上使用 this.前缀来访问属性一样，这里我们使用 Grid.来访问静态属性。</h5><pre><code class="ts">    class Grid {
+    static origin = {x: 0, y: 0};
+    calculateDistanceFromOrigin(point: {x: number; y: number;}) {
+        let xDist = (point.x - Grid.origin.x);
+        let yDist = (point.y - Grid.origin.y);
+        return Math.sqrt(xDist * xDist + yDist * yDist) / this.scale;
+    }
+    constructor (public scale: number) { }
+}
+
+let grid1 = new Grid(1.0);  // 1x scale
+let grid2 = new Grid(5.0);  // 5x scale
+
+console.log(grid1.calculateDistanceFromOrigin({x: 10, y: 10}));
+console.log(grid2.calculateDistanceFromOrigin({x: 10, y: 10}));
+</code></pre>
+<h4 id="高级技巧"><a href="#高级技巧" class="headerlink" title="高级技巧"></a>高级技巧</h4><h5 id="构造函数"><a href="#构造函数" class="headerlink" title="构造函数"></a>构造函数</h5><h6 id="当你在TypeScript里声明了一个类的时候，实际上同时声明了很多东西。-首先就是类的-实例的类型。"><a href="#当你在TypeScript里声明了一个类的时候，实际上同时声明了很多东西。-首先就是类的-实例的类型。" class="headerlink" title="当你在TypeScript里声明了一个类的时候，实际上同时声明了很多东西。 首先就是类的 实例的类型。"></a>当你在TypeScript里声明了一个类的时候，实际上同时声明了很多东西。 首先就是类的 实例的类型。</h6><pre><code class="ts">    class Greeter {
+    greeting: string;
+    constructor(message: string) {
+        this.greeting = message;
+    }
+    greet() {
+        return &quot;Hello, &quot; + this.greeting;
+    }
+}
+
+let greeter: Greeter;
+greeter = new Greeter(&quot;world&quot;);
+console.log(greeter.greet());
+</code></pre>
+<h5 id="这里，我们写了-let-greeter-Greeter，意思是-Greeter类的实例的类型是-Greeter。-这对于用过其它面向对象语言的程序员来讲已经是老习惯了。"><a href="#这里，我们写了-let-greeter-Greeter，意思是-Greeter类的实例的类型是-Greeter。-这对于用过其它面向对象语言的程序员来讲已经是老习惯了。" class="headerlink" title="这里，我们写了 let greeter: Greeter，意思是 Greeter类的实例的类型是 Greeter。 这对于用过其它面向对象语言的程序员来讲已经是老习惯了。"></a>这里，我们写了 <font color="red">let greeter: Greeter</font>，意思是 Greeter类的实例的类型是 Greeter。 这对于用过其它面向对象语言的程序员来讲已经是老习惯了。</h5><h4 id="把类当做接口用"><a href="#把类当做接口用" class="headerlink" title="把类当做接口用"></a>把类当做接口用</h4><h5 id="类定义会创建两个东西：类的实例类型和一个构造函数。-因为类可以创建出类型，所以你能够在允许使用接口的地方使用类。"><a href="#类定义会创建两个东西：类的实例类型和一个构造函数。-因为类可以创建出类型，所以你能够在允许使用接口的地方使用类。" class="headerlink" title="类定义会创建两个东西：类的实例类型和一个构造函数。 因为类可以创建出类型，所以你能够在允许使用接口的地方使用类。"></a>类定义会创建两个东西：类的实例类型和一个构造函数。 因为类可以创建出类型，所以你能够在允许使用接口的地方使用类。</h5><pre><code class="ts">    class Point {
+    x: number;
+    y: number;
+}
+
+interface Point3d extends Point {
+    z: number;
+}
+
+let point3d: Point3d = {x: 1, y: 2, z: 3};
+</code></pre>
+<hr>
+<h5 id="附上我在学习类的时候写的测试代码"><a href="#附上我在学习类的时候写的测试代码" class="headerlink" title="附上我在学习类的时候写的测试代码"></a>附上我在学习类的时候写的测试代码</h5><pre><code class="ts">    class MyFunction {
+    name:string;
+    constructor(message:string){
+        this.name = message
+    }
+    sayName(){
+        return &#39;hello,&#39;+this.name
+    }
+}
+let me = new MyFunction(&#39;duanduan&#39;)
+console.log(me.sayName())
+
+//继承
+class Teature {
+    run(kilometer:number=200){
+        console.log(`Teature can run ${kilometer}m`)
+    }
+}
+class Student extends Teature{
+    oil(){
+        console.log(&#39;add oil&#39;)
+    }
+}
+const student = new Student()
+student.oil();
+student.run(800);
+//使用super关键字
+class Person{
+    sex:string;
+    age:number;
+    constructor(sex:string,age:number){
+        this.sex = sex;
+        this.age = age;
+    }
+    say(){
+        return this.age+&#39;&#39;+this.sex
+    }
+}
+
+class Person1 extends Person{
+    work:string;
+    constructor(work:string){
+        super(&#39;meal&#39;,29)
+        this.work = &#39;FE&#39;
+    }
+    say(){
+        return this.sex+&#39;&#39;+this.age+&#39;&#39;+this.work
+    }
+}
+var l = new Person1(&#39;FE&#39;)
+console.log(l.say())
+//类的访问修饰符
+class Work{
+    public type:string;
+    address:string;
+    private distance:number;
+    showWork(){
+        return this.type+&#39;&#39;+this.address
+    }
+}
+class Bus extends Work{
+    how:string;
+    showWork(){
+        return this.type+&#39;&#39;+this.address+&#39;&#39;+this.how
+    }
+}
+
+var b = new Bus()
+b.type = &#39;IT&#39;
+b.address = &#39;beijing&#39;
+b.how = &#39;railWay&#39;
+console.log(b.showWork())
+// 高级技巧 构造函数
+class Ha{
+    name:string;
+    constructor(msg:string){
+        this.name = msg
+    }
+    sayName(){
+        return &#39;hello,i am &#39;+this.name
+    }
+}
+let p :Ha
+p = new Ha(&#39;duan&#39;)
+console.log(p.sayName())
+//把类当接口
+class ShowType{
+    kid:number;
+    status:number;
+}
+interface ShowOtherType extends ShowType{
+    img:string;
+}
+let showOtherType :ShowOtherType ={
+    kid:1,
+    status:2,
+    img:&#39;&#39;
+};
+console.log(showOtherType)
+</code></pre>
+<h3 id="下一节-ts中的泛型"><a href="#下一节-ts中的泛型" class="headerlink" title="^^ 下一节 ts中的泛型"></a>^^ 下一节 ts中的泛型</h3>
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+      <div>
+        <div id="reward-container">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="reward-button" disable="enable" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    Donate
+  </button>
+  <div id="qr" style="display: none;">
+
+    
+      
+      
+        
+      
+      <div style="display: inline-block">
+        <img src="https://static.soyoung.com/sy-pre/901561004178_.pic-1561003804337.jpg" alt="端端 WeChat Pay">
+        <p>WeChat Pay</p>
+      </div>
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/06/24/ts章之函数/" rel="next" title="ts章之函数">
+                <i class="fa fa-chevron-left"></i> ts章之函数
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="https://static.soyoung.com/sy-pre/logo-1560924611786.png" alt="端端">
+            
+              <p class="site-author-name" itemprop="name">端端</p>
+              <div class="site-description motion-element" itemprop="description"></div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">12</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/lifenglei" title="GitHub &rarr; https://github.com/lifenglei"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="/1125911451" title="QQ &rarr; 1125911451"><i class="fa fa-fw fa-skype"></i>QQ</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#类"><span class="nav-number">1.</span> <span class="nav-text">类</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#介绍"><span class="nav-number">1.1.</span> <span class="nav-text">介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#认识TypeScript基于类的面向对象编程，就需要从一个简单的类开始。"><span class="nav-number">1.1.1.</span> <span class="nav-text">认识TypeScript基于类的面向对象编程，就需要从一个简单的类开始。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#例子"><span class="nav-number">1.1.2.</span> <span class="nav-text">例子</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#我们声明一个Greeter的类，这个类有3个成员-一个叫greeting属性，一个构造函数-和一个greet方法"><span class="nav-number">1.1.3.</span> <span class="nav-text">我们声明一个Greeter的类，这个类有3个成员:一个叫greeting属性，一个构造函数 和一个greet方法</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#注意"><span class="nav-number">1.1.4.</span> <span class="nav-text">注意</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#继承"><span class="nav-number">1.2.</span> <span class="nav-text">继承</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#在ts里，我们可以使用常见的面向对象模式。基于类的设计程序中一种最基本的允许使用继承来扩展现有的类"><span class="nav-number">1.2.1.</span> <span class="nav-text">在ts里，我们可以使用常见的面向对象模式。基于类的设计程序中一种最基本的允许使用继承来扩展现有的类</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#例子-1"><span class="nav-number">1.3.</span> <span class="nav-text">例子</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#使用super关键字属性继承"><span class="nav-number">1.3.1.</span> <span class="nav-text">使用super关键字属性继承</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#类的访问修饰符"><span class="nav-number">1.4.</span> <span class="nav-text">类的访问修饰符</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#在ts中有两种访问修饰符："><span class="nav-number">1.4.1.</span> <span class="nav-text">在ts中有两种访问修饰符：</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#关键词-static"><span class="nav-number">1.5.</span> <span class="nav-text">关键词 static</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#到目前为止，我们只讨论了类的实例成员，那些仅当类被实例化的时候才会被初始化的属性。-我们也可以创建类的静态成员，这些属性存在于类本身上面而不是类的实例上。-在这个例子里，我们使用-static定义-origin，因为它是所有网格都会用到的属性。-每个实例想要访问这个属性的时候，都要在-origin前面加上类名。-如同在实例属性上使用-this-前缀来访问属性一样，这里我们使用-Grid-来访问静态属性。"><span class="nav-number">1.5.1.</span> <span class="nav-text">到目前为止，我们只讨论了类的实例成员，那些仅当类被实例化的时候才会被初始化的属性。 我们也可以创建类的静态成员，这些属性存在于类本身上面而不是类的实例上。 在这个例子里，我们使用 static定义 origin，因为它是所有网格都会用到的属性。 每个实例想要访问这个属性的时候，都要在 origin前面加上类名。 如同在实例属性上使用 this.前缀来访问属性一样，这里我们使用 Grid.来访问静态属性。</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#高级技巧"><span class="nav-number">1.6.</span> <span class="nav-text">高级技巧</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#构造函数"><span class="nav-number">1.6.1.</span> <span class="nav-text">构造函数</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#当你在TypeScript里声明了一个类的时候，实际上同时声明了很多东西。-首先就是类的-实例的类型。"><span class="nav-number">1.6.1.1.</span> <span class="nav-text">当你在TypeScript里声明了一个类的时候，实际上同时声明了很多东西。 首先就是类的 实例的类型。</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#这里，我们写了-let-greeter-Greeter，意思是-Greeter类的实例的类型是-Greeter。-这对于用过其它面向对象语言的程序员来讲已经是老习惯了。"><span class="nav-number">1.6.2.</span> <span class="nav-text">这里，我们写了 let greeter: Greeter，意思是 Greeter类的实例的类型是 Greeter。 这对于用过其它面向对象语言的程序员来讲已经是老习惯了。</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#把类当做接口用"><span class="nav-number">1.7.</span> <span class="nav-text">把类当做接口用</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#类定义会创建两个东西：类的实例类型和一个构造函数。-因为类可以创建出类型，所以你能够在允许使用接口的地方使用类。"><span class="nav-number">1.7.1.</span> <span class="nav-text">类定义会创建两个东西：类的实例类型和一个构造函数。 因为类可以创建出类型，所以你能够在允许使用接口的地方使用类。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#附上我在学习类的时候写的测试代码"><span class="nav-number">1.7.2.</span> <span class="nav-text">附上我在学习类的时候写的测试代码</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#下一节-ts中的泛型"><span class="nav-number">2.</span> <span class="nav-text">^^ 下一节 ts中的泛型</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">端端</span>
+
+  
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+    
+  
+  <script color="0,0,255" opacity="0.5" zindex="-1" count="99" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+
+  
+  
+
+
+
+  
+  
+
+
+
+  
+  
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/three/three.min.js"></script>
+
+  
+  <script src="/lib/three/three-waves.min.js"></script>
+
+  
+  <script src="/lib/three/canvas_lines.min.js"></script>
+
+  
+  <script src="/lib/three/canvas_sphere.min.js"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.2"></script>
+
+  <script src="/js/motion.js?v=7.1.2"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.1.2"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.1.2"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.2"></script>
+<script src="/js/post-details.js?v=7.1.2"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.2"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+<script>
+  $('.highlight').not('.gist .highlight').each(function(i, e) {
+    var $wrap = $('<div>').addClass('highlight-wrap');
+    $(e).after($wrap);
+    $wrap.append($('<button>').addClass('copy-btn').append('Copy').on('click', function(e) {
+      var code = $(this).parent().find('.code').find('.line').map(function(i, e) {
+        return $(e).text();
+      }).toArray().join('\n');
+      var ta = document.createElement('textarea');
+      var yPosition = window.pageYOffset || document.documentElement.scrollTop;
+      ta.style.top = yPosition + 'px'; // Prevent page scroll
+      ta.style.position = 'absolute';
+      ta.style.opacity = '0';
+      ta.readOnly = true;
+      ta.value = code;
+      document.body.appendChild(ta);
+      const selection = document.getSelection();
+      const selected = selection.rangeCount > 0 ? selection.getRangeAt(0) : false;
+      ta.select();
+      ta.setSelectionRange(0, code.length);
+      ta.readOnly = false;
+      var result = document.execCommand('copy');
+      
+        if (result) $(this).text('Copied');
+        else $(this).text('Copy failed');
+      
+      ta.blur(); // For iOS
+      $(this).blur();
+      if (selected) {
+        selection.removeAllRanges();
+        selection.addRange(selected);
+      }
+    })).on('mouseleave', function(e) {
+      var $b = $(this).find('.copy-btn');
+      setTimeout(function() {
+        $b.text('Copy');
+      }, 300);
+    }).append(e);
+  })
+</script>
+
+
+  
+
+  
+
+</body>
+</html>

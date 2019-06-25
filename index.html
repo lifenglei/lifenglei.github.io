@@ -331,7 +331,7 @@
                 
               
 
-              <time title="Created: 2019-06-25 15:14:37 / Modified: 15:14:53" itemprop="dateCreated datePublished" datetime="2019-06-25T15:14:37+08:00">2019-06-25</time>
+              <time title="Created: 2019-06-25 15:14:37 / Modified: 15:20:41" itemprop="dateCreated datePublished" datetime="2019-06-25T15:14:37+08:00">2019-06-25</time>
             
 
             
@@ -415,8 +415,9 @@ class Student extends Human {
   school: string;
   // 此处Student 也必须传递构造方法
   constructor(school: string) {
-    this.school = school;
     super(&#39;Joh&#39;, 90);
+    this.school = school;
+
   }
   tell() {
     return this.name + &#39; &#39; + this.age + &#39; &#39; + this.school;
@@ -429,16 +430,33 @@ console.log(s.tell());
 </code></pre>
 <h4 id="类的访问修饰符"><a href="#类的访问修饰符" class="headerlink" title="类的访问修饰符"></a>类的访问修饰符</h4><h5 id="在ts中有两种访问修饰符："><a href="#在ts中有两种访问修饰符：" class="headerlink" title="在ts中有两种访问修饰符："></a>在ts中有两种访问修饰符：</h5><ul>
 <li>public:共有的</li>
-<li><p>private:私有的<br><code>`</code>ts<br>class People {<br>// public 是默认的， 不加修饰符都是public<br>public name:string;<br>age:number;<br>// private 无法访问和继承<br>private color:string;</p>
-<p>getInfo() {<br>return this.name + ‘:’ + this.age;<br>}<br>}</p>
-</li>
-</ul>
-<p>class Teacher extends People {<br>  school:string;<br>  getInfo() {<br>    return this.name + ‘:’ + this.age + ‘:’ + this.school;<br>  }<br>}</p>
-<p>var t = new Teacher();<br>t.name = ‘Joh’;<br>t.age = ‘90’;<br>t.school = ‘MIT’;<br>console.log(t.getInfo());</p>
-<pre><code>#### 存取器
-#### TypeScript支持通过getters/setters来截取对对象成员的访问。 它能帮助你有效的控制对对象成员的访问。
-```ts
-    let passcode = &quot;secret passcode&quot;;
+<li><p>private:私有的</p>
+<h4 id="例子-2"><a href="#例子-2" class="headerlink" title="例子"></a>例子</h4><pre><code class="ts">class People {
+// public 是默认的， 不加修饰符都是public
+public name:string;
+age:number;
+// private 无法访问和继承
+private color:string;
+
+getInfo() {
+    return this.name + &#39;:&#39; + this.age;
+}
+}
+
+class Teacher extends People {
+school:string;
+getInfo() {
+    return this.name + &#39;:&#39; + this.age + &#39;:&#39; + this.school;
+}
+}
+
+var t = new Teacher();
+t.name = &#39;Joh&#39;;
+t.age = &#39;90&#39;;
+t.school = &#39;MIT&#39;;
+console.log(t.getInfo());
+</code></pre>
+<h4 id="存取器"><a href="#存取器" class="headerlink" title="存取器"></a>存取器</h4><h4 id="TypeScript支持通过getters-setters来截取对对象成员的访问。-它能帮助你有效的控制对对象成员的访问。"><a href="#TypeScript支持通过getters-setters来截取对对象成员的访问。-它能帮助你有效的控制对对象成员的访问。" class="headerlink" title="TypeScript支持通过getters/setters来截取对对象成员的访问。 它能帮助你有效的控制对对象成员的访问。"></a>TypeScript支持通过getters/setters来截取对对象成员的访问。 它能帮助你有效的控制对对象成员的访问。</h4><pre><code class="ts">let passcode = &quot;secret passcode&quot;;
 
 class Employee {
     private _fullName: string;
@@ -456,13 +474,13 @@ class Employee {
         }
     }
 }
-
 let employee = new Employee();
 employee.fullName = &quot;Bob Smith&quot;;
 if (employee.fullName) {
     alert(employee.fullName);
 }
-</code></pre><h4 id="关键词-static"><a href="#关键词-static" class="headerlink" title="关键词 static"></a>关键词 static</h4><h5 id="到目前为止，我们只讨论了类的实例成员，那些仅当类被实例化的时候才会被初始化的属性。-我们也可以创建类的静态成员，这些属性存在于类本身上面而不是类的实例上。-在这个例子里，我们使用-static定义-origin，因为它是所有网格都会用到的属性。-每个实例想要访问这个属性的时候，都要在-origin前面加上类名。-如同在实例属性上使用-this-前缀来访问属性一样，这里我们使用-Grid-来访问静态属性。"><a href="#到目前为止，我们只讨论了类的实例成员，那些仅当类被实例化的时候才会被初始化的属性。-我们也可以创建类的静态成员，这些属性存在于类本身上面而不是类的实例上。-在这个例子里，我们使用-static定义-origin，因为它是所有网格都会用到的属性。-每个实例想要访问这个属性的时候，都要在-origin前面加上类名。-如同在实例属性上使用-this-前缀来访问属性一样，这里我们使用-Grid-来访问静态属性。" class="headerlink" title="到目前为止，我们只讨论了类的实例成员，那些仅当类被实例化的时候才会被初始化的属性。 我们也可以创建类的静态成员，这些属性存在于类本身上面而不是类的实例上。 在这个例子里，我们使用 static定义 origin，因为它是所有网格都会用到的属性。 每个实例想要访问这个属性的时候，都要在 origin前面加上类名。 如同在实例属性上使用 this.前缀来访问属性一样，这里我们使用 Grid.来访问静态属性。"></a>到目前为止，我们只讨论了类的实例成员，那些仅当类被实例化的时候才会被初始化的属性。 我们也可以创建类的静态成员，这些属性存在于类本身上面而不是类的实例上。 在这个例子里，我们使用 static定义 origin，因为它是所有网格都会用到的属性。 每个实例想要访问这个属性的时候，都要在 origin前面加上类名。 如同在实例属性上使用 this.前缀来访问属性一样，这里我们使用 Grid.来访问静态属性。</h5><pre><code class="ts">    class Grid {
+</code></pre>
+<h4 id="关键词-static"><a href="#关键词-static" class="headerlink" title="关键词 static"></a>关键词 static</h4><h5 id="到目前为止，我们只讨论了类的实例成员，那些仅当类被实例化的时候才会被初始化的属性。-我们也可以创建类的静态成员，这些属性存在于类本身上面而不是类的实例上。-在这个例子里，我们使用-static定义-origin，因为它是所有网格都会用到的属性。-每个实例想要访问这个属性的时候，都要在-origin前面加上类名。-如同在实例属性上使用-this-前缀来访问属性一样，这里我们使用-Grid-来访问静态属性。"><a href="#到目前为止，我们只讨论了类的实例成员，那些仅当类被实例化的时候才会被初始化的属性。-我们也可以创建类的静态成员，这些属性存在于类本身上面而不是类的实例上。-在这个例子里，我们使用-static定义-origin，因为它是所有网格都会用到的属性。-每个实例想要访问这个属性的时候，都要在-origin前面加上类名。-如同在实例属性上使用-this-前缀来访问属性一样，这里我们使用-Grid-来访问静态属性。" class="headerlink" title="到目前为止，我们只讨论了类的实例成员，那些仅当类被实例化的时候才会被初始化的属性。 我们也可以创建类的静态成员，这些属性存在于类本身上面而不是类的实例上。 在这个例子里，我们使用 static定义 origin，因为它是所有网格都会用到的属性。 每个实例想要访问这个属性的时候，都要在 origin前面加上类名。 如同在实例属性上使用 this.前缀来访问属性一样，这里我们使用 Grid.来访问静态属性。"></a>到目前为止，我们只讨论了类的实例成员，那些仅当类被实例化的时候才会被初始化的属性。 我们也可以创建类的静态成员，这些属性存在于类本身上面而不是类的实例上。 在这个例子里，我们使用 static定义 origin，因为它是所有网格都会用到的属性。 每个实例想要访问这个属性的时候，都要在 origin前面加上类名。 如同在实例属性上使用 this.前缀来访问属性一样，这里我们使用 Grid.来访问静态属性。</h5><pre><code class="ts">class Grid {
     static origin = {x: 0, y: 0};
     calculateDistanceFromOrigin(point: {x: number; y: number;}) {
         let xDist = (point.x - Grid.origin.x);
@@ -478,14 +496,14 @@ let grid2 = new Grid(5.0);  // 5x scale
 console.log(grid1.calculateDistanceFromOrigin({x: 10, y: 10}));
 console.log(grid2.calculateDistanceFromOrigin({x: 10, y: 10}));
 </code></pre>
-<h4 id="高级技巧"><a href="#高级技巧" class="headerlink" title="高级技巧"></a>高级技巧</h4><h5 id="构造函数"><a href="#构造函数" class="headerlink" title="构造函数"></a>构造函数</h5><h6 id="当你在TypeScript里声明了一个类的时候，实际上同时声明了很多东西。-首先就是类的-实例的类型。"><a href="#当你在TypeScript里声明了一个类的时候，实际上同时声明了很多东西。-首先就是类的-实例的类型。" class="headerlink" title="当你在TypeScript里声明了一个类的时候，实际上同时声明了很多东西。 首先就是类的 实例的类型。"></a>当你在TypeScript里声明了一个类的时候，实际上同时声明了很多东西。 首先就是类的 实例的类型。</h6><pre><code class="ts">    class Greeter {
-    greeting: string;
-    constructor(message: string) {
-        this.greeting = message;
-    }
-    greet() {
-        return &quot;Hello, &quot; + this.greeting;
-    }
+<h4 id="高级技巧"><a href="#高级技巧" class="headerlink" title="高级技巧"></a>高级技巧</h4><h5 id="构造函数"><a href="#构造函数" class="headerlink" title="构造函数"></a>构造函数</h5><h6 id="当你在TypeScript里声明了一个类的时候，实际上同时声明了很多东西。-首先就是类的-实例的类型。"><a href="#当你在TypeScript里声明了一个类的时候，实际上同时声明了很多东西。-首先就是类的-实例的类型。" class="headerlink" title="当你在TypeScript里声明了一个类的时候，实际上同时声明了很多东西。 首先就是类的 实例的类型。"></a>当你在TypeScript里声明了一个类的时候，实际上同时声明了很多东西。 首先就是类的 实例的类型。</h6><pre><code class="ts">class Greeter {
+greeting: string;
+constructor(message: string) {
+    this.greeting = message;
+}
+greet() {
+    return &quot;Hello, &quot; + this.greeting;
+}
 }
 
 let greeter: Greeter;
@@ -496,13 +514,14 @@ console.log(greeter.greet());
     x: number;
     y: number;
 }
-
 interface Point3d extends Point {
     z: number;
 }
 
 let point3d: Point3d = {x: 1, y: 2, z: 3};
 </code></pre>
+</li>
+</ul>
 <hr>
 <h5 id="附上我在学习类的时候写的测试代码"><a href="#附上我在学习类的时候写的测试代码" class="headerlink" title="附上我在学习类的时候写的测试代码"></a>附上我在学习类的时候写的测试代码</h5><pre><code class="ts">    class MyFunction {
     name:string;

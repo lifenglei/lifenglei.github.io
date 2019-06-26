@@ -1,0 +1,918 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.2">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.2">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.1.2">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.1.2">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.2" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.1.2',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="泛型介绍在像java这样的语言中，可以使用泛型来创建可重用的组件，一个组件可以支持多种类型的数据。这样用户就可以以自己的数据类型来使用组件。泛型之Hello World要兼容多种数据格式，可能有人会想到any,即    function identify(arg:any):any{         return arg     }  使用any存在一个问题，有可能传入的值和返回的值不是同一种值，例">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ts章之泛型">
+<meta property="og:url" content="https://github.com/lifenglei/2019/06/26/ts章之泛型/index.html">
+<meta property="og:site_name" content="前端开发沉淀">
+<meta property="og:description" content="泛型介绍在像java这样的语言中，可以使用泛型来创建可重用的组件，一个组件可以支持多种类型的数据。这样用户就可以以自己的数据类型来使用组件。泛型之Hello World要兼容多种数据格式，可能有人会想到any,即    function identify(arg:any):any{         return arg     }  使用any存在一个问题，有可能传入的值和返回的值不是同一种值，例">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-06-26T07:15:12.417Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ts章之泛型">
+<meta name="twitter:description" content="泛型介绍在像java这样的语言中，可以使用泛型来创建可重用的组件，一个组件可以支持多种类型的数据。这样用户就可以以自己的数据类型来使用组件。泛型之Hello World要兼容多种数据格式，可能有人会想到any,即    function identify(arg:any):any{         return arg     }  使用any存在一个问题，有可能传入的值和返回的值不是同一种值，例">
+
+
+
+
+
+  
+  
+  <link rel="canonical" href="https://github.com/lifenglei/2019/06/26/ts章之泛型/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>ts章之泛型 | 前端开发沉淀</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">前端开发沉淀</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://github.com/lifenglei/2019/06/26/ts章之泛型/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="端端">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="https://static.soyoung.com/sy-pre/logo-1560924611786.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="前端开发沉淀">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">ts章之泛型
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-06-26 15:14:51 / Modified: 15:15:12" itemprop="dateCreated datePublished" datetime="2019-06-26T15:14:51+08:00">2019-06-26</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="泛型"><a href="#泛型" class="headerlink" title="泛型"></a>泛型</h3><h4 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h4><h5 id="在像java这样的语言中，可以使用泛型来创建可重用的组件，一个组件可以支持多种类型的数据。这样用户就可以以自己的数据类型来使用组件。"><a href="#在像java这样的语言中，可以使用泛型来创建可重用的组件，一个组件可以支持多种类型的数据。这样用户就可以以自己的数据类型来使用组件。" class="headerlink" title="在像java这样的语言中，可以使用泛型来创建可重用的组件，一个组件可以支持多种类型的数据。这样用户就可以以自己的数据类型来使用组件。"></a>在像java这样的语言中，可以使用<font color="red">泛型</font>来创建可重用的组件，一个组件可以支持多种类型的数据。这样用户就可以以自己的数据类型来使用组件。</h5><h4 id="泛型之Hello-World"><a href="#泛型之Hello-World" class="headerlink" title="泛型之Hello World"></a>泛型之Hello World</h4><h5 id="要兼容多种数据格式，可能有人会想到any-即"><a href="#要兼容多种数据格式，可能有人会想到any-即" class="headerlink" title="要兼容多种数据格式，可能有人会想到any,即"></a>要兼容多种数据格式，可能有人会想到any,即</h5><pre><code class="ts">    function identify(arg:any):any{
+        return arg
+    }
+</code></pre>
+<h5 id="使用any存在一个问题，有可能传入的值和返回的值不是同一种值，例如传入数字-但是不确定返回的是什么值-要解决这个问题，我们需要引入类型变量–一种特殊的变量，只用于表示类型不表示值"><a href="#使用any存在一个问题，有可能传入的值和返回的值不是同一种值，例如传入数字-但是不确定返回的是什么值-要解决这个问题，我们需要引入类型变量–一种特殊的变量，只用于表示类型不表示值" class="headerlink" title="使用any存在一个问题，有可能传入的值和返回的值不是同一种值，例如传入数字 但是不确定返回的是什么值 要解决这个问题，我们需要引入类型变量–一种特殊的变量，只用于表示类型不表示值"></a>使用any存在一个问题，有可能传入的值和返回的值不是同一种值，例如传入数字 但是不确定返回的是什么值 要解决这个问题，我们需要引入类型变量–一种特殊的变量，只用于表示类型不表示值</h5><pre><code class="ts">    function identify &lt;T&gt;(arg:T):T{
+        return arg
+    }
+</code></pre>
+<h5 id="给identify添加了类型变量T-用来捕获传入值的类型，然后将返回值的类型也设为T-就实现了传入值和返回值为同一类型值的需求-我们把identify这个函数叫做泛型，因为它适用于所有类型，并且不会有any类型存在的问题-使用泛型的方法有两种"><a href="#给identify添加了类型变量T-用来捕获传入值的类型，然后将返回值的类型也设为T-就实现了传入值和返回值为同一类型值的需求-我们把identify这个函数叫做泛型，因为它适用于所有类型，并且不会有any类型存在的问题-使用泛型的方法有两种" class="headerlink" title="给identify添加了类型变量T 用来捕获传入值的类型，然后将返回值的类型也设为T 就实现了传入值和返回值为同一类型值的需求 我们把identify这个函数叫做泛型，因为它适用于所有类型，并且不会有any类型存在的问题 使用泛型的方法有两种"></a>给identify添加了类型变量T 用来捕获传入值的类型，然后将返回值的类型也设为T 就实现了传入值和返回值为同一类型值的需求 我们把identify这个函数叫做泛型，因为它适用于所有类型，并且不会有any类型存在的问题 使用泛型的方法有两种</h5><ul>
+<li>传入所有的参数，包括类型参数<pre><code class="ts">let output = identify&lt;string&gt;(&#39;qew&#39;)
+</code></pre>
+</li>
+<li>利用类型推论–即编译器会根据传入的参数自动地帮助我们确定T的类型<pre><code class="ts">let output = identify(&#39;qwe&#39;)
+</code></pre>
+<h4 id="泛型变量"><a href="#泛型变量" class="headerlink" title="泛型变量"></a>泛型变量</h4><h5 id="在泛型中-我们要合理正确的使用泛型变量T-要牢记T表示任何类型"><a href="#在泛型中-我们要合理正确的使用泛型变量T-要牢记T表示任何类型" class="headerlink" title="在泛型中 我们要合理正确的使用泛型变量T 要牢记T表示任何类型"></a>在泛型中 我们要合理正确的使用泛型变量T 要牢记T表示任何类型</h5></li>
+<li><p>错误使用</p>
+<pre><code class="ts">function identify&lt;T&gt;(arg:T):T{
+    console.log(arg.length)//Error T dosent have .length
+    return arg;
+}
+</code></pre>
+<h5 id="记住，这些类型变量代表的是任意类型，所以使用这个函数的人可能传入的是个数字，而数字是没有-length属性的。"><a href="#记住，这些类型变量代表的是任意类型，所以使用这个函数的人可能传入的是个数字，而数字是没有-length属性的。" class="headerlink" title="记住，这些类型变量代表的是任意类型，所以使用这个函数的人可能传入的是个数字，而数字是没有 .length属性的。"></a>记住，这些类型变量代表的是任意类型，所以使用这个函数的人可能传入的是个数字，而数字是没有 <font color="red">.length</font>属性的。</h5><h5 id="现在假设我们想操作T类型的数组而不直接是T-由于我们操作的是数组，所以-length属性应该是存在的-我们可以像创建其他数组一样创建这个数组："><a href="#现在假设我们想操作T类型的数组而不直接是T-由于我们操作的是数组，所以-length属性应该是存在的-我们可以像创建其他数组一样创建这个数组：" class="headerlink" title="现在假设我们想操作T类型的数组而不直接是T,由于我们操作的是数组，所以.length属性应该是存在的 我们可以像创建其他数组一样创建这个数组："></a>现在假设我们想操作T类型的数组而不直接是T,由于我们操作的是数组，所以.length属性应该是存在的 我们可以像创建其他数组一样创建这个数组：</h5><pre><code class="ts">funtion loggingIdentify&lt;T&gt;(arg:T[]):T[]{
+    console.log(arg.length)//Array has a .length so no more error
+    return arg;
+}
+</code></pre>
+<h5 id="你可以这样理解loggingIdentity的类型：泛型函数loggingIdentity，接收类型参数T和参数arg，它是个元素类型是T的数组，并返回元素T类型是的数组。-如果我们传入数字数组，将返回一个数字数组，因为此时-T的的类型为number。-这可以让我们把泛型变量T当做类型的一部分使用，而不是整个类型，增加了灵活性。"><a href="#你可以这样理解loggingIdentity的类型：泛型函数loggingIdentity，接收类型参数T和参数arg，它是个元素类型是T的数组，并返回元素T类型是的数组。-如果我们传入数字数组，将返回一个数字数组，因为此时-T的的类型为number。-这可以让我们把泛型变量T当做类型的一部分使用，而不是整个类型，增加了灵活性。" class="headerlink" title="你可以这样理解loggingIdentity的类型：泛型函数loggingIdentity，接收类型参数T和参数arg，它是个元素类型是T的数组，并返回元素T类型是的数组。 如果我们传入数字数组，将返回一个数字数组，因为此时 T的的类型为number。 这可以让我们把泛型变量T当做类型的一部分使用，而不是整个类型，增加了灵活性。"></a>你可以这样理解<font color="red">loggingIdentity</font>的类型：泛型函数loggingIdentity，接收类型参数<font color="red">T</font>和参数<font color="red">arg</font>，它是个元素类型是<font color="red">T</font>的数组，并返回元素<font color="red">T</font>类型是的数组。 如果我们传入数字数组，将返回一个数字数组，因为此时 T的的类型为number。 这可以让我们把泛型变量T当做类型的一部分使用，而不是整个类型，增加了灵活性。</h5><h5 id="我们也可以这样实现上面的例子"><a href="#我们也可以这样实现上面的例子" class="headerlink" title="我们也可以这样实现上面的例子"></a>我们也可以这样实现上面的例子</h5><pre><code class="ts">function loggingIdentify &lt;T&gt;(arg:Array&lt;T&gt;):Array&lt;T&gt;{
+    console.log(arg.length)
+    return arg;
+}
+</code></pre>
+<h4 id="泛型类型"><a href="#泛型类型" class="headerlink" title="泛型类型"></a>泛型类型</h4><h5 id="泛型函数的类型与非泛型函数的类型没什么不同，只是有一个类型参数在最前面，像函数声明一样："><a href="#泛型函数的类型与非泛型函数的类型没什么不同，只是有一个类型参数在最前面，像函数声明一样：" class="headerlink" title="泛型函数的类型与非泛型函数的类型没什么不同，只是有一个类型参数在最前面，像函数声明一样："></a>泛型函数的类型与非泛型函数的类型没什么不同，只是有一个类型参数在最前面，像函数声明一样：</h5><pre><code class="ts">function identify&lt;T&gt;(arg:T):T{
+    return arg;
+}
+let myIdentify:&lt;T&gt;(arg:T)=&gt;T=identify
+</code></pre>
+<h5 id="我们也可以使用不同的泛型参数名-只要在数量上和使用方式上能对应上就可以"><a href="#我们也可以使用不同的泛型参数名-只要在数量上和使用方式上能对应上就可以" class="headerlink" title="我们也可以使用不同的泛型参数名 只要在数量上和使用方式上能对应上就可以"></a>我们也可以使用不同的泛型参数名 只要在数量上和使用方式上能对应上就可以</h5><pre><code class="ts">funtion identify&lt;T&gt;(arg:T):T{
+    return arg;
+}
+let myIdentify:&lt;U&gt;(arg:U)=&gt;U = identify
+</code></pre>
+<h5 id="我们还可以使用带有调用签名的对象字面量定义泛型函数"><a href="#我们还可以使用带有调用签名的对象字面量定义泛型函数" class="headerlink" title="我们还可以使用带有调用签名的对象字面量定义泛型函数"></a>我们还可以使用带有调用签名的对象字面量定义泛型函数</h5><pre><code class="ts">function identify&lt;T&gt;(arg:T):T{
+    return arg;
+}
+let myIdentify:{&lt;T&gt;(arg:T):T} = identify
+</code></pre>
+<h5 id="这引导我们去写第一个泛型接口了，我们把上面的例子里的对象字面量拿出来作为一个接口"><a href="#这引导我们去写第一个泛型接口了，我们把上面的例子里的对象字面量拿出来作为一个接口" class="headerlink" title="这引导我们去写第一个泛型接口了，我们把上面的例子里的对象字面量拿出来作为一个接口"></a>这引导我们去写第一个泛型接口了，我们把上面的例子里的对象字面量拿出来作为一个接口</h5><pre><code class="ts">interFace GenericIdentify{
+    &lt;T&gt;(arg:T):T
+}
+function identify&lt;T&gt;(arg:T):T{
+    return arg;
+}
+let myIdentify:GenericIdentify = identify
+</code></pre>
+<h5 id="一个相似的例子，我们可能想把泛型参数当作整个接口的一个参数。-这样我们就能清楚的知道使用的具体是哪个泛型类型（比如：-Dictionary而不只是Dictionary）。-这样接口里的其它成员也能知道这个参数的类型了。"><a href="#一个相似的例子，我们可能想把泛型参数当作整个接口的一个参数。-这样我们就能清楚的知道使用的具体是哪个泛型类型（比如：-Dictionary而不只是Dictionary）。-这样接口里的其它成员也能知道这个参数的类型了。" class="headerlink" title="一个相似的例子，我们可能想把泛型参数当作整个接口的一个参数。 这样我们就能清楚的知道使用的具体是哪个泛型类型（比如： Dictionary而不只是Dictionary）。 这样接口里的其它成员也能知道这个参数的类型了。"></a>一个相似的例子，我们可能想把泛型参数当作整个接口的一个参数。 这样我们就能清楚的知道使用的具体是哪个泛型类型（比如： <font color="red">Dictionary<string>而不只是Dictionary</string></font>）。 这样接口里的其它成员也能知道这个参数的类型了。</h5><pre><code class="ts">interface GenericIdentityFn&lt;T&gt; {
+     (arg: T): T;
+}
+
+function identity&lt;T&gt;(arg: T): T {
+    return arg;
+}
+
+let myIdentity: GenericIdentityFn&lt;number&gt; = identity;
+</code></pre>
+<h4 id="泛型类"><a href="#泛型类" class="headerlink" title="泛型类"></a>泛型类</h4><h5 id="泛型类看上去与泛型接口差不多。泛型类使用（-lt-gt-）括起来泛型类型，跟在类名后面"><a href="#泛型类看上去与泛型接口差不多。泛型类使用（-lt-gt-）括起来泛型类型，跟在类名后面" class="headerlink" title="泛型类看上去与泛型接口差不多。泛型类使用（&lt;&gt;）括起来泛型类型，跟在类名后面"></a>泛型类看上去与泛型接口差不多。泛型类使用（&lt;&gt;）括起来泛型类型，跟在类名后面</h5><pre><code class="ts">class GenericNumber&lt;T&gt; {
+    zeroValue: T;
+    add: (x: T, y: T) =&gt; T;
+}
+
+let myGenericNumber = new GenericNumber&lt;number&gt;();
+myGenericNumber.zeroValue = 0;
+myGenericNumber.add = function(x, y) { return x + y; };
+</code></pre>
+<h4 id="泛型约束"><a href="#泛型约束" class="headerlink" title="泛型约束"></a>泛型约束</h4><h5 id="在前面的泛型变量中遇到了一个问题，就是在泛型中调用参数的length时，如果参数没有Length属性会报错，而使用泛型约束，就是只有满足一定的条件才可以使用这个泛型"><a href="#在前面的泛型变量中遇到了一个问题，就是在泛型中调用参数的length时，如果参数没有Length属性会报错，而使用泛型约束，就是只有满足一定的条件才可以使用这个泛型" class="headerlink" title="在前面的泛型变量中遇到了一个问题，就是在泛型中调用参数的length时，如果参数没有Length属性会报错，而使用泛型约束，就是只有满足一定的条件才可以使用这个泛型"></a>在前面的泛型变量中遇到了一个问题，就是在泛型中调用参数的length时，如果参数没有Length属性会报错，而使用泛型约束，就是只有满足一定的条件才可以使用这个泛型</h5><h5 id="为此，我们定义一个接口来描述约束条件。-创建一个包含-length属性的接口，使用这个接口和extends关键字还实现约束："><a href="#为此，我们定义一个接口来描述约束条件。-创建一个包含-length属性的接口，使用这个接口和extends关键字还实现约束：" class="headerlink" title="为此，我们定义一个接口来描述约束条件。 创建一个包含 .length属性的接口，使用这个接口和extends关键字还实现约束："></a>为此，我们定义一个接口来描述约束条件。 创建一个包含 .length属性的接口，使用这个接口和extends关键字还实现约束：</h5><pre><code>interface lengthwise{
+    length: number;
+}
+
+function identity&lt;T extends lengthwise&gt;(arg: T): T{
+    console.log(arg.length);
+    return arg;
+}
+
+identity(123); //error
+
+identity(&#39;qwe&#39;); //true
+</code></pre><h5 id="当传入123时，没有length属性，就报错，而传入字符串qwe时则完全正确"><a href="#当传入123时，没有length属性，就报错，而传入字符串qwe时则完全正确" class="headerlink" title="当传入123时，没有length属性，就报错，而传入字符串qwe时则完全正确"></a>当传入123时，没有length属性，就报错，而传入字符串qwe时则完全正确</h5><h4 id="下一章-ts章之类型推论"><a href="#下一章-ts章之类型推论" class="headerlink" title="^^ 下一章 ts章之类型推论"></a>^^ 下一章 ts章之类型推论</h4></li>
+</ul>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+      <div>
+        <div id="reward-container">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="reward-button" disable="enable" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    Donate
+  </button>
+  <div id="qr" style="display: none;">
+
+    
+      
+      
+        
+      
+      <div style="display: inline-block">
+        <img src="https://static.soyoung.com/sy-pre/901561004178_.pic-1561003804337.jpg" alt="端端 WeChat Pay">
+        <p>WeChat Pay</p>
+      </div>
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/06/25/ts章节之类/" rel="next" title="ts章节之类">
+                <i class="fa fa-chevron-left"></i> ts章节之类
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="https://static.soyoung.com/sy-pre/logo-1560924611786.png" alt="端端">
+            
+              <p class="site-author-name" itemprop="name">端端</p>
+              <div class="site-description motion-element" itemprop="description"></div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">13</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/lifenglei" title="GitHub &rarr; https://github.com/lifenglei"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="/1125911451" title="QQ &rarr; 1125911451"><i class="fa fa-fw fa-skype"></i>QQ</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#泛型"><span class="nav-number">1.</span> <span class="nav-text">泛型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#介绍"><span class="nav-number">1.1.</span> <span class="nav-text">介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#在像java这样的语言中，可以使用泛型来创建可重用的组件，一个组件可以支持多种类型的数据。这样用户就可以以自己的数据类型来使用组件。"><span class="nav-number">1.1.1.</span> <span class="nav-text">在像java这样的语言中，可以使用泛型来创建可重用的组件，一个组件可以支持多种类型的数据。这样用户就可以以自己的数据类型来使用组件。</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#泛型之Hello-World"><span class="nav-number">1.2.</span> <span class="nav-text">泛型之Hello World</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#要兼容多种数据格式，可能有人会想到any-即"><span class="nav-number">1.2.1.</span> <span class="nav-text">要兼容多种数据格式，可能有人会想到any,即</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#使用any存在一个问题，有可能传入的值和返回的值不是同一种值，例如传入数字-但是不确定返回的是什么值-要解决这个问题，我们需要引入类型变量–一种特殊的变量，只用于表示类型不表示值"><span class="nav-number">1.2.2.</span> <span class="nav-text">使用any存在一个问题，有可能传入的值和返回的值不是同一种值，例如传入数字 但是不确定返回的是什么值 要解决这个问题，我们需要引入类型变量–一种特殊的变量，只用于表示类型不表示值</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#给identify添加了类型变量T-用来捕获传入值的类型，然后将返回值的类型也设为T-就实现了传入值和返回值为同一类型值的需求-我们把identify这个函数叫做泛型，因为它适用于所有类型，并且不会有any类型存在的问题-使用泛型的方法有两种"><span class="nav-number">1.2.3.</span> <span class="nav-text">给identify添加了类型变量T 用来捕获传入值的类型，然后将返回值的类型也设为T 就实现了传入值和返回值为同一类型值的需求 我们把identify这个函数叫做泛型，因为它适用于所有类型，并且不会有any类型存在的问题 使用泛型的方法有两种</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#泛型变量"><span class="nav-number">1.3.</span> <span class="nav-text">泛型变量</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#在泛型中-我们要合理正确的使用泛型变量T-要牢记T表示任何类型"><span class="nav-number">1.3.1.</span> <span class="nav-text">在泛型中 我们要合理正确的使用泛型变量T 要牢记T表示任何类型</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#记住，这些类型变量代表的是任意类型，所以使用这个函数的人可能传入的是个数字，而数字是没有-length属性的。"><span class="nav-number">1.3.2.</span> <span class="nav-text">记住，这些类型变量代表的是任意类型，所以使用这个函数的人可能传入的是个数字，而数字是没有 .length属性的。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#现在假设我们想操作T类型的数组而不直接是T-由于我们操作的是数组，所以-length属性应该是存在的-我们可以像创建其他数组一样创建这个数组："><span class="nav-number">1.3.3.</span> <span class="nav-text">现在假设我们想操作T类型的数组而不直接是T,由于我们操作的是数组，所以.length属性应该是存在的 我们可以像创建其他数组一样创建这个数组：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#你可以这样理解loggingIdentity的类型：泛型函数loggingIdentity，接收类型参数T和参数arg，它是个元素类型是T的数组，并返回元素T类型是的数组。-如果我们传入数字数组，将返回一个数字数组，因为此时-T的的类型为number。-这可以让我们把泛型变量T当做类型的一部分使用，而不是整个类型，增加了灵活性。"><span class="nav-number">1.3.4.</span> <span class="nav-text">你可以这样理解loggingIdentity的类型：泛型函数loggingIdentity，接收类型参数T和参数arg，它是个元素类型是T的数组，并返回元素T类型是的数组。 如果我们传入数字数组，将返回一个数字数组，因为此时 T的的类型为number。 这可以让我们把泛型变量T当做类型的一部分使用，而不是整个类型，增加了灵活性。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#我们也可以这样实现上面的例子"><span class="nav-number">1.3.5.</span> <span class="nav-text">我们也可以这样实现上面的例子</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#泛型类型"><span class="nav-number">1.4.</span> <span class="nav-text">泛型类型</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#泛型函数的类型与非泛型函数的类型没什么不同，只是有一个类型参数在最前面，像函数声明一样："><span class="nav-number">1.4.1.</span> <span class="nav-text">泛型函数的类型与非泛型函数的类型没什么不同，只是有一个类型参数在最前面，像函数声明一样：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#我们也可以使用不同的泛型参数名-只要在数量上和使用方式上能对应上就可以"><span class="nav-number">1.4.2.</span> <span class="nav-text">我们也可以使用不同的泛型参数名 只要在数量上和使用方式上能对应上就可以</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#我们还可以使用带有调用签名的对象字面量定义泛型函数"><span class="nav-number">1.4.3.</span> <span class="nav-text">我们还可以使用带有调用签名的对象字面量定义泛型函数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#这引导我们去写第一个泛型接口了，我们把上面的例子里的对象字面量拿出来作为一个接口"><span class="nav-number">1.4.4.</span> <span class="nav-text">这引导我们去写第一个泛型接口了，我们把上面的例子里的对象字面量拿出来作为一个接口</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#一个相似的例子，我们可能想把泛型参数当作整个接口的一个参数。-这样我们就能清楚的知道使用的具体是哪个泛型类型（比如：-Dictionary而不只是Dictionary）。-这样接口里的其它成员也能知道这个参数的类型了。"><span class="nav-number">1.4.5.</span> <span class="nav-text">一个相似的例子，我们可能想把泛型参数当作整个接口的一个参数。 这样我们就能清楚的知道使用的具体是哪个泛型类型（比如： Dictionary而不只是Dictionary）。 这样接口里的其它成员也能知道这个参数的类型了。</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#泛型类"><span class="nav-number">1.5.</span> <span class="nav-text">泛型类</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#泛型类看上去与泛型接口差不多。泛型类使用（-lt-gt-）括起来泛型类型，跟在类名后面"><span class="nav-number">1.5.1.</span> <span class="nav-text">泛型类看上去与泛型接口差不多。泛型类使用（&lt;&gt;）括起来泛型类型，跟在类名后面</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#泛型约束"><span class="nav-number">1.6.</span> <span class="nav-text">泛型约束</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#在前面的泛型变量中遇到了一个问题，就是在泛型中调用参数的length时，如果参数没有Length属性会报错，而使用泛型约束，就是只有满足一定的条件才可以使用这个泛型"><span class="nav-number">1.6.1.</span> <span class="nav-text">在前面的泛型变量中遇到了一个问题，就是在泛型中调用参数的length时，如果参数没有Length属性会报错，而使用泛型约束，就是只有满足一定的条件才可以使用这个泛型</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#为此，我们定义一个接口来描述约束条件。-创建一个包含-length属性的接口，使用这个接口和extends关键字还实现约束："><span class="nav-number">1.6.2.</span> <span class="nav-text">为此，我们定义一个接口来描述约束条件。 创建一个包含 .length属性的接口，使用这个接口和extends关键字还实现约束：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#当传入123时，没有length属性，就报错，而传入字符串qwe时则完全正确"><span class="nav-number">1.6.3.</span> <span class="nav-text">当传入123时，没有length属性，就报错，而传入字符串qwe时则完全正确</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#下一章-ts章之类型推论"><span class="nav-number">1.7.</span> <span class="nav-text">^^ 下一章 ts章之类型推论</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">端端</span>
+
+  
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+    
+  
+  <script color="0,0,255" opacity="0.5" zindex="-1" count="99" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+
+  
+  
+
+
+
+  
+  
+
+
+
+  
+  
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/three/three.min.js"></script>
+
+  
+  <script src="/lib/three/three-waves.min.js"></script>
+
+  
+  <script src="/lib/three/canvas_lines.min.js"></script>
+
+  
+  <script src="/lib/three/canvas_sphere.min.js"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.2"></script>
+
+  <script src="/js/motion.js?v=7.1.2"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.1.2"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.1.2"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.2"></script>
+<script src="/js/post-details.js?v=7.1.2"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.2"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+<script>
+  $('.highlight').not('.gist .highlight').each(function(i, e) {
+    var $wrap = $('<div>').addClass('highlight-wrap');
+    $(e).after($wrap);
+    $wrap.append($('<button>').addClass('copy-btn').append('Copy').on('click', function(e) {
+      var code = $(this).parent().find('.code').find('.line').map(function(i, e) {
+        return $(e).text();
+      }).toArray().join('\n');
+      var ta = document.createElement('textarea');
+      var yPosition = window.pageYOffset || document.documentElement.scrollTop;
+      ta.style.top = yPosition + 'px'; // Prevent page scroll
+      ta.style.position = 'absolute';
+      ta.style.opacity = '0';
+      ta.readOnly = true;
+      ta.value = code;
+      document.body.appendChild(ta);
+      const selection = document.getSelection();
+      const selected = selection.rangeCount > 0 ? selection.getRangeAt(0) : false;
+      ta.select();
+      ta.setSelectionRange(0, code.length);
+      ta.readOnly = false;
+      var result = document.execCommand('copy');
+      
+        if (result) $(this).text('Copied');
+        else $(this).text('Copy failed');
+      
+      ta.blur(); // For iOS
+      $(this).blur();
+      if (selected) {
+        selection.removeAllRanges();
+        selection.addRange(selected);
+      }
+    })).on('mouseleave', function(e) {
+      var $b = $(this).find('.copy-btn');
+      setTimeout(function() {
+        $b.text('Copy');
+      }, 300);
+    }).append(e);
+  })
+</script>
+
+
+  
+
+  
+
+</body>
+</html>

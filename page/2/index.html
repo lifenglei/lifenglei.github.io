@@ -286,6 +286,343 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://github.com/lifenglei/2019/06/19/��使用/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="端端">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="https://static.soyoung.com/sy-pre/logo-1560924611786.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="前端开发沉淀">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/06/19/��使用/" class="post-title-link" itemprop="url">$attr使用</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-06-19 15:20:23 / Modified: 16:35:19" itemprop="dateCreated datePublished" datetime="2019-06-19T15:20:23+08:00">2019-06-19</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="attrs与-listenrs使用"><a href="#attrs与-listenrs使用" class="headerlink" title="$attrs与$listenrs使用"></a>$attrs与$listenrs使用</h3><blockquote>
+<p>2.4.0 新增</p>
+<ul>
+<li>类型：<font color="orange">{ [key: string]: string }</font></li>
+<li>只读</li>
+<li>详细:</li>
+</ul>
+</blockquote>
+<h4 id="包含了父作用域中不作为-prop-被识别-且获取-的特性绑定-class-和-style-除外-。当一个组件没有声明任何-prop-时，这里会包含所有父作用域的绑定-class-和-style-除外-，并且可以通过-v-bind-”-attrs”-传入内部组件——在创建高级别的组件时非常有用。"><a href="#包含了父作用域中不作为-prop-被识别-且获取-的特性绑定-class-和-style-除外-。当一个组件没有声明任何-prop-时，这里会包含所有父作用域的绑定-class-和-style-除外-，并且可以通过-v-bind-”-attrs”-传入内部组件——在创建高级别的组件时非常有用。" class="headerlink" title="包含了父作用域中不作为 prop 被识别 (且获取) 的特性绑定 (class 和 style 除外)。当一个组件没有声明任何 prop 时，这里会包含所有父作用域的绑定 (class 和 style 除外)，并且可以通过 v-bind=”$attrs” 传入内部组件——在创建高级别的组件时非常有用。"></a>包含了父作用域中不作为 prop 被识别 (且获取) 的特性绑定 (<font color="orange">class 和 style 除外)</font>。当一个组件没有声明任何 prop 时，这里会包含所有父作用域的绑定 (class 和 style 除外)，并且可以通过<font color="orange"> v-bind=”$attrs”</font> 传入内部组件——在创建高级别的组件时非常有用。</h4><h5 id="官方说法似乎有点模糊-其实可以这么去理解"><a href="#官方说法似乎有点模糊-其实可以这么去理解" class="headerlink" title="官方说法似乎有点模糊 其实可以这么去理解"></a>官方说法似乎有点模糊 其实可以这么去理解</h5><pre><code>因为在项目中深层次组件交互的话可能就需要 Vuex 助力了，但是如果只是一个简单的深层次数据传递，
+
+或者进行某种交互时需要向上通知顶层或父层组件数据改变时，大材小用Vuex可能未免有点多余！
+</code></pre><h4 id="attr-与-interitAttrs-之间的关系"><a href="#attr-与-interitAttrs-之间的关系" class="headerlink" title="$attr 与 interitAttrs 之间的关系"></a><font color="red">$attr 与 interitAttrs 之间的关系</font></h4><h4 id="interitAttrs："><a href="#interitAttrs：" class="headerlink" title="interitAttrs："></a>interitAttrs：</h4><blockquote>
+<p>2.4.0 新增</p>
+<ul>
+<li>类型：<font color="orange">boolean</font></li>
+<li>默认值：<font color="orange">true</font></li>
+<li>详细:</li>
+</ul>
+</blockquote>
+<h4 id="默认情况下父作用域的不被认作-props-的特性绑定-attribute-bindings-将会“回退”且作为普通的-HTML-特性应用在子组件的根元素上。当撰写包裹一个目标元素或另一个组件的组件时，这可能不会总是符合预期行为。通过设置-inheritAttrs-到-false，这些默认行为将会被去掉。而通过-同样是-2-4-新增的-实例属性-attrs-可以让这些特性生效，且可以通过-v-bind-显性的绑定到非根元素上。"><a href="#默认情况下父作用域的不被认作-props-的特性绑定-attribute-bindings-将会“回退”且作为普通的-HTML-特性应用在子组件的根元素上。当撰写包裹一个目标元素或另一个组件的组件时，这可能不会总是符合预期行为。通过设置-inheritAttrs-到-false，这些默认行为将会被去掉。而通过-同样是-2-4-新增的-实例属性-attrs-可以让这些特性生效，且可以通过-v-bind-显性的绑定到非根元素上。" class="headerlink" title="默认情况下父作用域的不被认作 props 的特性绑定 (attribute bindings) 将会“回退”且作为普通的 HTML 特性应用在子组件的根元素上。当撰写包裹一个目标元素或另一个组件的组件时，这可能不会总是符合预期行为。通过设置 inheritAttrs 到 false，这些默认行为将会被去掉。而通过 (同样是 2.4 新增的) 实例属性 $attrs 可以让这些特性生效，且可以通过 v-bind 显性的绑定到非根元素上。"></a>默认情况下父作用域的不被认作 props 的特性绑定 (attribute bindings) 将会“回退”且作为普通的 HTML 特性应用在子组件的根元素上。当撰写包裹一个目标元素或另一个组件的组件时，这可能不会总是符合预期行为。通过设置 inheritAttrs 到 false，这些默认行为将会被去掉。而通过 (同样是 2.4 新增的) 实例属性 $attrs 可以让这些特性生效，且可以通过 v-bind 显性的绑定到非根元素上。</h4><h2 id="warn：这个选项不影响-class-和-style-绑定。"><a href="#warn：这个选项不影响-class-和-style-绑定。" class="headerlink" title="warn：这个选项不影响 class 和 style 绑定。"></a><font color="red">warn：这个选项不影响 class 和 style 绑定。</font></h2><h4 id="下面通过简单demo解释下"><a href="#下面通过简单demo解释下" class="headerlink" title="下面通过简单demo解释下"></a>下面通过简单demo解释下</h4><p>父组件</p>
+<pre><code class="js">&lt;template&gt;
+  &lt;div class=&quot;hello&quot;&gt;
+     &lt;demo :count=&quot;count&quot; :num=&quot;num&quot;&gt;&lt;/demo&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+  import Demo from &#39;./demo.vue&#39;
+  export default {
+    name: &#39;hello&#39;,
+    components: {
+      Demo
+    },
+    data () {
+      return {
+        count: &#39;count message&#39;,
+        num: &#39;num message&#39;
+      }
+    },
+  }
+&lt;/script&gt;
+</code></pre>
+<p>子组件</p>
+<pre><code class="js">&lt;template&gt;
+   &lt;div&gt;
+      {{count}}
+   &lt;/div&gt;
+&lt;/template&gt;
+&lt;script&gt;
+export default {
+   name: &#39;demo&#39;,
+   props: [&#39;count&#39;]
+}
+&lt;/script&gt;
+</code></pre>
+<h5 id="父组件在子组件中进行传递-count-和num-两个数据，在子组件中，应该有相对应的-props-定义的接收点，如果在-props-中定义了，你会发现无论是-count-和-num-都成了子组件的接收来的数据了，可以用来进行数据展示和行为操作。"><a href="#父组件在子组件中进行传递-count-和num-两个数据，在子组件中，应该有相对应的-props-定义的接收点，如果在-props-中定义了，你会发现无论是-count-和-num-都成了子组件的接收来的数据了，可以用来进行数据展示和行为操作。" class="headerlink" title="父组件在子组件中进行传递 count 和num 两个数据，在子组件中，应该有相对应的 props 定义的接收点，如果在 props 中定义了，你会发现无论是 count 和 num 都成了子组件的接收来的数据了，可以用来进行数据展示和行为操作。"></a>父组件在子组件中进行传递 count 和num 两个数据，在子组件中，应该有相对应的 props 定义的接收点，如果在 props 中定义了，你会发现无论是 count 和 num 都成了子组件的接收来的数据了，可以用来进行数据展示和行为操作。</h5><p>虽然在父组件中在子组件模版上通过 props 定义了两个数据，但是子组件中的 props 只接收了一个，只接收了 count，并没有接收 num，没有进行接收的此时就会成为<font color="red">子组件根无素的属性节点。</font></p>
+<h5 id="interitAttrs-false-发生了什么-？"><a href="#interitAttrs-false-发生了什么-？" class="headerlink" title="interitAttrs = false 发生了什么 ？"></a>interitAttrs = false 发生了什么 ？</h5><p>子组件</p>
+<pre><code class="js">&lt;template&gt;
+   &lt;div&gt;
+      {{count}}
+   &lt;/div&gt;
+&lt;/template&gt;
+&lt;script&gt;
+export default {
+   name: &#39;demo&#39;,
+   props: [&#39;count&#39;],
+   interitAttrs:false
+}
+&lt;/script&gt;
+</code></pre>
+<h4 id="对子组件进行一个改动，我们加上-inheritAttrs-false，从字面上的翻译的意思，取消继承的属性，然而-props-里仍然没有接收-num，发现就算-props-里没有接收-num，在子组件的根元素上并没有绑定任何属性。"><a href="#对子组件进行一个改动，我们加上-inheritAttrs-false，从字面上的翻译的意思，取消继承的属性，然而-props-里仍然没有接收-num，发现就算-props-里没有接收-num，在子组件的根元素上并没有绑定任何属性。" class="headerlink" title="对子组件进行一个改动，我们加上 inheritAttrs: false，从字面上的翻译的意思，取消继承的属性，然而 props 里仍然没有接收 num，发现就算 props 里没有接收 num，在子组件的根元素上并没有绑定任何属性。"></a>对子组件进行一个改动，我们加上 inheritAttrs: false，从字面上的翻译的意思，取消继承的属性，然而 props 里仍然没有接收 num，发现就算 props 里没有接收 num，在子组件的根元素上并没有绑定任何属性。</h4><blockquote>
+<p>$attrs</p>
+</blockquote>
+<p>在前面的例子中，子组件props中并没有接受num，设置选项 inheritAttrs： false，同样也不会作为根元素的属性节点，整个没有接收的数据都被 $attr 实例属性给接收，里面包含着所有父组件传入而子组件并没有在 Props里显示接收的数据。</p>
+<p>为了验证事实，可以在子组件中加上</p>
+<pre><code>    created () {
+       console.log(this.$attrs)
+    }
+</code></pre><p>打印出来则是一个对象 {num: “num message”}</p>
+<h3 id="warn"><a href="#warn" class="headerlink" title="warn"></a><font color="red">warn</font></h3><p>想要通 $attr 接收，但必须要保证设置选项<font color="red"> inheritAttrs: false，</font>不然会默认变成根元素的属性节点。<br>开头说了，最有用的情况则是在深层次组件运用的时候，创建第三层孙子组件，作为第二层父组件的子组件，在子组件引入的孙子组件，在模版上把整个 $attr 当数作数据传递下去，中间则并不用通过任何方法去手动转换数据。<br>子组件</p>
+<pre><code class="js">&lt;template&gt;
+   &lt;div&gt;
+      &lt;next-demo v-bind=&quot;$attrs&quot;&gt;&lt;/next-demo&gt;
+   &lt;/div&gt;
+&lt;/template&gt;
+&lt;script&gt;
+import nextDemo from &#39;./nextdemo.vue&#39;
+export default {
+   name: &#39;demo&#39;,
+   components: {
+      nextDemo
+    },
+   created () {
+       console.log(this.$attrs)
+    }
+}
+&lt;/script&gt;
+</code></pre>
+<p>孙子组件</p>
+<pre><code class="js">&lt;template&gt;
+  &lt;div&gt;
+      {{count}}{{num}}
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+  export default {
+     props : [ &#39;count&#39; , &#39;num&#39;]
+  }
+&lt;/script&gt;
+</code></pre>
+<h4 id="孙子组件在-props-接收子组件中通过-attrs-包裹传来的数据，同样是通过父组件传来的数据，只是在子组件用了-attrs进行了统一接收，再往下传递，最后通过孙子组件进行接收。"><a href="#孙子组件在-props-接收子组件中通过-attrs-包裹传来的数据，同样是通过父组件传来的数据，只是在子组件用了-attrs进行了统一接收，再往下传递，最后通过孙子组件进行接收。" class="headerlink" title="孙子组件在 props 接收子组件中通过 $attrs 包裹传来的数据，同样是通过父组件传来的数据，只是在子组件用了$attrs进行了统一接收，再往下传递，最后通过孙子组件进行接收。"></a>孙子组件在 props 接收子组件中通过 <font color="red">$attrs</font> 包裹传来的数据，同样是通过父组件传来的数据，只是在子组件用了<font color="red">$attrs</font>进行了统一接收，再往下传递，最后通过孙子组件进行接收。</h4><p>以此类推孙子组件仍然不想接收，再传入下级组件，我们仍然需要对孙子组件实力选项进行设置选项 inheritAttrs: false，否则仍然会成为孙子组件根元素的属性节点。</p>
+<h2 id="从而利用-attrs-来接收-props-为接收的数据再次向下传递是一件很方便的事件，深层次接收数据我们理解了，那从深层次向层请求改变数据如何实现。意思就是让顶层数据和最底层数据进行一个双向绑定。"><a href="#从而利用-attrs-来接收-props-为接收的数据再次向下传递是一件很方便的事件，深层次接收数据我们理解了，那从深层次向层请求改变数据如何实现。意思就是让顶层数据和最底层数据进行一个双向绑定。" class="headerlink" title="从而利用 $attrs 来接收 props 为接收的数据再次向下传递是一件很方便的事件，深层次接收数据我们理解了，那从深层次向层请求改变数据如何实现。意思就是让顶层数据和最底层数据进行一个双向绑定。"></a>从而利用 <font color="red">$attrs</font> 来接收 props 为接收的数据再次向下传递是一件很方便的事件，深层次接收数据我们理解了，那从深层次向层请求改变数据如何实现。意思就是让顶层数据和最底层数据进行一个双向绑定。</h2><h4 id="listeners"><a href="#listeners" class="headerlink" title="$listeners"></a>$listeners</h4><blockquote>
+<p>2.4.0 新增</p>
+<ul>
+<li>类型：<font color="orange">{ [key: string]: Function | Array<function> }</function></font></li>
+<li>只读</li>
+<li>详细:</li>
+</ul>
+</blockquote>
+<pre><code>包含了父作用域中的 (不含 .native 修饰器的) v-on 事件监听器。它可以通过 v-on=&quot;$listeners&quot; 传入内部组件——在创建更高层次的组件时非常有用。
+
+$listeners 和 $attrs 两者表面层都是一个意思，$attrs 是向下传递数据，$listeners 是向下传递方法，通过手动去调用 $listeners 对象里的方法，原理就是 $emit 监听事件，$listeners 也可以看成一个包裹监听事件的一个对象。
+父组件
+``` js
+&lt;template&gt;
+  &lt;div class=&quot;hello&quot;&gt;
+     {{firstMsg}}
+     &lt;demo v-on:changeData=&quot;changeData&quot; v-on:another = &#39;another&#39;&gt;&lt;/demo&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+  import Demo from &#39;./demo.vue&#39;
+  export default {
+    name: &#39;hello&#39;,
+    components: {
+      Demo
+    },
+    data () {
+      return {
+        firstMsg: &#39;父组件&#39;,
+      }
+    },
+    methods: {
+      changeData (params) {
+         this.firstMsg = params
+      },
+      another () {
+        alert(2)
+      }
+    }
+  }
+&lt;/script&gt;
+```
+子组件
+```js
+&lt;template&gt;
+   &lt;div&gt;
+      &lt;p @click=&quot;$emit(&#39;another&#39;)&quot;&gt;子组件&lt;/p&gt;  
+      &lt;next-demo  v-on=&#39;$listeners&#39;&gt;&lt;/next-demo&gt;
+   &lt;/div&gt;
+
+&lt;/template&gt;
+&lt;script&gt;
+import NextDemo from &#39;./nextdemo.vue&#39;
+export default {
+   name: &#39;demo&#39;,
+   components: {
+       NextDemo
+   },
+   created () {
+     console.log(this.$listeners)
+   },
+}
+&lt;/script&gt;
+```
+  孙子组件
+```js
+&lt;template&gt;
+  &lt;div class=&quot;hello&quot;&gt;
+      &lt;p @click=&#39;$listeners.changeData(&quot;change&quot;)&#39;&gt;孙子组件&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+export default {
+  name: &#39;demo&#39;,
+  created () {
+      console.log(this.$listeners)
+  },
+}
+&lt;/script&gt;
+```
+</code></pre><h3 id="依然能拿到从子组中传递过来的-listeners所有的监听事件，此时并不是通过-emit去触发，而是像调用函数一样，-emit只是针对于父子组件的双向通信，-listeners包了一个对象，分别是-changeData-和-another，通过-listeners-changeData-‘change’-等于直接触发了事件，执行监听后的回调函数，就是通过函数的传递，调用了父组件的函数。"><a href="#依然能拿到从子组中传递过来的-listeners所有的监听事件，此时并不是通过-emit去触发，而是像调用函数一样，-emit只是针对于父子组件的双向通信，-listeners包了一个对象，分别是-changeData-和-another，通过-listeners-changeData-‘change’-等于直接触发了事件，执行监听后的回调函数，就是通过函数的传递，调用了父组件的函数。" class="headerlink" title="依然能拿到从子组中传递过来的$listeners所有的监听事件，此时并不是通过$emit去触发，而是像调用函数一样，$emit只是针对于父子组件的双向通信，$listeners包了一个对象，分别是 changeData 和 another，通过$listeners.changeData(‘change’)等于直接触发了事件，执行监听后的回调函数，就是通过函数的传递，调用了父组件的函数。"></a>依然能拿到从子组中传递过来的$listeners所有的监听事件，此时并不是通过$emit去触发，而是像调用函数一样，$emit只是针对于父子组件的双向通信，<font color="red">$listeners包了一个对象，分别是 changeData 和 another，通过$listeners.changeData(‘change’)等于直接触发了事件</font>，执行监听后的回调函数，就是通过函数的传递，调用了父组件的函数。</h3><p>通过 $attrs 和 $listeners 可以很愉快地解决深层次组件的通信问题，更加合理的组织你的代码。</p>
+<h3 id="END-—下次分享-parent-children使用"><a href="#END-—下次分享-parent-children使用" class="headerlink" title="END —下次分享$parent $children使用"></a>END —下次分享$parent $children使用</h3>
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://github.com/lifenglei/2019/06/19/vModel语法糖/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -814,7 +1151,7 @@ showLogreg:&#39;setLogregShow&#39;
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">12</span>
+                    <span class="site-state-item-count">13</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
